@@ -8,6 +8,6 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Panel panel = new Panel();
         frame.add(panel);
-        frame.setVisible(true); //test
+        frame.setVisible(true); //testa
     }
-}
+}`
