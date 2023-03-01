@@ -5,6 +5,7 @@ public class Main {
         JFrame frame = new JFrame("FRAME TRANSPARENT");
         frame.setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
         frame.setResizable(false);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         Panel panel = new Panel();
         frame.add(panel);
         frame.setVisible(true);
