@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Frame extends JFrame {
-    public Frame() {
+public class KingdomFrame extends JFrame {
+    public KingdomFrame() {
 
         setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
         setResizable(false);
