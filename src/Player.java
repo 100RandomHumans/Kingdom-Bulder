@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Player {
-    //testnow
     ArrayList<String> specialTokens;
     ArrayList<Houses> Houses;
     private int remainingHouses;
