@@ -5,7 +5,7 @@ public class GameLogic {
     private ArrayList<Player> players;
     private ArrayList<String> scoreCards, terrainDeck, discardPile;
     public GameLogic() {
-        for (int i = 0; i < 5; i++) { //Fills terrainDeck not randomly
+        for (int i = 0; i < 5; i++) { //Fills terrainDeck not random
             terrainDeck.add("P");
             terrainDeck.add("F");
             terrainDeck.add("T");
