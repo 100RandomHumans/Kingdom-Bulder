@@ -22,6 +22,10 @@ public class Board {
 
     }
 
+    public Tile[][] getBoard(){
+        return Board;
+    }
+
     public Tile[][] stringToBoard(String s){
         Map<String, String> map = new HashMap<String, String>();
         map.put("T", "Forest");
@@ -77,6 +81,21 @@ public class Board {
             usedBoards.add(list.remove(index));
         }
         return usedBoards;
+    }
+
+    public static void main(String[] args) {
+        Board  b = new Board();
+        Tile[][] bb = b.getBoard();
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 39; j++){
+                if(bb[i][j].getTerrain() != null){
+                    System.out.println(bb[i][j].getTerrain());
+                }
+                else {
+                    System.out.println(bb[i][j].getLocation());
+                }
+            }
+        }
     }
 }
 

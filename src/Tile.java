@@ -8,5 +8,13 @@ public class Tile {
         this.location = location;
     }
 
+    public String getTerrain(){
+        return terrain;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
 
 }

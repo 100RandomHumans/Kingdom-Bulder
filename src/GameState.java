@@ -2,7 +2,7 @@ public class GameState {
     public void setScene() {
 
     }
-
+    /*
     public String getScene() {
 
     }
@@ -22,4 +22,5 @@ public class GameState {
     public void endGame() {
 
     }
+    */
 }
