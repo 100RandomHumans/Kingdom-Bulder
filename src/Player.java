@@ -1,8 +1,9 @@
 import java.util.*;
 
 public class Player {
+
     ArrayList<String> specialTokens;
-    ArrayList<Houses> Houses;
+    /*ArrayList<Houses> Houses;*/
     private int remainingHouses;
     private String color;
     private int score;

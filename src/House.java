@@ -5,7 +5,7 @@ public class House {
     public House() {
 
     }
-
+/*
     public setColor() {
 
     }
@@ -21,4 +21,6 @@ public class House {
     public getTile() {
 
     }
+*/
+
 }
