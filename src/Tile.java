@@ -16,5 +16,7 @@ public class Tile {
         return location;
     }
 
-
+    public String toString(){
+        return (terrain + " " + location);
+    }
 }
