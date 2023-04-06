@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-
 public class GameLogic {
     private boolean inGame, hoverInfo, endScreen;
     private ArrayList<Player> players;
@@ -24,7 +23,6 @@ public class GameLogic {
         scoreCards.add("Knights");
         scoreCards.add("Lords");
         scoreCards.add("Farmers");
-
     }
     public String findFirstPlayer() {
         return "Player" + ((int)(Math.random() * 4) + 1);
@@ -44,5 +42,4 @@ public class GameLogic {
             Collections.shuffle(terrainDeck);
         }
     }
-
 }
