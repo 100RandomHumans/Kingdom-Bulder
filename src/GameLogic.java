@@ -27,7 +27,7 @@ public class GameLogic {
 
     }
     public String findFirstPlayer() {
-        return null;
+        return "Player" + ((int)(Math.random() * 4) + 1);
     }
     public void addDiscardPile() {
         discardPile.add(terrainDeck.remove(0));
