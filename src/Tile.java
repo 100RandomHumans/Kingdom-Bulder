@@ -16,6 +16,13 @@ public class Tile {
         return location;
     }
 
+    public void changeTerrain(String t){
+        terrain = t;
+    }
+
+    public void changeLocation(String l){
+        location = l;
+    }
     public String toString(){
         return (terrain + " " + location);
     }

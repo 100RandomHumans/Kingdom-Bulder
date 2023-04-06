@@ -31,20 +31,25 @@ public class Board {
         map.put("T", "Forest");map.put("M", "Mountain");map.put("P", "Grass");map.put("F", "Flower");map.put("W", "Water");map.put("D", "Desert"); map.put("C", "Canyon");map.put("S", "City");map.put("B", "Barn");map.put("A", "Farm");map.put("O", "Oracle");map.put("H", "Harbor");map.put("U", "Tower");map.put("V", "Oasis");map.put("Q", "Paddock");map.put("Z", "Tavern");
 
         Tile[][] temp = new Tile[20][39];
+        for(int a = 0; a <= 19; a++){
+            for(int b = 0; b <= 38; b++){
+                temp[a][b] = new Tile(" ", " ");
+            }
+        }
         String tempString = s;
         int cnt = 0;
         int moveJ = 0;
         for(int i = 0; i <= 19; i++){
-            for(int j = moveJ; j <= moveJ + 19; j++){
-                if(tempString.substring(cnt, cnt+1).equals("S") || tempString.substring(cnt, cnt+1).equals("B") || tempString.substring(cnt, cnt+1).equals("A") || tempString.substring(cnt, cnt+1).equals("O") || tempString.substring(cnt, cnt+1).equals("H") || tempString.substring(cnt, cnt+1).equals("U") || tempString.substring(cnt, cnt+1).equals("V") || tempString.substring(cnt, cnt+1).equals("Q") || tempString.substring(cnt, cnt+1).equals("Z")){
-                    temp[i][j] = new Tile("none", map.get(tempString.substring(cnt, cnt+1)));
+            for(int j = i; j <= i + 19; j++){
+                String temp2 = tempString.substring(cnt, cnt+1);
+                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                    temp[i][j] = new Tile("none", map.get(temp2));
                 }
                 else{
-                    temp[i][j] = new Tile(map.get(tempString.substring(cnt, cnt+1)), "none");
+                    temp[i][j] = new Tile(map.get(temp2), "none");
                 }
                 cnt++;
             }
-            moveJ = moveJ + 1;
         }
 
         return temp;
