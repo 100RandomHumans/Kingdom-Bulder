@@ -14,8 +14,17 @@ public class Board {
     public Board() {
         ArrayList<Integer> boardsToUse = chooseBoards();
         String temp = "";
-        for(int i : boardsToUse){
-            temp += allBoards[i-1];
+        int i = 0;
+        int l = 1;
+        for(int j = 0; j <= 95; j += 5){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        }
+        i = 2;
+        l = 3;
+        for(int j = 0; j <= 95; j += 5){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
         }
 
         Board = stringToBoard(temp);
@@ -33,7 +42,7 @@ public class Board {
         Tile[][] temp = new Tile[20][39];
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 38; b++){
-                temp[a][b] = new Tile(" ", " ");
+                temp[a][b] = new Tile("", " ");
             }
         }
         String tempString = s;
@@ -43,10 +52,10 @@ public class Board {
             for(int j = i; j <= i + 19; j++){
                 String temp2 = tempString.substring(cnt, cnt+1);
                 if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i][j] = new Tile("none", map.get(temp2));
+                    temp[i][j] = new Tile("", map.get(temp2));
                 }
                 else{
-                    temp[i][j] = new Tile(map.get(temp2), "none");
+                    temp[i][j] = new Tile(map.get(temp2), "");
                 }
                 cnt++;
             }
@@ -79,46 +88,23 @@ public class Board {
 
         Board  b = new Board();
         Tile[][] bb = b.getBoard();
+        for(int i = 0; i<20; i++){
+            System.out.print("[");
+            for(int j = 0; j < 39; j++){
 
-        for(int i = 0; i < 20; i++){
-            for(int j = 0; j < 39; j++) {
-                System.out.print(bb[i][j].toString() + " ");
+                if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
+                    System.out.print(bb[i][j].toString());
+                }
+                else{
+                    System.out.print("");
+                }
+                if(j != 38) {
+                    System.out.print(",");
+                }
             }
+            System.out.print("]");
             System.out.println();
         }
-
-        /*
-        int size = 8;
-
-        String barnBoard = "CDDDDDDDDDCCCDDDDDCCMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT";
-        String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
-        String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
-        String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";
-        String towerBoard = "TTTTMMPMCCTMTTFPMMMCFFTFFFPPWMDFFFWUPWMMDDDDFWPWCCDCDDDWWCPCDDCDDWFSPCCCUDWFFFPPDCWWWTTFPPDCCWTTTPPP";
-        String oasisBoard = "DDCWWTTPPPDCWFFTTTPPDDWFFTTVFPWWWFPTFFFFWWWWPPPPFFWTTWPPCCDCWTCTWPCCDCWSCFWVDDCWWWCFWWWDDWWWWWWWWWWW";
-        String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";
-        String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";
-
-
-        ArrayList<Integer> list = new ArrayList<Integer>(size);
-        ArrayList<Integer> usedBoards = new ArrayList<Integer>(size);
-        for(int i = 1; i <= size; i++) {
-            list.add(i);
-        }
-        Random rand = new Random();
-        while(list.size() > 4) {
-            int index = rand.nextInt(list.size());
-            usedBoards.add(list.remove(index));
-        }
-        System.out.println(usedBoards);
-        String temp2 = "";
-        String[] temp = new String[] {barnBoard, farmBoard, oracleBoard, harborBoard, towerBoard, oasisBoard, paddockBoard, tavernBoard};
-
-        for(int i : usedBoards){
-            temp2 += temp[i-1];
-        }
-        System.out.println(temp2);
-        */
     }
 }
 
