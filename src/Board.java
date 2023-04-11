@@ -16,15 +16,15 @@ public class Board {
         String temp = "";
         int i = 0;
         int l = 1;
-        for(int j = 0; j <= 95; j += 5){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        for(int j = 0; j <= 90; j += 10){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
         }
         i = 2;
         l = 3;
-        for(int j = 0; j <= 95; j += 5){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        for(int j = 0; j <= 90; j += 10){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
         }
 
         Board = stringToBoard(temp);
