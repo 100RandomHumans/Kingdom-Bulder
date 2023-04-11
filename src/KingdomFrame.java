@@ -2,12 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class KingdomFrame extends JFrame {
+    int x = 1600;
+    int y = 900;
     public KingdomFrame() {
-        setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+
+        setSize(x, y);
         setResizable(false);
+        setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Panel panel = new Panel();
-        add(panel);
+        add(new Panel());
+        pack();
+        setLocationRelativeTo(null);
+
         setVisible(true);
     }
+
 }
