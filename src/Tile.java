@@ -24,6 +24,6 @@ public class Tile {
         location = l;
     }
     public String toString(){
-        return (terrain + " " + location);
+        return (terrain + "" + location);
     }
 }

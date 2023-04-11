@@ -33,7 +33,7 @@ public class Board {
         Tile[][] temp = new Tile[20][39];
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 38; b++){
-                temp[a][b] = new Tile(" ", " ");
+                temp[a][b] = new Tile("", " ");
             }
         }
         String tempString = s;
@@ -43,10 +43,10 @@ public class Board {
             for(int j = i; j <= i + 19; j++){
                 String temp2 = tempString.substring(cnt, cnt+1);
                 if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i][j] = new Tile("none", map.get(temp2));
+                    temp[i][j] = new Tile("", map.get(temp2));
                 }
                 else{
-                    temp[i][j] = new Tile(map.get(temp2), "none");
+                    temp[i][j] = new Tile(map.get(temp2), "");
                 }
                 cnt++;
             }
@@ -86,39 +86,6 @@ public class Board {
             }
             System.out.println();
         }
-
-        /*
-        int size = 8;
-
-        String barnBoard = "CDDDDDDDDDCCCDDDDDCCMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT";
-        String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
-        String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
-        String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";
-        String towerBoard = "TTTTMMPMCCTMTTFPMMMCFFTFFFPPWMDFFFWUPWMMDDDDFWPWCCDCDDDWWCPCDDCDDWFSPCCCUDWFFFPPDCWWWTTFPPDCCWTTTPPP";
-        String oasisBoard = "DDCWWTTPPPDCWFFTTTPPDDWFFTTVFPWWWFPTFFFFWWWWPPPPFFWTTWPPCCDCWTCTWPCCDCWSCFWVDDCWWWCFWWWDDWWWWWWWWWWW";
-        String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";
-        String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";
-
-
-        ArrayList<Integer> list = new ArrayList<Integer>(size);
-        ArrayList<Integer> usedBoards = new ArrayList<Integer>(size);
-        for(int i = 1; i <= size; i++) {
-            list.add(i);
-        }
-        Random rand = new Random();
-        while(list.size() > 4) {
-            int index = rand.nextInt(list.size());
-            usedBoards.add(list.remove(index));
-        }
-        System.out.println(usedBoards);
-        String temp2 = "";
-        String[] temp = new String[] {barnBoard, farmBoard, oracleBoard, harborBoard, towerBoard, oasisBoard, paddockBoard, tavernBoard};
-
-        for(int i : usedBoards){
-            temp2 += temp[i-1];
-        }
-        System.out.println(temp2);
-        */
     }
 }
 
