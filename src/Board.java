@@ -14,8 +14,17 @@ public class Board {
     public Board() {
         ArrayList<Integer> boardsToUse = chooseBoards();
         String temp = "";
-        for(int i : boardsToUse){
-            temp += allBoards[i-1];
+        int i = 0;
+        int l = 1;
+        for(int j = 0; j <= 95; j += 5){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        }
+        i = 2;
+        l = 3;
+        for(int j = 0; j <= 95; j += 5){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
         }
 
         Board = stringToBoard(temp);
@@ -79,11 +88,21 @@ public class Board {
 
         Board  b = new Board();
         Tile[][] bb = b.getBoard();
+        for(int i = 0; i<20; i++){
+            System.out.print("[");
+            for(int j = 0; j < 39; j++){
 
-        for(int i = 0; i < 20; i++){
-            for(int j = 0; j < 39; j++) {
-                System.out.print(bb[i][j].toString() + " ");
+                if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
+                    System.out.print(bb[i][j].toString());
+                }
+                else{
+                    System.out.print("");
+                }
+                if(j != 38) {
+                    System.out.print(",");
+                }
             }
+            System.out.print("]");
             System.out.println();
         }
     }
