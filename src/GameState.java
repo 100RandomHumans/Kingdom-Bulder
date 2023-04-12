@@ -1,10 +1,11 @@
 public class GameState {
     private int gameState;
     private String scene;
+    private AvailableHousePlacement availableHouse;
     public void setScene(int state) {
-        if(gameState = 0) {
+        if(state = 0) {
             scene = "playScreen";
-        } else if (gameState = 1) {
+        } else if (state = 1) {
             scene = "endScreen";
         }
     }
@@ -14,7 +15,8 @@ public class GameState {
     }
 
     public void startGame() {
-
+        gameState = 0;
+        setScene(gameState);
     }
 
     public void startTurn() {
@@ -22,7 +24,10 @@ public class GameState {
     }
 
     public void nextTurn() {
+        availableHouse = new AvailableHousePlacement();
+        if(availableHouse.canPlaceHouse() == false) {
 
+        }
     }
 
     public void endGame() {
