@@ -1,13 +1,17 @@
 import javax.swing.*;
-import java.awt.*;
 
 public class KingdomFrame extends JFrame {
+    int x = 1600;
+    int y = 900;
     public KingdomFrame() {
-        setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+
+        super("Kingdom Builder But Dumb");
+        setLayout(null);
+        setBounds(0,0,1600, 900);
         setResizable(false);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        Panel panel = new Panel();
-        add(panel);
+        add(new KingdomPanel());
+        setLocationRelativeTo(null);
         setVisible(true);
     }
+
 }

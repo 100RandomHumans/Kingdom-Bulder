@@ -2,29 +2,40 @@ import java.util.*;
 import java.io.*;
 public class Board {
     private Tile[][] Board= new Tile[20][39];
-    private String barnBoard = "CDDDDDDDDDCCCDDDDDCCMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT";
-    private String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
-    private String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
-    private String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";
+    private String barnBoard = "CDDDDDDDDDCCCDDDDDCDMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT"; //checked
+    private String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";//checked
+    private String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";//checked
+    private String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";//checked
     private String towerBoard = "TTTTMMPMCCTMTTFPMMMCFFTFFFPPWMDFFFWUPWMMDDDDFWPWCCDCDDDWWCPCDDCDDWFSPCCCUDWFFFPPDCWWWTTFPPDCCWTTTPPP";
     private String oasisBoard = "DDCWWTTPPPDCWFFTTTPPDDWFFTTVFPWWWFPTFFFFWWWWPPPPFFWTTWPPCCDCWTCTWPCCDCWSCFWVDDCWWWCFWWWDDWWWWWWWWWWW";
     private String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";
     private String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";
     private String[] allBoards = new String[] {barnBoard, farmBoard, oracleBoard, harborBoard, towerBoard, oasisBoard, paddockBoard, tavernBoard};
+
+    private String[] boardsUsed = new String[4];
     public Board() {
+        String[] translateBoards = new String[] {"barnBoard", "farmBoard", "oracleBoard", "harborBoard", "towerBoard", "oasisBoard", "paddockBoard", "tavernBoard"};
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        map.put(0, "barnBoard");map.put(1, "farmBoard");map.put(2, "oracleBoard");map.put(3, "harborBoard");map.put(4, "towerBoard");map.put(5, "oasisBoard");map.put(6, "paddockBoard");map.put(7, "tavernBoard");
         ArrayList<Integer> boardsToUse = chooseBoards();
         String temp = "";
         int i = 0;
         int l = 1;
-        for(int j = 0; j <= 95; j += 5){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        for(int j = 0; j <= 90; j += 10){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
         }
         i = 2;
         l = 3;
-        for(int j = 0; j <= 95; j += 5){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+5);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+5);
+        for(int j = 0; j <= 90; j += 10){
+            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
+        }
+
+        int tracker = 0;
+        for(int a = 0; a < 4; a++){
+            tracker = boardsToUse.get(a)-1;
+            boardsUsed[a] = map.get(tracker);
         }
 
         Board = stringToBoard(temp);
@@ -35,6 +46,9 @@ public class Board {
         return Board;
     }
 
+    public String[] getUsedBoards(){
+        return boardsUsed;
+    }
     public Tile[][] stringToBoard(String s){
         Map<String, String> map = new HashMap<String, String>();
         map.put("T", "Forest");map.put("M", "Mountain");map.put("P", "Grass");map.put("F", "Flower");map.put("W", "Water");map.put("D", "Desert"); map.put("C", "Canyon");map.put("S", "City");map.put("B", "Barn");map.put("A", "Farm");map.put("O", "Oracle");map.put("H", "Harbor");map.put("U", "Tower");map.put("V", "Oasis");map.put("Q", "Paddock");map.put("Z", "Tavern");
@@ -90,7 +104,7 @@ public class Board {
         Tile[][] bb = b.getBoard();
         for(int i = 0; i<20; i++){
             System.out.print("[");
-            for(int j = 0; j < 39; j++){
+            for(int j = i; j < i+20; j++){ //change to for(int j = 0; j < 39; j++){ if complete board array is needed
 
                 if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
                     System.out.print(bb[i][j].toString());
@@ -104,6 +118,12 @@ public class Board {
             }
             System.out.print("]");
             System.out.println();
+        }
+
+
+        String[] blala = b.getUsedBoards();
+        for(String s: blala){
+            System.out.println(s);
         }
     }
 }
