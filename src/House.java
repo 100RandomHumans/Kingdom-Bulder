@@ -10,17 +10,16 @@ public class House {
 
     }
 
-    public getColor() {
-
+    public String getColor() {
+        return color;
     }
 
     public setTile() {
 
     }
 
-    public getTile() {
-
+    public Tile getTile() {
+        return t;
     }
 */
-
 }
