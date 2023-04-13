@@ -1,11 +1,14 @@
 public class Tile {
     //private Tile northEast, east, southEast, southWest, west, northWest;
     private String terrain, location;
-    private int x, y;
+    private Boolean hasHouse;
+    private House house;
 
     public Tile(String terrain, String location) {
         this.terrain = terrain;
         this.location = location;
+        hasHouse = false;
+        house = null;
     }
 
     public String getTerrain(){
