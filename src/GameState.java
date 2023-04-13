@@ -3,9 +3,9 @@ public class GameState {
     private String scene;
     private AvailableHousePlacement availableHouse;
     public void setScene(int state) {
-        if(state = 0) {
+        if(state == 0) {
             scene = "playScreen";
-        } else if (state = 1) {
+        } else if (state == 1) {
             scene = "endScreen";
         }
     }

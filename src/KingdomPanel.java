@@ -1,14 +1,18 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 public class KingdomPanel extends JPanel implements MouseListener {
     int xSize = 1600;
     int ySize = 900;
 
     public KingdomPanel() {
-        setBounds(200,200, 1200, 1400);
+        setBounds(0,0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
         BoardPanel board = new BoardPanel();
@@ -18,7 +22,14 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
 
     public void paintComponent(Graphics g) {
-
+        super.paintComponent(g);
+        Image background = null;
+        try {
+            background = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Background.png")));
+        } catch (IOException e) {
+            System.out.println("Failed to get background");
+        }
+        g.drawImage(background, 0, 0, null);
     }
 
 
@@ -38,7 +49,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        System.out.println("Entered");
+
 
     }
 
@@ -50,7 +61,5 @@ public class KingdomPanel extends JPanel implements MouseListener {
     public void addNotify() {
         super.addNotify();
         requestFocus();
-
-
     }
 }
