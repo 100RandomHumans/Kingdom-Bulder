@@ -3,40 +3,52 @@ import java.io.*;
 public class Board {
     private Tile[][] Board= new Tile[20][39];
     private String barnBoard = "CDDDDDDDDDCCCDDDDDCDMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT"; //checked
-    private String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";//checked
-    private String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";//checked
-    private String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";//checked
-    private String towerBoard = "TTTTMMPMCCTMTTFPMMMCFFTFFFPPWMDFFFWUPWMMDDDDFWPWCCDCDDDWWCPCDDCDDWFSPCCCUDWFFFPPDCWWWTTFPPDCCWTTTPPP";//checked
-    private String oasisBoard = "DDCWWTTPPPDCWFFTTTPPDDWFFTTVFPWWWFPTFFFFWWWWPPPPFFWTTWPPCCDCWTCTWPCCDCWSCFWVDDCWWWCFWWWDDWWWWWWWWWWW";//checked
-    private String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";//checked
-    private String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";//checked
+    private String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
+    private String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
+    private String harborBoard = "PPTTTWPTTFPFTTWPTTFFPFFTWPPFFFFFTTWPMFDDCFSTWPDDDDCCTWPPMMDDCCWWWPDDDCWWPPWWHCMCWDSPWMWCCCWDDWWWWCCC";
+    private String towerBoard = "TTTTMMPMCCTMTTFPMMMCFFTFFFPPWMDFFFWUPWMMDDDDFWPWCCDCDDDWWCPCDDCDDWFSPCCCUDWFFFPPDCWWWTTFPPDCCWTTTPPP";
+    private String oasisBoard = "DDCWWTTPPPDCWFFTTTPPDDWFFTTVFPWWWFPTFFFFWWWWPPPPFFWTTWPPCCDCWTCTWPCCDCWSCFWVDDCWWWCFWWWDDWWWWWWWWWWW";
+    private String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";
+    private String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";
     private String[] allBoards = new String[] {barnBoard, farmBoard, oracleBoard, harborBoard, towerBoard, oasisBoard, paddockBoard, tavernBoard};
 
     private String[] boardsUsed = new String[4];
     public Board() {
-        String[] translateBoards = new String[] {"barnBoard", "farmBoard", "oracleBoard", "harborBoard", "towerBoard", "oasisBoard", "paddockBoard", "tavernBoard"};
         Map<Integer, String> map = new HashMap<Integer, String>();
         map.put(0, "barnBoard");map.put(1, "farmBoard");map.put(2, "oracleBoard");map.put(3, "harborBoard");map.put(4, "towerBoard");map.put(5, "oasisBoard");map.put(6, "paddockBoard");map.put(7, "tavernBoard");
-        ArrayList<Integer> boardsToUse = chooseBoards();
+
+        //ArrayList<Integer> boardsToUse = chooseBoards();
         String temp = "";
         int i = 0;
         int l = 1;
         for(int j = 0; j <= 90; j += 10){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
+            //temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            //temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
+            temp += allBoards[2].substring(j, j+10);
+            temp += allBoards[7].substring(j, j+10);
         }
         i = 2;
         l = 3;
         for(int j = 0; j <= 90; j += 10){
-            temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
-            temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
+            //temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
+            //temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
+            temp += allBoards[1].substring(j, j+10);
+            temp += allBoards[3].substring(j, j+10);
         }
 
+        /*
         int tracker = 0;
         for(int a = 0; a < 4; a++){
             tracker = boardsToUse.get(a)-1;
             boardsUsed[a] = map.get(tracker);
         }
+        */
+        boardsUsed[0] = "oracleBoard";
+        boardsUsed[1] = "tavernBoard";
+        boardsUsed[2] = "farmBoard";
+        boardsUsed[3] = "harborBoard";
+
+
 
         Board = stringToBoard(temp);
 
