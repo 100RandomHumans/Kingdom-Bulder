@@ -3,12 +3,12 @@ import java.awt.*;
 
 public class BoardPanel extends JPanel {
     public BoardPanel() {
-        setLayout(null);
 
+        setBounds(25, 25, 500, 500);
         setBackground(Color.red);
-        setSize(500, 500);
+        setLayout(null);
     }
-    public void paint(Graphics g) {
-        g.drawLine(0, 0, 500, 500);
-    }
+//    public void paint(Graphics g) {
+//        g.drawLine(0, 0, 500, 500);
+//    }
 }
