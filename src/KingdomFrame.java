@@ -6,9 +6,7 @@ public class KingdomFrame extends JFrame {
     public KingdomFrame() {
 
         super("Kingdom Builder But Dumb");
-
-
-
+        setDefaultCloseOperation(3);
         setLayout(null);
         setBounds(0,0,1600, 939);
         setResizable(false);
