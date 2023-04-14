@@ -1,25 +1,27 @@
 public class House {
     private String color;
-    Tile t;
 
-    public House() {
-
+    public House(String color) {
+        this.color = color;
     }
+
 /*
+
     public setColor() {
 
     }
 
-    public String getColor() {
-        return color;
+    public getColor() {
+
     }
 
     public setTile() {
 
     }
 
-    public Tile getTile() {
-        return t;
+    public getTile() {
+
     }
 */
+
 }
