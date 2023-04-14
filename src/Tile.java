@@ -1,7 +1,7 @@
 public class Tile {
     //private Tile northEast, east, southEast, southWest, west, northWest;
     private String terrain, location;
-    private Boolean hasHouse;
+    private Boolean hasHouse, toHighlight;
     private House house;
 
     public Tile(String terrain, String location) {
@@ -9,12 +9,19 @@ public class Tile {
         this.location = location;
         hasHouse = false;
         house = null;
+        toHighlight = false;
     }
 
+    public void setHighlight(Boolean h){
+        toHighlight = h;
+    }
     public String getTerrain(){
         return terrain;
     }
 
+    public House getHouse(){
+        return house;
+    }
     public String getLocation(){
         return location;
     }

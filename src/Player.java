@@ -6,11 +6,14 @@ public class Player {
     private int remainingHouses;
     private String color;
     private int score;
+    private Boolean canPlaceHouse;
 
     public Player(String color) {
         score = 0;
         this.color = color;
         remainingHouses = 30;
+        specialTokens = new ArrayList<>();
+        canPlaceHouse = false;
     }
 
     public House placeHouse(){
@@ -18,6 +21,12 @@ public class Player {
         return new House(color);
     }
 
+    public void setCanPlaceHouse(Boolean b){
+        canPlaceHouse = b;
+    }
+    public Boolean getCanPlaceHouse(){
+        return canPlaceHouse;
+    }
     public String getColor() {
         return color;
     }
@@ -30,7 +39,6 @@ public class Player {
         return score;
     }
     public void addSpecialToken(String token) {
-        specialTokens = new ArrayList<>();
         specialTokens.add(token);
     }
 }
