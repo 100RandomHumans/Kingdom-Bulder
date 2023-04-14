@@ -5,16 +5,12 @@ public class House {
         this.color = color;
     }
 
+
+
+    public String getColor() {
+        return color;
+    }
 /*
-
-    public setColor() {
-
-    }
-
-    public getColor() {
-
-    }
-
     public setTile() {
 
     }
