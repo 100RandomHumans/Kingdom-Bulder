@@ -7,7 +7,12 @@ public class GameLogic {
     private boolean inGame, hoverInfo, endScreen;
     private ArrayList<Player> players;
     private ArrayList<String> scoreCards, terrainDeck, discardPile;
+    String cardOne, cardTwo, cardThree;
+
     public GameLogic() {
+        terrainDeck = new ArrayList<>();
+        scoreCards = new ArrayList<>();
+
         for (int i = 0; i < 5; i++) {
             terrainDeck.add("P");
             terrainDeck.add("F");
@@ -21,17 +26,27 @@ public class GameLogic {
             terrainDeck.set(i, map.get(terrainDeck.get(i)));
         }
         Collections.shuffle(terrainDeck);
-        scoreCards.add("Fishermen");
-        scoreCards.add("Merchants");
-        scoreCards.add("Discoverers");
-        scoreCards.add("Hermits");
-        scoreCards.add("Citizens");
-        scoreCards.add("Miners");
-        scoreCards.add("Workers");
-        scoreCards.add("Knights");
-        scoreCards.add("Lords");
-        scoreCards.add("Farmers");
+//        scoreCards.add("Fishermen");
+//        scoreCards.add("Merchant");
+        scoreCards.add("Discoverer");
+//        scoreCards.add("Hermit");
+        scoreCards.add("Citizen");
+//        scoreCards.add("Miner");
+        scoreCards.add("Worker");
+//        scoreCards.add("Knight");
+//        scoreCards.add("Lord");
+//       scoreCards.add("Farmer");
+        Collections.shuffle(scoreCards);
+        cardOne = scoreCards.get(0);
+        cardTwo = scoreCards.get(1);
+        cardThree = scoreCards.get(2);
+
     }
+
+
+
+
+
     public String findFirstPlayer() {
         return "Player" + ((int)(Math.random() * 4) + 1);
     }
@@ -54,5 +69,29 @@ public class GameLogic {
             }
             Collections.shuffle(terrainDeck);
         }
+    }
+
+    public String getCardOne() {
+        return cardOne;
+    }
+
+    public void setCardOne(String cardOne) {
+        this.cardOne = cardOne;
+    }
+
+    public String getCardTwo() {
+        return cardTwo;
+    }
+
+    public void setCardTwo(String cardTwo) {
+        this.cardTwo = cardTwo;
+    }
+
+    public String getCardThree() {
+        return cardThree;
+    }
+
+    public void setCardThree(String cardThree) {
+        this.cardThree = cardThree;
     }
 }
