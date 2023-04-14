@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameLogic {
     private boolean inGame, hoverInfo, endScreen;
     private ArrayList<Player> players;
@@ -11,6 +14,11 @@ public class GameLogic {
             terrainDeck.add("T");
             terrainDeck.add("C");
             terrainDeck.add("D");
+        }
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("T", "Forest");map.put("M", "Mountain");map.put("P", "Grass");map.put("F", "Flower");map.put("W", "Water");map.put("D", "Desert"); map.put("C", "Canyon");
+        for(int i = 0; i < 25; i++){
+            terrainDeck.set(i, map.get(terrainDeck.get(i)));
         }
         Collections.shuffle(terrainDeck);
         scoreCards.add("Fishermen");
@@ -38,6 +46,11 @@ public class GameLogic {
                 terrainDeck.add("T");
                 terrainDeck.add("C");
                 terrainDeck.add("D");
+            }
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("T", "Forest");map.put("M", "Mountain");map.put("P", "Grass");map.put("F", "Flower");map.put("W", "Water");map.put("D", "Desert"); map.put("C", "Canyon");
+            for(int i = 0; i < 25; i++){
+                terrainDeck.set(i, map.get(terrainDeck.get(i)));
             }
             Collections.shuffle(terrainDeck);
         }
