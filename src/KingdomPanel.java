@@ -10,8 +10,10 @@ import java.util.Objects;
 public class KingdomPanel extends JPanel implements MouseListener {
     int xSize = 1600;
     int ySize = 900;
+    GameLogic gameLogic = new GameLogic();
 
     public KingdomPanel() {
+
         setBounds(0,0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
@@ -25,11 +27,27 @@ public class KingdomPanel extends JPanel implements MouseListener {
         super.paintComponent(g);
         Image background = null;
         try {
-            background = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Background.png")));
+            background = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Background.jpg")));
         } catch (IOException e) {
             System.out.println("Failed to get background");
         }
         g.drawImage(background, 0, 0, null);
+        try {
+            String name = "/Pictures/Objective" + gameLogic.cardOne + ".png";
+            Image yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
+            Image newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 900, 600, null);
+             name = "/Pictures/Objective" + gameLogic.cardTwo + ".png";
+             yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
+             newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 1100, 600, null);
+             name = "/Pictures/Objective" + gameLogic.cardThree + ".png";
+            yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
+            newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 1300, 600, null);
+        } catch (IOException ignored) {}
+
+
     }
 
 
