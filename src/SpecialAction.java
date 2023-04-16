@@ -19,8 +19,10 @@ public class SpecialAction {
         } else if(locationName.equals("Tavern")) {
 
         }
+        return null;
+
     }
-    private String locationName;
+
     public SpecialAction() {
 
     }

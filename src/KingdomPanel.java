@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -33,21 +32,20 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
         g.drawImage(background, 0, 0, null);
         try {
-            String name = "/Pictures/Objective" + gameLogic.cardOne + ".png";
+            System.out.println(gameLogic.cardOne + " " + gameLogic.cardTwo + " " + gameLogic.cardThree);
+            String name = "/ObjectiveCards/Objective" + gameLogic.cardOne + ".png";
             Image yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
-            Image newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
-            g.drawImage(newImage, 900, 600, null);
-             name = "/Pictures/Objective" + gameLogic.cardTwo + ".png";
+            Image newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 900, 0, null);
+             name = "/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png";
              yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
-             newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
-            g.drawImage(newImage, 1100, 600, null);
-             name = "/Pictures/Objective" + gameLogic.cardThree + ".png";
+             newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 900, 300, null);
+             name = "/ObjectiveCards/Objective" + gameLogic.cardThree + ".png";
             yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
-            newImage = yourImage.getScaledInstance(200, 300, Image.SCALE_DEFAULT);
-            g.drawImage(newImage, 1300, 600, null);
+            newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
+            g.drawImage(newImage, 900, 600, null);
         } catch (IOException ignored) {}
-
-
     }
 
 
