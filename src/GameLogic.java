@@ -7,6 +7,10 @@ public class GameLogic {
     String cardOne, cardTwo, cardThree;
     private boolean inGame, hoverInfo, endScreen;
     private ArrayList<Player> players;
+    public Player playerRed = new Player("red");
+    public Player playerBlue = new Player("blue");
+    public Player playerGreen = new Player("green");
+    public Player playerYellow = new Player("yellow");
     private final ArrayList<String> scoreCards;
     private final ArrayList<String> terrainDeck;
     private ArrayList<String> discardPile;
