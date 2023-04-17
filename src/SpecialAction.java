@@ -19,6 +19,8 @@ public class SpecialAction {
         } else if(locationName.equals("Tavern")) {
 
         }
+        return null;
+
     }
 
     public SpecialAction() {

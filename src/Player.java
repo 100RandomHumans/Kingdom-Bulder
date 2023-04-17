@@ -8,6 +8,8 @@ public class Player {
     private int score;
     private Boolean canPlaceHouse;
 
+    public String card;
+
     public Player(String color) {
         score = 0;
         this.color = color;
