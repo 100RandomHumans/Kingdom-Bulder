@@ -10,14 +10,18 @@ public class KingdomPanel extends JPanel implements MouseListener {
     int xSize = 1600;
     int ySize = 900;
     GameLogic gameLogic = new GameLogic();
-
+    InformationPanel informationPanel = new InformationPanel();
     public KingdomPanel() {
 
         setBounds(0,0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
         BoardPanel board = new BoardPanel();
+
+        informationPanel.setVisible(false);
+        add(informationPanel);
         add(board);
+
         addMouseListener(this);
     }
 
@@ -31,6 +35,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
             System.out.println("Failed to get background");
         }
         g.drawImage(background, 0, 0, null);
+
+
         try {
             System.out.println(gameLogic.cardOne + " " + gameLogic.cardTwo + " " + gameLogic.cardThree);
             String name = "/ObjectiveCards/Objective" + gameLogic.cardOne + ".png";
@@ -45,12 +51,36 @@ public class KingdomPanel extends JPanel implements MouseListener {
             yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
             newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
             g.drawImage(newImage, 900, 600, null);
-        } catch (IOException ignored) {}
-    }
+        } catch (Exception e) {
+            System.out.println(e + " when painting the objective cards");
+        }
+        try {
+            Image image = ImageIO.read(KingdomPanel.class.getResource("/Pictures/PlayerBox.png"));
+            g.drawImage(image, 1100, 5, null);
+            g.drawImage(image, 1100, 210, null);
+            g.drawImage(image, 1100, 415, null);
+            g.drawImage(image, 1100, 620, null);
+
+        } catch (Exception e) {
+            System.out.println(e + " when painting the player area");
+        }
+        try {
+            Image image = ImageIO.read(KingdomPanel.class.getResource("/Pictures/question.png"));
+            g.drawImage(image, 1100, 830, null);
+        } catch (Exception e) {
+
+        }
+
+
+    } // end of paintComponent
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println("KingdomPanel " + e.getX() + " : " + e.getY());
+        if (e.getX() > 1100 && e.getX() < 1165 && e.getY() > 830) {
+            informationPanel.setVisible(true);
+        }
     }
 
     @Override
