@@ -7,6 +7,6 @@ public class Main {
 Oricle
 Harbor
 Farm
-Oasis
+Tavern
 */
 }

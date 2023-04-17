@@ -14,7 +14,7 @@ public class GameLogic {
     private final ArrayList<String> scoreCards;
     private final ArrayList<String> terrainDeck;
     private ArrayList<String> discardPile;
-
+    public Board board;
     public GameLogic() {
         terrainDeck = new ArrayList<>();
         scoreCards = new ArrayList<>();

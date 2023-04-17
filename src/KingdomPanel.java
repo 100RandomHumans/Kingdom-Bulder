@@ -17,7 +17,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBounds(0,0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
-        BoardPanel board = new BoardPanel();
+        BoardPanel board = new BoardPanel(gameLogic);
 
         informationPanel.setVisible(false);
         add(informationPanel);
@@ -113,12 +113,17 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
 
 
+
+
+
+
+
     } // end of paintComponent
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("KingdomPanel " + e.getX() + " : " + e.getY());
+        //System.out.println("KingdomPanel " + e.getX() + " : " + e.getY());
         if (e.getX() > 1100 && e.getX() < 1165 && e.getY() > 830) {
             informationPanel.setVisible(true);
         }
