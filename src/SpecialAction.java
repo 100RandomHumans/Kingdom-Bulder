@@ -20,7 +20,7 @@ public class SpecialAction {
 
         }
     }
-    private String locationName;
+
     public SpecialAction() {
 
     }
