@@ -30,6 +30,7 @@ public class AvailableHousePlacement {
                 for (int j = i; j < i + 20; j++) {
                     if (board[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on gameboard
+
                     }
                 }
             }

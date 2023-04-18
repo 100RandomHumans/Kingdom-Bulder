@@ -68,13 +68,24 @@ public class Board {
         Tile[][] temp = new Tile[20][39];
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 38; b++){
-                temp[a][b] = new Tile("", " ");
+                temp[a][b] = new Tile("", "x");
             }
         }
         String tempString = s;
         int cnt = 0;
-        int moveJ = 0;
-        for(int i = 0; i <= 19; i++){
+        int i = 0;
+        for(int j = 0; j <=19; j++){
+            String temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[i][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[i][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        for(i = 1; i <= 18; i = i++){ //overrides
             for(int j = i; j <= i + 19; j++){
                 String temp2 = tempString.substring(cnt, cnt+1);
                 if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
@@ -85,6 +96,31 @@ public class Board {
                 }
                 cnt++;
             }
+//now doing 40 chars each loop instead of 20 so it breaks
+            for(int j = i; j <= i + 19; j++){
+                String temp2 = tempString.substring(cnt, cnt+1);
+                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                    temp[i+1][j] = new Tile("", map.get(temp2));
+                }
+                else{
+                    temp[i+1][j] = new Tile(map.get(temp2), "");
+                }
+                cnt++;
+            }
+
+
+        }
+
+        i = 19;
+        for(int j = 0; j <=19; j++){
+            String temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[i][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[i][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
         }
 
         return temp;
@@ -114,7 +150,7 @@ public class Board {
         Tile[][] bb = b.getBoard(); // 20 by 20 array
         for(int i = 0; i<20; i++){
             System.out.print("[");
-            for(int j = i; j < i+20; j++){ //change to for(int j = 0; j < 39; j++){ if complete board array is needed
+            for(int j = 0; j < 39; j++){ //change to for(int j = 0; j < 39; j++){ if complete board array is needed
 
                 if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
                     System.out.print(bb[i][j].toString());
