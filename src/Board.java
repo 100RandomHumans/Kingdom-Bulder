@@ -435,13 +435,21 @@ public class Board {
     public static void main(String[] args) {
         Board  b = new Board();
         Tile[][] bb = b.getBoard(); // 20 by 30 array
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("Forest"," _Forest_ ");map.put("Mountain"," Mountain ");map.put("Grass"," __Grass_ ");
+        map.put("Flower"," _Flower_ ");map.put("Water"," _Water__ ");map.put("Desert"," _Desert_ ");
+        map.put("Canyon"," _Canyon_ ");map.put("City"," __City__ ");map.put("Barn"," __Barn__ ");
+        map.put("Farm"," __Farm__ ");map.put("Oracle"," _Oracle_ ");map.put("Harbor"," _Harbor_ ");
+        map.put("Tower"," __Tower_ ");map.put("Oasis"," _Oasis__ ");map.put("Paddock"," Paddock_ ");
+        map.put("Tavern"," _Tavern_ ");map.put("x"," ________ ");
+
 
         for(int i = 0; i<bb.length; i++){
             System.out.print("[");
             for(int j = 0; j < bb[i].length; j++){
 
                 if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
-                    System.out.print(bb[i][j].toString());
+                    System.out.print(map.get(bb[i][j].toString()));
                 }
                 else{
                     System.out.print("");
