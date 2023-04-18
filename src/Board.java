@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class Board {
-    public Tile[][] Board= new Tile[20][39];
+    public Tile[][] Board= new Tile[20][30];
     public String barnBoard = "CDDDDDDDDDCCCDDDDDCDMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT"; //checked
     public String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
     public String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
@@ -65,17 +65,18 @@ public class Board {
         Map<String, String> map = new HashMap<String, String>();
         map.put("T", "Forest");map.put("M", "Mountain");map.put("P", "Grass");map.put("F", "Flower");map.put("W", "Water");map.put("D", "Desert"); map.put("C", "Canyon");map.put("S", "City");map.put("B", "Barn");map.put("A", "Farm");map.put("O", "Oracle");map.put("H", "Harbor");map.put("U", "Tower");map.put("V", "Oasis");map.put("Q", "Paddock");map.put("Z", "Tavern");
 
-        Tile[][] temp = new Tile[20][39];
+        Tile[][] temp = new Tile[20][30];
         for(int a = 0; a <= 19; a++){
-            for(int b = 0; b <= 38; b++){
+            for(int b = 0; b <= 29; b++){
                 temp[a][b] = new Tile("", "x");
             }
         }
         String tempString = s;
         int cnt = 0;
         int i = 0;
+        String temp2 = "";
         for(int j = 0; j <=19; j++){
-            String temp2 = tempString.substring(cnt, cnt+1);
+            temp2 = tempString.substring(cnt, cnt+1);
             if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
                 temp[i][j] = new Tile("", map.get(temp2));
             }
@@ -85,7 +86,303 @@ public class Board {
             cnt++;
         }
 
-        for(i = 1; i <= 18; i = i++){ //overrides
+        int jTrack = 1;
+        int iTrack = 1;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+
+        iTrack = 2;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 2;
+        iTrack = 3;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 2;
+        iTrack = 4;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 3;
+        iTrack = 5;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 3;
+        iTrack = 6;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 4;
+        iTrack = 7;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 4;
+        iTrack = 8;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 5;
+        iTrack = 9;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 5;
+        iTrack = 10;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 6;
+        iTrack = 11;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 6;
+        iTrack = 12;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 7;
+        iTrack = 13;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 7;
+        iTrack = 14;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 8;
+        iTrack = 15;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 8;
+        iTrack = 16;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 9;
+        iTrack = 17;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 9;
+        iTrack = 18;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+
+        jTrack = 10;
+        iTrack = 19;
+
+        for(int j = jTrack; j <=jTrack+19; j++){
+            temp2 = tempString.substring(cnt, cnt+1);
+            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                temp[iTrack][j] = new Tile("", map.get(temp2));
+            }
+            else{
+                temp[iTrack][j] = new Tile(map.get(temp2), "");
+            }
+            cnt++;
+        }
+        /*
+        for(int j = jTrack; j <= jTrack+19; j++){
+            for(i = iTrack; i <= iTrack+1; i++){
+                temp2 = tempString.substring(cnt, cnt+1);
+                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                    temp[i][j] = new Tile("", map.get(temp2));
+                }
+                else{
+                    temp[i][j] = new Tile(map.get(temp2), "");
+                }
+                cnt++;
+            }
+        }
+        jTrack = 2;
+        iTrack = 3;
+        for(int j = jTrack; j <= jTrack+19; j++){
+            for(i = iTrack; i <= iTrack+1; i++){
+                temp2 = tempString.substring(cnt, cnt+1);
+                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
+                    temp[i][j] = new Tile("", map.get(temp2));
+                }
+                else{
+                    temp[i][j] = new Tile(map.get(temp2), "");
+                }
+                cnt++;
+            }
+        }
+        */
+
+        /*
+        for(i = 1; i <= 9; i = i+2){
+            i--;
             for(int j = i; j <= i + 19; j++){
                 String temp2 = tempString.substring(cnt, cnt+1);
                 if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
@@ -107,21 +404,11 @@ public class Board {
                 }
                 cnt++;
             }
+            i++;
 
 
         }
-
-        i = 19;
-        for(int j = 0; j <=19; j++){
-            String temp2 = tempString.substring(cnt, cnt+1);
-            if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                temp[i][j] = new Tile("", map.get(temp2));
-            }
-            else{
-                temp[i][j] = new Tile(map.get(temp2), "");
-            }
-            cnt++;
-        }
+        */
 
         return temp;
     }
@@ -147,10 +434,11 @@ public class Board {
     }
     public static void main(String[] args) {
         Board  b = new Board();
-        Tile[][] bb = b.getBoard(); // 20 by 20 array
-        for(int i = 0; i<20; i++){
+        Tile[][] bb = b.getBoard(); // 20 by 30 array
+
+        for(int i = 0; i<bb.length; i++){
             System.out.print("[");
-            for(int j = 0; j < 39; j++){ //change to for(int j = 0; j < 39; j++){ if complete board array is needed
+            for(int j = 0; j < bb[i].length; j++){
 
                 if(!bb[i][j].getTerrain().equals("") || !bb[i][j].getLocation().equals("")){
                     System.out.print(bb[i][j].toString());
@@ -158,7 +446,7 @@ public class Board {
                 else{
                     System.out.print("");
                 }
-                if(j != 38) {
+                if(j != 29) {
                     System.out.print(",");
                 }
             }
@@ -167,8 +455,9 @@ public class Board {
         }
 
 
-        String[] blala = b.getUsedBoards();
-        for(String s: blala){
+
+        String[] boardsThatWereUsed = b.getUsedBoards();
+        for(String s: boardsThatWereUsed){
             System.out.println(s);
         }
     }
