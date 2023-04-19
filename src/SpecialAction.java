@@ -22,11 +22,4 @@ public class SpecialAction {
         return null;
 
     }
-
-    public SpecialAction() {
-
-    }
-    public ArrayList<House> housesToHighlight(String color) {
-        return null;
-    }
 }
