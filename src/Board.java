@@ -11,7 +11,7 @@ public class Board {
     public String paddockBoard = "CCCDDWDDDDMMCDDWDDDDMMCMMWDDQFMCMMWMDFFFCCTTWMMCFFCTTWCCCMFFCQTTWFFFFFPPTWPSPFPTPPTTWPPPPTPPTTWPPPTT";
     public String tavernBoard = "FDDMMDDCCCFFDDDMMCCCFFFFFFFMMMWWFSPPTTMMFFWWPPPTTCFCCWPTTCCCDFZCWTTZCPDDCWTTPPPPDDDWTTTPPPDDWWTTTPPP";
     private String[] allBoards = new String[] {barnBoard, farmBoard, oracleBoard, harborBoard, towerBoard, oasisBoard, paddockBoard, tavernBoard};
-    //public String[] allBoards = new String[] { farmBoard, oracleBoard, harborBoard, tavernBoard};
+
     public String[] boardsUsed = new String[4];
     public Board() {
         Map<Integer, String> map = new HashMap<Integer, String>();
