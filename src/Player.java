@@ -15,6 +15,7 @@ public class Player {
         this.color = color;
         remainingHouses = 30;
         specialTokens = new ArrayList<>();
+        fillSpecialToken();
         canPlaceHouse = false;
     }
 
@@ -41,6 +42,14 @@ public class Player {
         return score;
     }
     public void addSpecialToken(String token) {
-        specialTokens.add(token);
+        specialTokens.remove(specialTokens.size() - 1);
+        specialTokens.add(0, token); // token must be in the form of Barn, Farm, Harbor...
     }
+    public void fillSpecialToken() {
+        for (int i = 0; i < 8; i++) {
+            specialTokens.add("Empty");
+        }
+
+    }
+
 }

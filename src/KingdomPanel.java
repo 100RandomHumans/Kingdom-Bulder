@@ -7,13 +7,12 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class KingdomPanel extends JPanel implements MouseListener {
-    int xSize = 1600;
-    int ySize = 900;
+
     GameLogic gameLogic = new GameLogic();
     InformationPanel informationPanel = new InformationPanel();
     Image houseRed, houseBlue, houseGreen, houseYellow;
     public KingdomPanel() {
-
+        System.out.println(gameLogic.cardOne + " " + gameLogic.cardTwo + " " + gameLogic.cardThree);
         setBounds(0,0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
@@ -25,10 +24,10 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
         addMouseListener(this);
         try {
-            houseRed = ImageIO.read(KingdomPanel.class.getResource("/Pictures/HouseRed.png"));
-            houseBlue = ImageIO.read(KingdomPanel.class.getResource("/Pictures/HouseBlue.png"));
-            houseGreen = ImageIO.read(KingdomPanel.class.getResource("/Pictures/HouseGreen.png"));
-            houseYellow = ImageIO.read(KingdomPanel.class.getResource("/Pictures/HouseYellow.png"));
+            houseRed = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Houses/HouseRed.png")));
+            houseBlue = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Houses/HouseBlue.png")));
+            houseGreen = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Houses/HouseGreen.png")));
+            houseYellow = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/Houses/HouseYellow.png")));
 
         } catch (Exception e) {
             System.out.println("failed to get houses");
@@ -52,16 +51,16 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
 
         try {
-            System.out.println(gameLogic.cardOne + " " + gameLogic.cardTwo + " " + gameLogic.cardThree);
-            String name = "/ObjectiveCards/Objective" + gameLogic.cardOne + ".png";
+
+            String name = "/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png";
             Image yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
             Image newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
             g.drawImage(newImage, 900, 0, null);
-             name = "/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png";
+             name = "/Pictures/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png";
              yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
              newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
             g.drawImage(newImage, 900, 300, null);
-             name = "/ObjectiveCards/Objective" + gameLogic.cardThree + ".png";
+             name = "/Pictures/ObjectiveCards/Objective" + gameLogic.cardThree + ".png";
             yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
             newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);
             g.drawImage(newImage, 900, 600, null);
@@ -69,48 +68,75 @@ public class KingdomPanel extends JPanel implements MouseListener {
             System.out.println(e + " when painting the objective cards");
         }
         try {
-            Image image = ImageIO.read(KingdomPanel.class.getResource("/Pictures/PlayerBox.png"));
-            g.drawImage(image, 1100, 5, null); // red
-            g.drawImage(houseRed.getScaledInstance(80, 95, Image.SCALE_DEFAULT), 1120, 10, null);
+            // red
+
+            Image image = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerBox.png")));
+            g.drawImage(image, 1100, 5, null);
+            g.drawImage(houseRed.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 10, null);
             if (gameLogic.playerRed.card != null) {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Card" + gameLogic.playerRed.card + ".png")), 1500, 10, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Card" + gameLogic.playerRed.card + ".png"))), 1120, 90, null);
             } else {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Cardback.png")), 1500, 10, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Cardback.png"))), 1120, 90, null);
             }
 
-            g.drawImage(image, 1100, 210, null); // blue
-            g.drawImage(houseBlue.getScaledInstance(80, 95, Image.SCALE_DEFAULT), 1120, 215, null);
+            // blue
+
+            g.drawImage(image, 1100, 210, null);
+            g.drawImage(houseBlue.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 215, null);
             if (gameLogic.playerBlue.card != null) {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Card" + gameLogic.playerBlue.card + ".png")), 1500, 215, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.card + ".png"))), 1120, 295, null);
             } else {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Cardback.png")), 1500, 215, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Cardback.png"))), 1120, 295, null);
             }
 
-            g.drawImage(image, 1100, 415, null); // green
-            g.drawImage(houseGreen.getScaledInstance(80, 95, Image.SCALE_DEFAULT), 1120, 420, null);
+
+            // green
+
+            g.drawImage(image, 1100, 415, null);
+            g.drawImage(houseGreen.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 420, null);
             if (gameLogic.playerGreen.card != null) {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Card" + gameLogic.playerGreen.card + ".png")), 1500, 420, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Card" + gameLogic.playerGreen.card + ".png"))), 1120, 500, null);
             } else {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Cardback.png")), 1500, 420, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Cardback.png"))), 1120, 500, null);
             }
 
-            g.drawImage(image, 1100, 620, null); // yellow
-            g.drawImage(houseYellow.getScaledInstance(80, 95, Image.SCALE_DEFAULT), 1120, 625, null);
+            // yellow
+
+            g.drawImage(image, 1100, 620, null);
+            g.drawImage(houseYellow.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 625, null);
             if (gameLogic.playerYellow.card != null) {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Card" + gameLogic.playerBlue.card + ".png")), 1500, 625, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.card + ".png"))), 1120, 705, null);
             } else {
-                g.drawImage(ImageIO.read(KingdomPanel.class.getResource("/Pictures/Cardback.png")), 1500, 625, null);
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/TerrainCards/Cardback.png"))), 1120, 705, null);
             }
 
         } catch (Exception e) {
             System.out.println(e + " when painting the player area");
         }
         try {
-            Image image = ImageIO.read(KingdomPanel.class.getResource("/Pictures/question.png"));
+            Image image = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/question.png")));
             g.drawImage(image, 1100, 830, null);
+        } catch (Exception e) {
+            System.out.println("question button missing");
+        }
+
+        try {
+            for (int i = 0; i < 4; i++) { // top
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 10, null); //red
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 215, null); //blue
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 425, null); //green
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 635, null); //yellow
+                //bottom
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i + 4) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 105, null); //red
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i + 4) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 310, null); //blue
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i + 4) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 520, null); //green
+                g.drawImage(ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i + 4) + ".png"))).getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 730, null); //yellow
+
+            }
         } catch (Exception e) {
 
         }
+
 
 
 
