@@ -16,6 +16,7 @@ public class GameLogic {
     private ArrayList<String> discardPile;
     public Board board;
     public GameLogic() {
+        board = new Board();
         terrainDeck = new ArrayList<>();
         scoreCards = new ArrayList<>();
 

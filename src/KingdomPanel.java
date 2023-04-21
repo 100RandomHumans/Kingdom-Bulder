@@ -51,7 +51,6 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
 
         try {
-
             String name = "/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png";
             Image yourImage = ImageIO.read(Objects.requireNonNull(KingdomPanel.class.getResource(name)));
             Image newImage = yourImage.getScaledInstance(195, 300, Image.SCALE_DEFAULT);

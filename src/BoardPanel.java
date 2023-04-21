@@ -18,17 +18,22 @@ public class BoardPanel extends JPanel implements MouseListener {
         setLayout(null);
         addMouseListener(this);
         try {
-            boardOne = ImageIO.read(BoardPanel.class.getResource(switchCase(gameLogic.board.boardsUsed[0])));
-            boardTwo = ImageIO.read(BoardPanel.class.getResource(switchCase(gameLogic.board.boardsUsed[0])));
-            boardThree = ImageIO.read(BoardPanel.class.getResource(switchCase(gameLogic.board.boardsUsed[0])));
-            boardFour = ImageIO.read(BoardPanel.class.getResource(switchCase(gameLogic.board.boardsUsed[0])));
+            boardOne = ImageIO.read(BoardPanel.class.getResource("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0])));
+            boardTwo = ImageIO.read(BoardPanel.class.getResource("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[1])));
+            boardThree = ImageIO.read(BoardPanel.class.getResource("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[2])));
+            boardFour = ImageIO.read(BoardPanel.class.getResource("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[3])));
         } catch (Exception e) {
-
+            System.out.println("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0]) + ".png");
+            System.out.println("failed to find picture");
         }
 
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        g.drawImage(boardOne.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 5, 0, null);
+        g.drawImage(boardTwo.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 435, 0, null);
+        g.drawImage(boardThree.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 5, 365, null);
+        g.drawImage(boardFour.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 435, 365, null);
 
 
 
@@ -63,6 +68,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
 
     public String switchCase(String fuck) {
+        System.out.println(fuck);
         switch (fuck) {
             case "oracleBoard":
                 return "BoardOracle.png";
