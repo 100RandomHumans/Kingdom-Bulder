@@ -1,8 +1,8 @@
 public class Tile {
     //private Tile northEast, east, southEast, southWest, west, northWest;
-    private String terrain, location;
-    private Boolean hasHouse, toHighlight;
-    private House house;
+    public String terrain, location;
+    public Boolean hasHouse, toHighlight;
+    public House house;
     public int x, y;
 
 
@@ -37,5 +37,8 @@ public class Tile {
     }
     public String toString(){
         return (terrain + "" + location);
+    }
+    public void setHasHouse(boolean que) {
+        hasHouse = que;
     }
 }

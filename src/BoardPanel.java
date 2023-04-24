@@ -47,7 +47,10 @@ public class BoardPanel extends JPanel implements MouseListener {
         g.drawImage(boardFour.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 436, 405, null);
         for (int i = 0; i < 20; i++) { // 22 36
             for (int j = 0; j < 20; j++) {
-                g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x, gameLogic.board.BoardNoX[i][j].y, null);
+                if (gameLogic.board.BoardNoX[i][j].hasHouse) {
+                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x, gameLogic.board.BoardNoX[i][j].y, null);
+                }
+
             }
         }
 
@@ -60,7 +63,26 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getX() + " " + e.getY());
+        int i = 0;
+        int j = 0;
+        int distance = Integer.MAX_VALUE;
+        for (int a = 0; a < 20; a++) {
+            for (int b = 0; b < 20; b++) {
+                int xDistance = Math.abs(e.getX() - gameLogic.board.BoardNoX[a][b].x);
+                int yDistance = Math.abs(e.getY() - gameLogic.board.BoardNoX[a][b].y);
+                int holder = (int)Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+                if (distance > holder) {
+                    i = a;
+                    j = b;
+                    distance = holder;
+                }
+            }
+        }
+        System.out.println(i + " " + j);
 
+        gameLogic.board.BoardNoX[i][j].hasHouse = true;
+        repaint();
     }
     @Override
     public void mousePressed(MouseEvent e) {
