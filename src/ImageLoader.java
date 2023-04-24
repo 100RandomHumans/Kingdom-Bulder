@@ -28,7 +28,7 @@ public final class ImageLoader {
      */
     private static Image load(String filename) {
         System.out.println("Loading image \"" + filename + "\"...");
-        try (InputStream inputStream = ImageLoader.class.getResourceAsStream("/" + filename)) {
+        try (InputStream inputStream = ImageLoader.class.getResourceAsStream(filename)) {
             if (inputStream != null) {
                 Image image = ImageIO.read(inputStream);
                 images.put(filename, image);
