@@ -1,7 +1,8 @@
 import java.util.*;
-import java.io.*;
+
 public class Board {
-    public Tile[][] Board= new Tile[20][30];
+    public Tile[][] Board;
+    public Tile[][] BoardNoX;
     public String barnBoard = "CDDDDDDDDDCCCDDDDDCDMMMDMMBDDCCMMMMMFFCCCCCMMWFFFCPCCCMFFWTCPPBTFFWFFTPPTTFFPSTTPPPTTWPPTTPPPTWPPTTT"; //checked
     public String farmBoard = "DDCWWTTTPPDSCWTTTAPPCCCFFFTCFFCCFFWDDCCFCPPWFFDDCCPPAFWFWDDCPPPTFFWWDDPPTTMWWWDWPMTTWWWWWWTTTWWWWWWW";
     public String oracleBoard = "PPPTTWPTTTPPPSTWPTTTPFFPTTWPPTFFCPTWFOTTFFFCCWFFWWMMCPPWWWDDCCCMPFFFDDCCSDMDFFCCWWWDDDDMCCWWWWDDDDDC";
@@ -51,6 +52,8 @@ public class Board {
 
 
         Board = stringToBoard(temp);
+        BoardNoX();
+
 
     }
 
@@ -432,8 +435,32 @@ public class Board {
     public String[] getAllBoards(){
         return allBoards;
     }
+
+    public void BoardNoX() {
+        Tile[][] temp = new Tile[20][20];
+
+        for (int i = 0; i < 20; i++) {
+            int count = 0;
+            for (Tile t : Board[i]) {
+                if (!t.getLocation().equals("x")) {
+                    temp[i][count] = t;
+                    count++;
+                }
+            }
+        }
+
+        BoardNoX = temp;
+
+    }
+
+
+
+
+
+
+
     public static void main(String[] args) {
-        Board  b = new Board();
+        Board b = new Board();
         Tile[][] bb = b.getBoard(); // 20 by 30 array
         Map<String, String> map = new HashMap<String, String>();
         map.put("Forest"," _Forest_ ");map.put("Mountain"," Mountain ");map.put("Grass"," __Grass_ ");

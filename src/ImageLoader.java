@@ -27,12 +27,12 @@ public final class ImageLoader {
      * @param filename The location of the image file
      */
     private static Image load(String filename) {
-        System.out.println("Loading image \"" + filename + "\"...");
+        //System.out.println("Loading image \"" + filename + "\"...");
         try (InputStream inputStream = ImageLoader.class.getResourceAsStream(filename)) {
             if (inputStream != null) {
                 Image image = ImageIO.read(inputStream);
                 images.put(filename, image);
-                System.out.println("Successfully loaded image \"" + filename + "\"");
+                //System.out.println("Successfully loaded image \"" + filename + "\"");
                 return image;
             } else {
                 throw new IOException("Null input stream");

@@ -3,6 +3,8 @@ public class Tile {
     private String terrain, location;
     private Boolean hasHouse, toHighlight;
     private House house;
+    public int x, y;
+
 
     public Tile(String terrain, String location) {
         this.terrain = terrain;

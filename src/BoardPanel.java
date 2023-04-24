@@ -8,7 +8,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     int x = 1;
     GameLogic gameLogic;
     Image boardOne, boardTwo, boardThree, boardFour;
-
+    Image houseBlue = ImageLoader.get("/Pictures/PlayerTiles/TileBlue.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
 
     public BoardPanel(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
@@ -16,23 +16,40 @@ public class BoardPanel extends JPanel implements MouseListener {
         setBounds(0, 0, 900, 900);
         setLayout(null);
         addMouseListener(this);
-        try {
             boardOne = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0]));
             boardTwo = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[1]));
             boardThree = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[2]));
             boardFour = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[3]));
-        } catch (Exception e) {
-            System.out.println("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0]) + ".png");
-            System.out.println("failed to find picture");
-        }
+
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
+                    if (i % 2 == 0) {
+                        gameLogic.board.BoardNoX[i][j].x = 5 + 43 * j;
+                    } else {
+                        gameLogic.board.BoardNoX[i][j].x = 27 + 43 * j;
+
+                    }gameLogic.board.BoardNoX[i][j].y = 40 + i * 36;
+                    if (i > 9) {
+                        gameLogic.board.BoardNoX[i][j].y += 2;
+                    }
+
+
+
+                }
+            }
+
 
     }
     public void paintComponent(Graphics g) {
-        g.drawImage(boardOne.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 5, 0, null);
-        g.drawImage(boardTwo.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 435, 0, null);
-        g.drawImage(boardThree.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 5, 365, null);
-        g.drawImage(boardFour.getScaledInstance(450, 375, Image.SCALE_DEFAULT), 435, 365, null);
-
+        g.drawImage(boardOne.getScaledInstance(451, 375, Image.SCALE_DEFAULT), 5, 40, null);
+        g.drawImage(boardTwo.getScaledInstance(451, 375, Image.SCALE_DEFAULT), 436, 40, null);
+        g.drawImage(boardThree.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 5, 405, null);
+        g.drawImage(boardFour.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 436, 405, null);
+        for (int i = 0; i < 20; i++) { // 22 36
+            for (int j = 0; j < 20; j++) {
+                g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x, gameLogic.board.BoardNoX[i][j].y, null);
+            }
+        }
 
 
 
