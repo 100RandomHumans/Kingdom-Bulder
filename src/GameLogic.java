@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class GameLogic {
     String cardOne, cardTwo, cardThree;
-    private boolean inGame, hoverInfo, endScreen;
-    private ArrayList<Player> players;
+    public boolean inGame, hoverInfo, endScreen;
+    public final ArrayList<Player> players;
     public Player playerRed = new Player("red");
     public Player playerBlue = new Player("blue");
     public Player playerGreen = new Player("green");
@@ -16,6 +16,7 @@ public class GameLogic {
     public final ArrayList<String> terrainDeck; // ???????????????????????????????????// WE HAVE A TERRAIN CARD CLASS, USE IT
     public Board board;
     public GameLogic() {
+        players = new ArrayList<>();
         players.add(playerRed);
         players.add(playerBlue);
         players.add(playerGreen);

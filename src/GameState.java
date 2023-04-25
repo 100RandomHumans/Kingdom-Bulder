@@ -5,7 +5,7 @@ public class GameState {
     public int turnNum;
     public String scene;
     public Player firstPlayer;
-
+    public Player currentPlayer;
     public GameState(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
         startGame();
@@ -25,9 +25,10 @@ public class GameState {
 
     public void startGame() {
         firstPlayer = gameLogic.findFirstPlayer();
-        firstTurn = turnNum;
+        currentPlayer = firstPlayer;
         gameState = 0;
         setScene(gameState);
+        setTurnNum(gameLogic.players.indexOf(firstPlayer));
     }
 
 
@@ -42,5 +43,57 @@ public class GameState {
     public void endGame() {
         gameState = 1;
         setScene(gameState);
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+    public GameLogic getGameLogic() {
+        return gameLogic;
+    }
+
+    public void setGameLogic(GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+    }
+
+    public int getFirstTurn() {
+        return firstTurn;
+    }
+
+    public void setFirstTurn(int firstTurn) {
+        this.firstTurn = firstTurn;
+    }
+
+    public int getTurnNum() {
+        return turnNum;
+    }
+
+    public void setTurnNum(int turnNum) {
+        this.turnNum = turnNum;
+    }
+
+    public void setScene(String scene) {
+        this.scene = scene;
+    }
+
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }

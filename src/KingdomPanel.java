@@ -8,6 +8,7 @@ import java.io.IOException;
 public class KingdomPanel extends JPanel implements MouseListener {
 
     GameLogic gameLogic = new GameLogic();
+    GameState gameState = new GameState(gameLogic);
     InformationPanel informationPanel = new InformationPanel();
     Image houseRed, houseBlue, houseGreen, houseYellow;
     Image background;
@@ -24,7 +25,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
-        BoardPanel board = new BoardPanel(gameLogic);
+        BoardPanel board = new BoardPanel(gameLogic, gameState);
 
         informationPanel.setVisible(false);
         add(informationPanel);
