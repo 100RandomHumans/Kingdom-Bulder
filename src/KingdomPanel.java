@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 public class KingdomPanel extends JPanel implements MouseListener {
 
@@ -11,7 +13,13 @@ public class KingdomPanel extends JPanel implements MouseListener {
     Image background;
 
     public KingdomPanel() {
-
+        try {
+            GraphicsEnvironment ge =
+                    GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Redressed-Regular.ttf")));
+        } catch (IOException | FontFormatException e) {
+            //Handle exception
+        }
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
@@ -35,6 +43,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     }
 
     public void paintComponent(Graphics g) {
+        g.setFont(new Font("Redressed-Regular.ttf", Font.PLAIN, 36));
         background = ImageLoader.get("Pictures/Background.jpg");
         g.drawImage(background, 0, 0, null);
 
@@ -58,7 +67,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 97, null);
         }
-
+        g.drawString(String.valueOf(gameLogic.playerRed.remainingHouses), 1122, 80);
         // blue
 
         g.drawImage(playerBox, 1105, 237, null);
@@ -68,7 +77,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 322, null);
         }
-
+        g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1122, 305);
 
         // green
 
@@ -79,7 +88,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 547, null);
         }
-
+        g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1122, 530);
         // yellow
 
         g.drawImage(playerBox, 1105, 687, null);
@@ -89,7 +98,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 772, null);
         }
-
+        g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1122, 755);
         //g.drawImage(ImageLoader.get("/Pictures/question.png"), 1100, 830, null);
 
 

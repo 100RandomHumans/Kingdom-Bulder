@@ -55,15 +55,13 @@ public class BoardPanel extends JPanel implements MouseListener {
         }
 
 
-
-
     }
 
 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getX() + " " + e.getY());
+        //System.out.println(e.getX() + " " + e.getY()); fix this later
         int i = 0;
         int j = 0;
         int distance = Integer.MAX_VALUE;
@@ -80,7 +78,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        System.out.println(i + " " + j);
+        //System.out.println(i + " " + j);
 
         gameLogic.board.BoardNoX[i][j].hasHouse = true;
         repaint();

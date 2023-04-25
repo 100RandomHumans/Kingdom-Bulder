@@ -3,17 +3,17 @@ import java.util.*;
 public class Player {
 
     ArrayList<String> specialTokens;
-    private int remainingHouses;
-    private String color;
-    private int score;
-    private Boolean canPlaceHouse;
+    public int remainingHouses;
+    public String color;
+    public int score;
+    public Boolean canPlaceHouse;
 
     public String card;
 
     public Player(String color) {
         score = 0;
         this.color = color;
-        remainingHouses = 30;
+        remainingHouses = 40;
         specialTokens = new ArrayList<>();
         fillSpecialToken();
         canPlaceHouse = false;

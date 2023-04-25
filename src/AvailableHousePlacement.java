@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class AvailableHousePlacement {
     public AvailableHousePlacement() {
 
@@ -7,7 +5,7 @@ public class AvailableHousePlacement {
     public boolean canPlaceHouse(Player player, House house) {
         return player.getCanPlaceHouse();
     }
-    public Boolean[][] tilesToHighlight(Player player, String terrain, Board gameBoard) {
+    public Boolean[][] tilesToHighlight(Player player, String terrainCard, Board gameBoard) {
         Boolean[][] highlight = new Boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
         int housesLeft = player.getHouseCount();
@@ -28,10 +26,10 @@ public class AvailableHousePlacement {
 
 
         // if the player still has all houses, return all locations
-        if(housesLeft == 30) {
+        if(housesLeft == 40) {
             for (int i = 0; i <= 19; i++) {
                 for (int j = i; j <= i+19; j++) {
-                    if (board[i][j].getTerrain().equals(terrain)) {
+                    if (board[i][j].getTerrain().equals(terrainCard)) {
                         highlight[i][j] = true;
                     }
                 }
@@ -41,32 +39,32 @@ public class AvailableHousePlacement {
 
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
-        else if(housesLeft != 30 && housesLeft > 0) {
+        else if(housesLeft != 40 && housesLeft > 0) {
             for (int i = 1; i <= 20; i++) {
                 for (int j = i; j <= i + 19; j++) {
                     if (temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
-                        if(temp[i][j-1].getTerrain().equals(terrain)){
+                        if(temp[i][j-1].getTerrain().equals(terrainCard)){
                             highlight[i-1][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j-1].getTerrain().equals(terrain)){
+                        if(temp[i-1][j-1].getTerrain().equals(terrainCard)){
                             highlight[i-2][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j].getTerrain().equals(terrain)){
+                        if(temp[i-1][j].getTerrain().equals(terrainCard)){
                             highlight[i-2][j-1] = true;
                             counter++;
                         }
-                        if(temp[i+1][j].getTerrain().equals(terrain)){
+                        if(temp[i+1][j].getTerrain().equals(terrainCard)){
                             highlight[i][j-1] = true;
                             counter++;
                         }
-                        if(temp[i][j+1].getTerrain().equals(terrain)){
+                        if(temp[i][j+1].getTerrain().equals(terrainCard)){
                             highlight[i-1][j] = true;
                             counter++;
                         }
-                        if(temp[i+1][j+1].getTerrain().equals(terrain)){
+                        if(temp[i+1][j+1].getTerrain().equals(terrainCard)){
                             highlight[i][j] = true;
                             counter++;
                         }
@@ -77,7 +75,7 @@ public class AvailableHousePlacement {
             if(counter == 0){
                 for (int i = 0; i <= 19; i++) {
                     for (int j = i; j <= i+19; j++) {
-                        if (board[i][j].getTerrain().equals(terrain)) {
+                        if (board[i][j].getTerrain().equals(terrainCard)) {
                             highlight[i][j] = true;
                         }
                     }
