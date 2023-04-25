@@ -11,11 +11,16 @@ public class GameLogic {
     public Player playerBlue = new Player("blue");
     public Player playerGreen = new Player("green");
     public Player playerYellow = new Player("yellow");
-    private final ArrayList<String> scoreCards;
-    private final ArrayList<String> terrainDeck;
-    private ArrayList<String> discardPile;
+    public ArrayList<String> discardPile; // WHY IS THIS A STRING
+    public final ArrayList<String> scoreCards; // ???????????
+    public final ArrayList<String> terrainDeck; // ???????????????????????????????????// WE HAVE A TERRAIN CARD CLASS, USE IT
     public Board board;
     public GameLogic() {
+        players.add(playerRed);
+        players.add(playerBlue);
+        players.add(playerGreen);
+        players.add(playerYellow);
+
         board = new Board();
         terrainDeck = new ArrayList<>();
         scoreCards = new ArrayList<>();
@@ -57,9 +62,26 @@ public class GameLogic {
     }
 
 
-    public String findFirstPlayer() {
-        return "Player" + ((int) (Math.random() * 4) + 1);
+    public Player findFirstPlayer() {
+        switch ((int) (Math.random() * 4) + 1) {
+            case 1 -> {
+                return playerRed;
+            }
+            case 2 -> {
+                return playerBlue;
+            }
+            case 3 -> {
+                return playerGreen;
+            }
+            case 4 -> {
+                return playerYellow;
+            }
+            default -> {
+                return null;
+            }
+        }
     }
+
 
     public void addDiscardPile() {
         discardPile.add(terrainDeck.remove(0));

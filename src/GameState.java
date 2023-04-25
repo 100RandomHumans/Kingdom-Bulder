@@ -1,12 +1,16 @@
-import java.util.ArrayList;
+public class GameState {
+    public int gameState;
+    public GameLogic gameLogic;
+    public int firstTurn;
+    public int turnNum;
+    public String scene;
+    public Player firstPlayer;
 
-public class GameState { // I commented out ur stuff to test
-    private int gameState;
-    private int firstTurn;
-    private int turnNum;
-    private String scene;
-    private AvailableHousePlacement availableHouse;
-    private ArrayList<Player> players;
+    public GameState(GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+        startGame();
+    }
+
     public void setScene(int state) {
         if(state == 0) {
             scene = "playScreen";
@@ -20,19 +24,12 @@ public class GameState { // I commented out ur stuff to test
     }
 
     public void startGame() {
-        GameLogic gameLogic = new GameLogic();
-//        Player firstPlayer = gameLogic.findFirstPlayer();
-//        String num = firstPlayer(firstPlayer.length() - 1);
-//        turnNum = Integer.parseInt(num);
+        firstPlayer = gameLogic.findFirstPlayer();
         firstTurn = turnNum;
         gameState = 0;
         setScene(gameState);
     }
 
-    public void startTurn() {
-//        Player currentPlayer = new Player();
-//        currentPlayer = players.get(turnNum - 1);
-    }
 
     public void nextTurn() {
         if(turnNum == 4) {
@@ -40,17 +37,6 @@ public class GameState { // I commented out ur stuff to test
         } else {
             turnNum++;
         }
-
-        availableHouse = new AvailableHousePlacement();
-//        if(availableHouse.canPlaceHouse() == false) {
-//            while(turnNum != firstTurn) {
-//                if(turnNum == 4) {
-//                    turnNum = 1;
-//                } else {
-//                    turnNum++;
-//                }
-//            }
-//        }
     }
 
     public void endGame() {

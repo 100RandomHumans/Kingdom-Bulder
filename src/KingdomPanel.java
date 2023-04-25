@@ -11,14 +11,15 @@ public class KingdomPanel extends JPanel implements MouseListener {
     InformationPanel informationPanel = new InformationPanel();
     Image houseRed, houseBlue, houseGreen, houseYellow;
     Image background;
-
+    Font redressed;
     public KingdomPanel() {
         try {
-            GraphicsEnvironment ge =
-                    GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("Redressed-Regular.ttf")));
+            redressed = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\chris\\JavaProjects\\ProjectsFolder\\Kingdom-Bulder\\src\\Redressed-Regular.ttf")).deriveFont(30f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\chris\\JavaProjects\\ProjectsFolder\\Kingdom-Bulder\\src\\Redressed-Regular.ttf")));
+
         } catch (IOException | FontFormatException e) {
-            //Handle exception
+            System.out.println("cant find it");
         }
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
@@ -43,7 +44,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     }
 
     public void paintComponent(Graphics g) {
-        g.setFont(new Font("Redressed-Regular.ttf", Font.PLAIN, 36));
+        g.setFont(redressed);
         background = ImageLoader.get("Pictures/Background.jpg");
         g.drawImage(background, 0, 0, null);
 
