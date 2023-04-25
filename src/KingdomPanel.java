@@ -12,7 +12,6 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     public KingdomPanel() {
 
-
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);

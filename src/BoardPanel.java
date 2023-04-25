@@ -24,11 +24,11 @@ public class BoardPanel extends JPanel implements MouseListener {
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
                     if (i % 2 == 0) {
-                        gameLogic.board.BoardNoX[i][j].x = 5 + 43 * j;
+                        gameLogic.board.BoardNoX[i][j].x = 5 + 43 * j + 22;
                     } else {
-                        gameLogic.board.BoardNoX[i][j].x = 27 + 43 * j;
+                        gameLogic.board.BoardNoX[i][j].x = 27 + 43 * j + 22;
 
-                    }gameLogic.board.BoardNoX[i][j].y = 40 + i * 36;
+                    }gameLogic.board.BoardNoX[i][j].y = 40 + i * 36 + 36;
                     if (i > 9) {
                         gameLogic.board.BoardNoX[i][j].y += 2;
                     }
@@ -48,7 +48,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         for (int i = 0; i < 20; i++) { // 22 36
             for (int j = 0; j < 20; j++) {
                 if (gameLogic.board.BoardNoX[i][j].hasHouse) {
-                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x, gameLogic.board.BoardNoX[i][j].y, null);
+                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 36, null);
                 }
 
             }
@@ -69,6 +69,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         int distance = Integer.MAX_VALUE;
         for (int a = 0; a < 20; a++) {
             for (int b = 0; b < 20; b++) {
+
                 int xDistance = Math.abs(e.getX() - gameLogic.board.BoardNoX[a][b].x);
                 int yDistance = Math.abs(e.getY() - gameLogic.board.BoardNoX[a][b].y);
                 int holder = (int)Math.sqrt(xDistance * xDistance + yDistance * yDistance);
