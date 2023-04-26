@@ -13,7 +13,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         this.gameState = gameState;
         this.gameLogic = gameLogic;
         setOpaque(false);
-        setBounds(0, 0, 900, 900);
+        setBounds(0, 0, 900, 800);
         setLayout(null);
         addMouseListener(this);
             boardOne = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0]));
@@ -63,6 +63,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getY() > 800) {
+            return;
+        } // for testing, will change in the future!
+
         //System.out.println(e.getX() + " " + e.getY()); fix this later
         int i = 0;
         int j = 0;

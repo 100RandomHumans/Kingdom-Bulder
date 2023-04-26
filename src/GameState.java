@@ -11,10 +11,10 @@ public class GameState {
         startGame();
     }
 
-    public void setScene(int state) {
-        if(state == 0) {
+    public void setScene(int sceneState) {
+        if(sceneState == 0) {
             scene = "playScreen";
-        } else if (state == 1) {
+        } else if (sceneState == 1) {
             scene = "endScreen";
         }
     }
@@ -28,7 +28,7 @@ public class GameState {
         currentPlayer = firstPlayer;
         gameState = 0;
         setScene(gameState);
-        setTurnNum(gameLogic.players.indexOf(firstPlayer));
+        setTurnNum(gameLogic.players.indexOf(firstPlayer) + 1);
     }
 
 

@@ -7,10 +7,10 @@ public class GameLogic {
     String cardOne, cardTwo, cardThree;
     public boolean inGame, hoverInfo, endScreen;
     public final ArrayList<Player> players;
-    public Player playerRed = new Player("red");
-    public Player playerBlue = new Player("blue");
-    public Player playerGreen = new Player("green");
-    public Player playerYellow = new Player("yellow");
+    public Player playerRed = new Player("Red");
+    public Player playerBlue = new Player("Blue");
+    public Player playerGreen = new Player("Green");
+    public Player playerYellow = new Player("Yellow");
     public ArrayList<String> discardPile; // WHY IS THIS A STRING
     public final ArrayList<String> scoreCards; // ???????????
     public final ArrayList<String> terrainDeck; // ???????????????????????????????????// WE HAVE A TERRAIN CARD CLASS, USE IT
