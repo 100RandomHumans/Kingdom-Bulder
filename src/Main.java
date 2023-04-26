@@ -10,5 +10,13 @@ Oricle
 Harbor
 Farm
 Tavern
+------------------------------------
+Forest
+Mountain
+Grass
+Flower
+Water
+Desert
+Canyon
 */
 }
