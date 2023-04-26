@@ -2,12 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Objects;
 
 public class BoardPanel extends JPanel implements MouseListener {
     GameLogic gameLogic;
     GameState gameState;
     Image boardOne, boardTwo, boardThree, boardFour;
     Image houseBlue = ImageLoader.get("/Pictures/PlayerTiles/TileBlue.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    Image houseRed = ImageLoader.get("/Pictures/PlayerTiles/TileRed.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    Image houseGreen = ImageLoader.get("/Pictures/PlayerTiles/TileGreen.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    Image houseYellow = ImageLoader.get("/Pictures/PlayerTiles/TileYellow.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
 
     public BoardPanel(GameLogic gameLogic, GameState gameState) {
         this.gameState = gameState;
@@ -49,15 +53,24 @@ public class BoardPanel extends JPanel implements MouseListener {
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
                 if (gameLogic.board.BoardNoX[i][j].hasHouse) {
-                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    if (Objects.equals(gameLogic.board.BoardNoX[i][j].houseColor, "Blue")) {
+                        g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    }
+                    if (Objects.equals(gameLogic.board.BoardNoX[i][j].houseColor, "Red")) {
+                        g.drawImage(houseRed, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    }
+                    if (Objects.equals(gameLogic.board.BoardNoX[i][j].houseColor, "Yellow")) {
+                        g.drawImage(houseYellow, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    }
+                    if (Objects.equals(gameLogic.board.BoardNoX[i][j].houseColor, "Green")) {
+                        g.drawImage(houseGreen, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    }
                 }
             }
         }
-        AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
-        gameState.currentPlayer.terrain = "Forest";
-          boolean[][] avilable = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, "Forest", gameLogic.board);
-
-
+//        AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
+//        gameState.currentPlayer.terrain = "Forest";
+//          boolean[][] avilable = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, "Forest", gameLogic.board);
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
                 if (avilable[i][j]) {
@@ -96,6 +109,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         //System.out.println(i + " " + j);
 
         gameLogic.board.BoardNoX[i][j].hasHouse = true;
+        gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
         repaint();
     }
     @Override

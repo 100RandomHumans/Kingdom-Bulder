@@ -38,6 +38,7 @@ public class GameState {
         } else {
             turnNum++;
         }
+        currentPlayer = gameLogic.players.get(turnNum - 1);
     }
 
     public void endGame() {

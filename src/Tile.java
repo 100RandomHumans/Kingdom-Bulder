@@ -3,6 +3,7 @@ public class Tile {
     public String terrain, location;
     public Boolean hasHouse, toHighlight;
     public House house;
+    public String houseColor;
     public int x, y;
 
 

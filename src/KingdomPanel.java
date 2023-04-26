@@ -97,16 +97,16 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
         g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1125, 754);
 
-        for (int i = 0; i < 4; i++) { // top
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 17, null); //red
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 242, null); //blue
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 467, null); //green
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 692, null); //yellow
-            //bottom
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 114, null); //red
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 339, null); //blue
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 564, null); //green
-            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 789, null); //yellow
+        for (int i = 0; i < 4; i++) { // top // currently takes way too long to load, need to load at begining or make it faster
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 17, null); //red
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 242, null); //blue
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 467, null); //green
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 692, null); //yellow
+//            //bottom
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 114, null); //red
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 339, null); //blue
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 564, null); //green
+//            g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i + 4) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 789, null); //yellow
 
         }
 
