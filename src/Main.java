@@ -5,8 +5,9 @@ public class Main {
         Board board = new Board();
     }
 
-    /*
-Oricle
+/*
+City
+Oracle
 Harbor
 Farm
 Tavern
