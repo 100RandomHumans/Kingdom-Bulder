@@ -16,9 +16,7 @@ public class AvailableHousePlacement {
             }
         }
         for(int i = 1; i <= 20; i++){
-            for(int j = 1; j <= i+19; j++){
-                temp[i][j] = board[i-1][j-1];
-            }
+            System.arraycopy(board[i - 1], 0, temp[i], 1, i + 19);
         }
 
 
