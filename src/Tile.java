@@ -25,6 +25,8 @@ public class Tile {
     public House getHouse(){
         return house;
     }
+
+    public boolean getHasHouse(){return hasHouse;}
     public String getLocation(){
         return location;
     }

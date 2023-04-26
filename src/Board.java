@@ -395,6 +395,38 @@ public class Board {
 
     }
 
+    public boolean[][] thirtyToTwenty(boolean[][] b){
+        boolean[][] temp = new boolean[20][20];
+        int tracker = 0;
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                temp[i][j] = b[i][j+tracker];
+            }
+            if(i%2 == 0){
+                tracker++;
+            }
+        }
+
+
+
+        return temp;
+    }
+
+    public Tile[][] TilethirtyToTwenty(Tile[][] b){
+        Tile[][] temp = new Tile[20][20];
+        int tracker = 0;
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                temp[i][j] = b[i][j+tracker];
+            }
+            if(i%2 == 0){
+                tracker++;
+            }
+        }
+        return temp;
+    }
+
+
 
 
 
@@ -412,7 +444,7 @@ public class Board {
         map.put("Tower"," __Tower_ ");map.put("Oasis"," _Oasis__ ");map.put("Paddock"," Paddock_ ");
         map.put("Tavern"," _Tavern_ ");map.put("x"," ________ ");
 
-
+        /*
         for(int i = 0; i<bb.length; i++){
             System.out.print("[");
             for(int j = 0; j < bb[i].length; j++){
@@ -430,6 +462,7 @@ public class Board {
             System.out.print("]");
             System.out.println();
         }
+        */
 
         for(int i = 0; i < bb.length; i++){
             for(int j = 0; j < bb[0].length; j++){
@@ -438,12 +471,36 @@ public class Board {
             System.out.println();
         }
 
+        Tile[][] bbb = b.TilethirtyToTwenty(bb);
+
+        for(int i = 0; i < bbb.length; i++){
+            for(int j = 0; j < bbb[0].length; j++){
+                System.out.print(map.get(bbb[i][j].toString()));
+            }
+            System.out.println();
+        }
 
 
         String[] boardsThatWereUsed = b.getUsedBoards();
         for(String s: boardsThatWereUsed){
             System.out.println(s);
         }
+
+
+        /*
+        int tracker = 0;
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                System.out.print("[ " + i + " / " + j + " / " + tracker + " / " + (j+tracker) + " ] ");
+            }
+            if(i%2 == 0){
+                tracker++;
+            }
+            System.out.println();
+        }
+        */
+
+
     }
 }
 

@@ -24,6 +24,7 @@ public class AvailableHousePlacement {
 
 
         // if the player still has all houses, return all locations
+
         if(housesLeft == 40) {
             for (int i = 0; i <= 19; i++) {
                 for (int j = 0; j <= 29; j++) {
@@ -39,30 +40,30 @@ public class AvailableHousePlacement {
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
         else if(housesLeft > 0) {
             for (int i = 1; i <= 20; i++) {
-                for (int j = i; j <= i + 19; j++) {
-                    if (temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
+                for (int j = 1; j <= 30; j++) {
+                    if (temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
-                        if(temp[i][j-1].getTerrain().equals(terrainCard)){
+                        if(temp[i][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i-1][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j-1].getTerrain().equals(terrainCard)){
+                        if(temp[i-1][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i-2][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j].getTerrain().equals(terrainCard)){
+                        if(temp[i-1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i-2][j-1] = true;
                             counter++;
                         }
-                        if(temp[i+1][j].getTerrain().equals(terrainCard)){
+                        if(temp[i+1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i][j-1] = true;
                             counter++;
                         }
-                        if(temp[i][j+1].getTerrain().equals(terrainCard)){
+                        if(temp[i][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i-1][j] = true;
                             counter++;
                         }
-                        if(temp[i+1][j+1].getTerrain().equals(terrainCard)){
+                        if(temp[i+1][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i][j] = true;
                             counter++;
                         }
@@ -72,7 +73,7 @@ public class AvailableHousePlacement {
             //if the no tile around any house is of the terrain of the player
             if(counter == 0){
                 for (int i = 0; i <= 19; i++) {
-                    for (int j = i; j <= i+19; j++) {
+                    for (int j = 0; j <= 29; j++) {
                         if (board[i][j].getTerrain().equals(terrainCard)) {
                             highlight[i][j] = true;
                         }

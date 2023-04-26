@@ -70,10 +70,12 @@ public class BoardPanel extends JPanel implements MouseListener {
         }
         AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
         gameState.currentPlayer.terrain = "Forest";
+        gameState.currentPlayer.remainingHouses = 39;
           boolean[][] avilable = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, "Forest", gameLogic.board);
+          boolean[][] temp = thirtyToTwenty(avilable);
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
-                if (avilable[i][j]) {
+                if (temp[i][j]) {
                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
 
                 }
@@ -82,8 +84,21 @@ public class BoardPanel extends JPanel implements MouseListener {
         }
 
     }
-
+    public boolean[][] thirtyToTwenty(boolean[][] b){
+        boolean[][] temp = new boolean[20][20];
+        int tracker = 0;
+        for(int i = 0; i < 20; i++){
+            for(int j = 0; j < 20; j++){
+                temp[i][j] = b[i][j+tracker];
+            }
+            if(i%2 == 0){
+                tracker++;
+            }
+        }
+        return temp;
+    }
     @Override
+
     public void mouseClicked(MouseEvent e) {
         if (e.getY() > 800) {
             return;
@@ -109,6 +124,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         //System.out.println(i + " " + j);
 
         gameLogic.board.BoardNoX[i][j].hasHouse = true;
+
         gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
         repaint();
     }
