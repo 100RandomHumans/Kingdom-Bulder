@@ -27,22 +27,11 @@ public class GameLogic {
         scoreCards = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            terrainDeck.add("P");
-            terrainDeck.add("F");
-            terrainDeck.add("T");
-            terrainDeck.add("C");
-            terrainDeck.add("D");
-        }
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("T", "Forest");
-        map.put("M", "Mountain");
-        map.put("P", "Grass");
-        map.put("F", "Flower");
-        map.put("W", "Water");
-        map.put("D", "Desert");
-        map.put("C", "Canyon");
-        for (int i = 0; i < 25; i++) {
-            terrainDeck.set(i, map.get(terrainDeck.get(i)));
+            terrainDeck.add("Grass"); // Grass
+            terrainDeck.add("Flower"); // Flower
+            terrainDeck.add("Forest"); // Forest
+            terrainDeck.add("Canyon"); // Canyon
+            terrainDeck.add("Desert"); // Desert
         }
         Collections.shuffle(terrainDeck);
         scoreCards.add("Fishermen");

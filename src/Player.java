@@ -6,9 +6,9 @@ public class Player {
     public int remainingHouses;
     public String color;
     public int score;
-    public Boolean canPlaceHouse;
-
     public String card;
+    public String terrain;
+
 
     public Player(String color) {
         score = 0;
@@ -16,19 +16,11 @@ public class Player {
         remainingHouses = 40;
         specialTokens = new ArrayList<>();
         fillSpecialToken();
-        canPlaceHouse = false;
     }
 
     public House placeHouse(){
         remainingHouses = remainingHouses-1;
         return new House(color);
-    }
-
-    public void setCanPlaceHouse(Boolean b){
-        canPlaceHouse = b;
-    }
-    public Boolean getCanPlaceHouse(){
-        return canPlaceHouse;
     }
     public String getColor() {
         return color;

@@ -2,11 +2,8 @@ public class AvailableHousePlacement {
     public AvailableHousePlacement() {
 
     }
-    public boolean canPlaceHouse(Player player, House house) {
-        return player.getCanPlaceHouse();
-    }
-    public Boolean[][] tilesToHighlight(Player player, String terrainCard, Board gameBoard) {
-        Boolean[][] highlight = new Boolean[20][30];
+    public boolean[][] tilesToHighlight(Player player, String terrainCard, Board gameBoard) {
+        boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
         int housesLeft = player.getHouseCount();
         Tile[][] temp = new Tile[22][32];

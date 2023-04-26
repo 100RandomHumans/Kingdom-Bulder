@@ -117,7 +117,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("X - " + e.getX() + " : Y - " + e.getY() );
+//        System.out.println("X - " + e.getX() + " : Y - " + e.getY() );
         if (e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
             gameState.nextTurn();
             repaint();
