@@ -69,10 +69,10 @@ public class BoardPanel extends JPanel implements MouseListener {
             }
         }
         AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
-        gameState.currentPlayer.terrain = "Forest";
+        gameState.currentPlayer.terrain = "Desert";
         gameState.currentPlayer.remainingHouses = 39;
-          boolean[][] avilable = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, "Forest", gameLogic.board);
-          boolean[][] temp = thirtyToTwenty(avilable);
+          boolean[][] available = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board);
+          boolean[][] temp = thirtyToTwenty(available);
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
                 if (temp[i][j]) {
