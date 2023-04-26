@@ -36,7 +36,7 @@ public class Tile {
         location = l;
     }
     public String toString(){
-        return (terrain + "" + location + "test");
+        return (terrain + "" + location);
     }
     public void setHasHouse(boolean que) {
         hasHouse = que;
