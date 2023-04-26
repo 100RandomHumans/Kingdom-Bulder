@@ -15,15 +15,18 @@ public class AvailableHousePlacement {
                 temp[i][j]  = new Tile("", "");
             }
         }
+
         for(int i = 1; i <= 20; i++){
-            System.arraycopy(board[i - 1], 0, temp[i], 1, i + 19);
+            for(int j = 1; j <= 30; j++){
+                temp[i][j] = board[i-1][j-1];
+            }
         }
 
 
         // if the player still has all houses, return all locations
         if(housesLeft == 40) {
             for (int i = 0; i <= 19; i++) {
-                for (int j = i; j <= i+19; j++) {
+                for (int j = 0; j <= 29; j++) {
                     if (board[i][j].getTerrain().equals(terrainCard)) {
                         highlight[i][j] = true;
                     }
@@ -34,7 +37,7 @@ public class AvailableHousePlacement {
 
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
-        else if(housesLeft != 40 && housesLeft > 0) {
+        else if(housesLeft > 0) {
             for (int i = 1; i <= 20; i++) {
                 for (int j = i; j <= i + 19; j++) {
                     if (temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board

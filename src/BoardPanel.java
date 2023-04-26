@@ -58,15 +58,15 @@ public class BoardPanel extends JPanel implements MouseListener {
           boolean[][] avilable = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, "Forest", gameLogic.board);
 
 
-//        for (int i = 0; i < 20; i++) { // handles the painting
-//            for (int j = 0; j < 20; j++) {
-//                if (avilable[i][j]) {
-//                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
-//
-//                }
-//            }
-//
-//        }
+        for (int i = 0; i < 20; i++) { // handles the painting
+            for (int j = 0; j < 20; j++) {
+                if (avilable[i][j]) {
+                   g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+
+                }
+            }
+
+        }
 
     }
 
@@ -128,6 +128,22 @@ public class BoardPanel extends JPanel implements MouseListener {
         };
 
     }
+/*
+    public boolean[][] removeX(boolean[][] boards) {
+        Tile[][] temp = new Tile[20][20];
 
+        for (int i = 0; i < 20; i++) {
+            int count = 0;
+            for (boolean t : boards[i]) {
+                if (!t.getLocation().equals("x")) {
+                    temp[i][count] = t;
+                    count++;
+                }
+            }
+        }
 
+        return temp;
+
+    }
+*/
 }

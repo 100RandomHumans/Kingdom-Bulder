@@ -431,6 +431,13 @@ public class Board {
             System.out.println();
         }
 
+        for(int i = 0; i < bb.length; i++){
+            for(int j = 0; j < bb[0].length; j++){
+                System.out.print(map.get(bb[i][j].toString()));
+            }
+            System.out.println();
+        }
+
 
 
         String[] boardsThatWereUsed = b.getUsedBoards();
