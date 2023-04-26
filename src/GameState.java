@@ -1,16 +1,20 @@
-import java.util.ArrayList;
+public class GameState {
+    public int gameState;
+    public GameLogic gameLogic;
+    public int firstTurn;
+    public int turnNum;
+    public String scene;
+    public Player firstPlayer;
+    public Player currentPlayer;
+    public GameState(GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+        startGame();
+    }
 
-public class GameState { // I commented out ur stuff to test
-    private int gameState;
-    private int firstTurn;
-    private int turnNum;
-    private String scene;
-    private AvailableHousePlacement availableHouse;
-    private ArrayList<Player> players;
-    public void setScene(int state) {
-        if(state == 0) {
+    public void setScene(int sceneState) {
+        if(sceneState == 0) {
             scene = "playScreen";
-        } else if (state == 1) {
+        } else if (sceneState == 1) {
             scene = "endScreen";
         }
     }
@@ -20,19 +24,13 @@ public class GameState { // I commented out ur stuff to test
     }
 
     public void startGame() {
-        GameLogic gameLogic = new GameLogic();
-//        Player firstPlayer = gameLogic.findFirstPlayer();
-//        String num = firstPlayer(firstPlayer.length() - 1);
-//        turnNum = Integer.parseInt(num);
-        firstTurn = turnNum;
+        firstPlayer = gameLogic.findFirstPlayer();
+        currentPlayer = firstPlayer;
         gameState = 0;
         setScene(gameState);
+        setTurnNum(gameLogic.players.indexOf(firstPlayer) + 1);
     }
 
-    public void startTurn() {
-//        Player currentPlayer = new Player();
-//        currentPlayer = players.get(turnNum - 1);
-    }
 
     public void nextTurn() {
         if(turnNum == 4) {
@@ -40,21 +38,62 @@ public class GameState { // I commented out ur stuff to test
         } else {
             turnNum++;
         }
-
-        availableHouse = new AvailableHousePlacement();
-//        if(availableHouse.canPlaceHouse() == false) {
-//            while(turnNum != firstTurn) {
-//                if(turnNum == 4) {
-//                    turnNum = 1;
-//                } else {
-//                    turnNum++;
-//                }
-//            }
-//        }
     }
 
     public void endGame() {
         gameState = 1;
         setScene(gameState);
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public void setGameState(int gameState) {
+        this.gameState = gameState;
+    }
+
+    public GameLogic getGameLogic() {
+        return gameLogic;
+    }
+
+    public void setGameLogic(GameLogic gameLogic) {
+        this.gameLogic = gameLogic;
+    }
+
+    public int getFirstTurn() {
+        return firstTurn;
+    }
+
+    public void setFirstTurn(int firstTurn) {
+        this.firstTurn = firstTurn;
+    }
+
+    public int getTurnNum() {
+        return turnNum;
+    }
+
+    public void setTurnNum(int turnNum) {
+        this.turnNum = turnNum;
+    }
+
+    public void setScene(String scene) {
+        this.scene = scene;
+    }
+
+    public Player getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }

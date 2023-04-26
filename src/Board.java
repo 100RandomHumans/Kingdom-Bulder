@@ -354,64 +354,6 @@ public class Board {
             }
             cnt++;
         }
-        /*
-        for(int j = jTrack; j <= jTrack+19; j++){
-            for(i = iTrack; i <= iTrack+1; i++){
-                temp2 = tempString.substring(cnt, cnt+1);
-                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i][j] = new Tile("", map.get(temp2));
-                }
-                else{
-                    temp[i][j] = new Tile(map.get(temp2), "");
-                }
-                cnt++;
-            }
-        }
-        jTrack = 2;
-        iTrack = 3;
-        for(int j = jTrack; j <= jTrack+19; j++){
-            for(i = iTrack; i <= iTrack+1; i++){
-                temp2 = tempString.substring(cnt, cnt+1);
-                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i][j] = new Tile("", map.get(temp2));
-                }
-                else{
-                    temp[i][j] = new Tile(map.get(temp2), "");
-                }
-                cnt++;
-            }
-        }
-        */
-
-        /*
-        for(i = 1; i <= 9; i = i+2){
-            i--;
-            for(int j = i; j <= i + 19; j++){
-                String temp2 = tempString.substring(cnt, cnt+1);
-                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i][j] = new Tile("", map.get(temp2));
-                }
-                else{
-                    temp[i][j] = new Tile(map.get(temp2), "");
-                }
-                cnt++;
-            }
-//now doing 40 chars each loop instead of 20 so it breaks
-            for(int j = i; j <= i + 19; j++){
-                String temp2 = tempString.substring(cnt, cnt+1);
-                if(temp2.equals("S") || temp2.equals("B") || temp2.equals("A") || temp2.equals("O") || temp2.equals("H") || temp2.equals("U") || temp2.equals("V") || temp2.equals("Q") || temp2.equals("Z")){
-                    temp[i+1][j] = new Tile("", map.get(temp2));
-                }
-                else{
-                    temp[i+1][j] = new Tile(map.get(temp2), "");
-                }
-                cnt++;
-            }
-            i++;
-
-
-        }
-        */
 
         return temp;
     }

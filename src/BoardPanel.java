@@ -4,16 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class BoardPanel extends JPanel implements MouseListener {
-
-    int x = 1;
     GameLogic gameLogic;
+    GameState gameState;
     Image boardOne, boardTwo, boardThree, boardFour;
     Image houseBlue = ImageLoader.get("/Pictures/PlayerTiles/TileBlue.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
 
-    public BoardPanel(GameLogic gameLogic) {
+    public BoardPanel(GameLogic gameLogic, GameState gameState) {
+        this.gameState = gameState;
         this.gameLogic = gameLogic;
         setOpaque(false);
-        setBounds(0, 0, 900, 900);
+        setBounds(0, 0, 900, 800);
         setLayout(null);
         addMouseListener(this);
             boardOne = ImageLoader.get("/Pictures/Boards/" + switchCase(gameLogic.board.boardsUsed[0]));
@@ -28,7 +28,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     } else {
                         gameLogic.board.BoardNoX[i][j].x = 27 + 43 * j + 22;
 
-                    }gameLogic.board.BoardNoX[i][j].y = 40 + i * 36 + 36;
+                    }gameLogic.board.BoardNoX[i][j].y = 40 + i * 36 + 25;
                     if (i > 9) {
                         gameLogic.board.BoardNoX[i][j].y += 2;
                     }
@@ -45,17 +45,17 @@ public class BoardPanel extends JPanel implements MouseListener {
         g.drawImage(boardTwo.getScaledInstance(451, 375, Image.SCALE_DEFAULT), 436, 40, null);
         g.drawImage(boardThree.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 5, 405, null);
         g.drawImage(boardFour.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 436, 405, null);
-        for (int i = 0; i < 20; i++) { // 22 36
+
+
+
+
+        for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
                 if (gameLogic.board.BoardNoX[i][j].hasHouse) {
-                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 36, null);
+                    g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
                 }
-
             }
         }
-
-
-
 
     }
 
@@ -63,7 +63,11 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(e.getX() + " " + e.getY());
+        if (e.getY() > 800) {
+            return;
+        } // for testing, will change in the future!
+
+        //System.out.println(e.getX() + " " + e.getY()); fix this later
         int i = 0;
         int j = 0;
         int distance = Integer.MAX_VALUE;
@@ -80,7 +84,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        System.out.println(i + " " + j);
+        //System.out.println(i + " " + j);
 
         gameLogic.board.BoardNoX[i][j].hasHouse = true;
         repaint();
@@ -105,21 +109,14 @@ public class BoardPanel extends JPanel implements MouseListener {
         requestFocus();
     }
 
-    public String switchCase(String fuck) {
-        System.out.println(fuck);
-        switch (fuck) {
-            case "oracleBoard":
-                return "BoardOracle.png";
-            case "tavernBoard":
-                return "BoardTavern.png";
-            case "farmBoard":
-                return "BoardFarm.png";
-            case "harborBoard":
-                return "BoardHarbor.png";
-
-            default:
-                return "something messed up switchCase";
-        }
+    public String switchCase(String cases) {
+        return switch (cases) {
+            case "oracleBoard" -> "BoardOracle.png";
+            case "tavernBoard" -> "BoardTavern.png";
+            case "farmBoard" -> "BoardFarm.png";
+            case "harborBoard" -> "BoardHarbor.png";
+            default -> "something messed up switchCase";
+        };
 
     }
 
