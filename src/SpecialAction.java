@@ -12,15 +12,15 @@ public class SpecialAction {
             }
         }
         for(int i = 1; i <= 20; i++){
-            for(int j = 1; j <= i+19; j++){
+            for(int j = 1; j <= 30; j++){
                 temp[i][j] = board[i-1][j-1];
             }
         }
 
 
         if (SpecialAction.equals("Oracle")) {
-            for (int i = 0; i < temp.length; i++) {
-                for (int j = 0; j < temp[0].length; j++) {
+            for (int i = 1; i < temp.length-1; i++) {
+                for (int j = 1; j < temp[0].length-1; j++) {
                     if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
                         if(temp[i][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
@@ -68,8 +68,8 @@ public class SpecialAction {
 
 
         else if(SpecialAction.equals("Farm")){
-            for (int i = 0; i < temp.length; i++) {
-                for (int j = 0; j < temp[0].length; j++) {
+            for (int i = 1; i < temp.length-1; i++) {
+                for (int j = 1; j < temp[0].length-1; j++) {
                     if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
                         if(temp[i][j-1].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
