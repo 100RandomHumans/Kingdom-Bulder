@@ -40,15 +40,21 @@ public class AvailableHousePlacement {
 
         // if the player still has all houses, return all locations
 
-
+        for(int i = 0; i < highlight.length; i++){
+            for(int j = 0; j < highlight[0].length; j++){
+                if(board[i][j].hasHouse){
+                    highlight[i][j] = false;
+                }
+            }
+        }
 
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
         if(housesLeft > 0) {
-            for (int i = 1; i < temp.length-1; i++) {
+            for (int i = 1; i <= 20; i++) {
                 //System.out.println(3);
-                for (int j = 1; j < temp[0].length-1; j++) {
-                    if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
+                for (int j = 1; j <= 30; j++) {
+                    if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
                         //System.out.println(4);
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
                         if(temp[i][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
@@ -75,6 +81,13 @@ public class AvailableHousePlacement {
                             highlight[i][j] = true;
                             counter++;
                         }
+                    }
+                }
+            }
+            for(int i = 0; i < highlight.length; i++){
+                for(int j = 0; j < highlight[0].length; j++){
+                    if(board[i][j].hasHouse){
+                        highlight[i][j] = false;
                     }
                 }
             }
