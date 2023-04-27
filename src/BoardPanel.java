@@ -68,20 +68,20 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
-        gameState.currentPlayer.terrain = "Forest";
-        gameState.currentPlayer.remainingHouses = 40;
-        boolean[][] available = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board);
-        boolean[][] temp = thirtyToTwenty(available);
-        for (int i = 0; i < 20; i++) { // handles the painting
-            for (int j = 0; j < 20; j++) {
-                if (temp[i][j]) {
-                   g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
-
-                }
-            }
-
-        }
+//        AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
+//        gameState.currentPlayer.terrain = "Forest";
+//        gameState.currentPlayer.remainingHouses = 40;
+//        boolean[][] available = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board);
+//        boolean[][] temp = thirtyToTwenty(available);
+//        for (int i = 0; i < 20; i++) { // handles the painting
+//            for (int j = 0; j < 20; j++) {
+//                if (temp[i][j]) {
+//                   g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+//
+//                }
+//            }
+//
+//        }
 
     }
     public boolean[][] thirtyToTwenty(boolean[][] b){
@@ -121,16 +121,15 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        //System.out.println(i + " " + j);
-        int a = 0;
-        if(i==0){a = j;} else if(i==1||i==2){a = j+1;} else if(i==3||i==4){a = j+2;} else if(i==5||i==6){a = j+3;}
-        else if(i==7||i==8){a = j+4;} else if(i==9||i==10){a = j+5;} else if(i==11||i==12){a = j+6;} else if(i==13||i==14){a = j+7;}
-        else if(i==15||i==16){a = j+8;} else if(i==17||i==18){a = j+9;} else if(i==19||i==20){a = j+10;}
+        AvailableHousePlacement avilable = new AvailableHousePlacement();
+        boolean[][] hold = thirtyToTwenty(avilable.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
+        if (hold[i][j]) {
+            gameLogic.board.BoardNoX[i][j].hasHouse = true;
+            gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
+            gameState.currentPlayer.remainingHouses -= 1;
+            repaint();
+        }
 
-        gameLogic.board.Board[i][a].hasHouse = true;
-        gameLogic.board.BoardNoX[i][j].hasHouse = true;
-        gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
-        repaint();
     }
     @Override
     public void mousePressed(MouseEvent e) {

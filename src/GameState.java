@@ -28,7 +28,8 @@ public class GameState {
         currentPlayer = firstPlayer;
         gameState = 0;
         setScene(gameState);
-        setTurnNum(gameLogic.players.indexOf(firstPlayer) + 1);
+        currentPlayer.terrain = gameLogic.terrainDeck.remove(0);
+        setTurnNum(1);
     }
 
 
@@ -39,6 +40,7 @@ public class GameState {
             turnNum++;
         }
         currentPlayer = gameLogic.players.get(turnNum - 1);
+        currentPlayer.terrain = gameLogic.terrainDeck.remove(0);
     }
 
     public void endGame() {

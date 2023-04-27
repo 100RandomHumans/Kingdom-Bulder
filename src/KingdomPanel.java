@@ -62,8 +62,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
         // red
         g.drawImage(playerBox, 1105, 12, null);
         g.drawImage(houseRed.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 17, null);
-        if (gameLogic.playerRed.card != null) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerRed.card + ".png"), 1120, 97, null);
+        if (gameLogic.playerRed.terrain != null && gameState.turnNum == 1) {
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerRed.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 97, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 97, null);
         }
@@ -72,8 +72,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
         // blue
         g.drawImage(playerBox, 1105, 237, null);
         g.drawImage(houseBlue.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 242, null);
-        if (gameLogic.playerBlue.card != null) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.card + ".png"), 1120, 322, null);
+        if (gameLogic.playerBlue.terrain != null && gameState.turnNum == 2) {
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 322, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 322, null);
         }
@@ -82,8 +82,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
         // green
         g.drawImage(playerBox, 1105, 462, null);
         g.drawImage(houseGreen.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 467, null);
-        if (gameLogic.playerGreen.card != null) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerGreen.card + ".png"), 1120, 547, null);
+        if (gameLogic.playerGreen.terrain != null && gameState.turnNum == 3) {
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerGreen.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 547, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 547, null);
         }
@@ -92,8 +92,9 @@ public class KingdomPanel extends JPanel implements MouseListener {
         // yellow
         g.drawImage(playerBox, 1105, 687, null);
         g.drawImage(houseYellow.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 692, null);
-        if (gameLogic.playerYellow.card != null) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.card + ".png"), 1120, 772, null);
+        if (gameLogic.playerYellow.terrain != null && gameState.turnNum == 4) {
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerYellow
+                    .terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 772, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 772, null);
         }

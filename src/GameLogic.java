@@ -11,9 +11,9 @@ public class GameLogic {
     public Player playerBlue = new Player("Blue");
     public Player playerGreen = new Player("Green");
     public Player playerYellow = new Player("Yellow");
-    public ArrayList<String> discardPile; // WHY IS THIS A STRING
-    public final ArrayList<String> scoreCards; // ???????????
-    public final ArrayList<String> terrainDeck; // ???????????????????????????????????// WE HAVE A TERRAIN CARD CLASS, USE IT
+    public ArrayList<String> discardPile;
+    public final ArrayList<String> scoreCards;
+    public final ArrayList<String> terrainDeck;
     public Board board;
     public GameLogic() {
         players = new ArrayList<>();
