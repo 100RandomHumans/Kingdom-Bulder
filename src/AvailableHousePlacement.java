@@ -30,9 +30,9 @@ public class AvailableHousePlacement {
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
         if(housesLeft > 0) {
-            for (int i = 1; i <= 20; i++) {
-                for (int j = 1; j <= 30; j++) {
-                    if (temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
+            for (int i = 0; i < temp.length; i++) {
+                for (int j = 0; j < temp[0].length; j++) {
+                    if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
                         if(temp[i][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
                             highlight[i-1][j-2] = true;
