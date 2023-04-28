@@ -61,23 +61,23 @@ public class AvailableHousePlacement {
                             highlight[i-1][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
+                        if(temp[i-1][j-1].getTerrain().equals(terrainCard) && !temp[i-1][j-1].hasHouse){
                             highlight[i-2][j-2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
+                        if(temp[i-1][j].getTerrain().equals(terrainCard) && !temp[i-1][j].hasHouse){
                             highlight[i-2][j-1] = true;
                             counter++;
                         }
-                        if(temp[i+1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
+                        if(temp[i+1][j].getTerrain().equals(terrainCard) && !temp[i+1][j].hasHouse){
                             highlight[i][j-1] = true;
                             counter++;
                         }
-                        if(temp[i][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
+                        if(temp[i][j+1].getTerrain().equals(terrainCard) && !temp[i][j+1].hasHouse){
                             highlight[i-1][j] = true;
                             counter++;
                         }
-                        if(temp[i+1][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].hasHouse){
+                        if(temp[i+1][j+1].getTerrain().equals(terrainCard) && !temp[i+1][j+1].hasHouse){
                             highlight[i][j] = true;
                             counter++;
                         }
