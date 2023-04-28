@@ -138,7 +138,33 @@ public class SpecialAction {
 
 
         else if(SpecialAction.equals("Tavern")){
+            for (int i = 0; i <= 19; i++) {
+                for (int j = 0; j <= 29; j++) {
+                    if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
+                        // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
+                        //all possible columns of 3
+                        if (i <= 17 && board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
 
+                        }
+                        //all possible rows of 3
+                        if (j <= 27 && board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+
+                        }
+                        //all possible diagonals of 3
+                        if (i <= 17 && j <= 27 && board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < highlight.length; i++) {
+                for (int j = 0; j < highlight[0].length; j++) {
+                    if (board[i][j].hasHouse) {
+                        highlight[i][j] = false;
+                    }
+                }
+            }
+            return highlight;
         }
 
 
