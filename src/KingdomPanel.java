@@ -51,104 +51,104 @@ public class KingdomPanel extends JPanel implements MouseListener {
         background = ImageLoader.get("Pictures/Background.jpg");
         g.drawImage(background, 0, 0, null);
 
-        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png").getScaledInstance(175, 270, Image.SCALE_DEFAULT), 900, 40, null);
-        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png").getScaledInstance(175, 270, Image.SCALE_DEFAULT), 900, 315, null);
-        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardThree + ".png").getScaledInstance(175, 270, Image.SCALE_DEFAULT), 900, 590, null);
+        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png"), 900, 40, 175, 290, null);
+        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png"), 900, 315, 175, 270, null);
+        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardThree + ".png"), 900, 590, 175, 270, null);
 
-        g.drawImage(ImageLoader.get("/Pictures/ContinueButton.png").getScaledInstance(450, 90, Image.SCALE_SMOOTH), 225, 800, null);
+        g.drawImage(ImageLoader.get("/Pictures/ContinueButton.png"), 225, 800, 450, 90, null);
 
-        Image playerBox = ImageLoader.get("/Pictures/PlayerBox.png").getScaledInstance(470, 200, Image.SCALE_SMOOTH);
+        Image playerBox = ImageLoader.get("/Pictures/PlayerBox.png");
 
         // red
-        g.drawImage(playerBox, 1105, 12, null);
-        g.drawImage(houseRed.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 17, null);
+        g.drawImage(playerBox, 1105, 12, 470, 200, null);
+        g.drawImage(houseRed, 1120, 17, 70, 75, null);
         if (gameLogic.playerRed.terrain != null && gameState.turnNum == 1) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerRed.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 97, null);
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerRed.terrain + ".png"), 1120, 97, 68, 105, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 97, null);
         }
         g.drawString(String.valueOf(gameLogic.playerRed.remainingHouses), 1125, 78);
 
         // blue
-        g.drawImage(playerBox, 1105, 237, null);
-        g.drawImage(houseBlue.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 242, null);
+        g.drawImage(playerBox, 1105, 237, 470, 200,null);
+        g.drawImage(houseBlue, 1120, 242, 70, 75, null);
         if (gameLogic.playerBlue.terrain != null && gameState.turnNum == 2) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 322, null);
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerBlue.terrain + ".png"), 1120, 322, 68, 105, null);
+
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 322, null);
         }
         g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1125, 303);
 
         // green
-        g.drawImage(playerBox, 1105, 462, null);
-        g.drawImage(houseGreen.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 467, null);
+        g.drawImage(playerBox, 1105, 462, 470, 200, null);
+        g.drawImage(houseGreen, 1120, 467, 70, 75,null);
         if (gameLogic.playerGreen.terrain != null && gameState.turnNum == 3) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerGreen.terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 547, null);
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerGreen.terrain + ".png"), 1120, 547, 68, 105,null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 547, null);
         }
-        g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1125, 528);
+        g.drawString(String.valueOf(gameLogic.playerGreen.remainingHouses), 1125, 528);
 
         // yellow
-        g.drawImage(playerBox, 1105, 687, null);
-        g.drawImage(houseYellow.getScaledInstance(70, 75, Image.SCALE_DEFAULT), 1120, 692, null);
+        g.drawImage(playerBox, 1105, 687, 470, 200, null);
+        g.drawImage(houseYellow, 1120, 692, 70, 75, null);
         if (gameLogic.playerYellow.terrain != null && gameState.turnNum == 4) {
-            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerYellow
-                    .terrain + ".png").getScaledInstance(68, 105, Image.SCALE_SMOOTH), 1120, 772, null);
+            g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Card" + gameLogic.playerYellow.terrain + ".png"), 1120, 772, 68, 105, null);
         } else {
             g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 1120, 772, null);
         }
-        g.drawString(String.valueOf(gameLogic.playerBlue.remainingHouses), 1125, 754);
+        g.drawString(String.valueOf(gameLogic.playerYellow.remainingHouses), 1125, 754);
 
         for (int i = 0; i < 4; i++) { // top // currently takes way too long to load, need to load at begining or make it faster
 
             if (Objects.equals(gameLogic.playerRed.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 17, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 17, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 17, 80, 92,null); //red
 
             }
             if (Objects.equals(gameLogic.playerBlue.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 242, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 242, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 242, 80, 92, null); //red
 
             }
             if (Objects.equals(gameLogic.playerGreen.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 467, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 467, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 467, 80, 92, null); //red
 
             }
             if (Objects.equals(gameLogic.playerYellow.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 692, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 692, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 692, 80, 92, null); //red
 
             }
             //bottom
             if (Objects.equals(gameLogic.playerRed.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 110, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 110, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 110, 80, 92, null); //red
 
             }
             if (Objects.equals(gameLogic.playerBlue.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 335, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 335, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 335, 80, 92, null); //red
 
             }
             if (Objects.equals(gameLogic.playerGreen.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 560, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 560, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 560, 80, 92, null); //red
 
             }
             if (Objects.equals(gameLogic.playerYellow.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 785, null);
             } else {
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png").getScaledInstance(80, 92, Image.SCALE_DEFAULT), 1195 + (95 * i), 785, null); //red
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 785, 80, 92, null); //red
 
             }
         }

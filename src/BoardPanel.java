@@ -12,7 +12,10 @@ public class BoardPanel extends JPanel implements MouseListener {
     Image houseRed = ImageLoader.get("/Pictures/PlayerTiles/TileRed.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
     Image houseGreen = ImageLoader.get("/Pictures/PlayerTiles/TileGreen.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
     Image houseYellow = ImageLoader.get("/Pictures/PlayerTiles/TileYellow.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    Image grayTile = ImageLoader.get("/Pictures/PlayerTiles/TileGray.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    boolean[][] darken;
 
+    AvailableHousePlacement avilable = new AvailableHousePlacement();
     public BoardPanel(GameLogic gameLogic, GameState gameState) {
         this.gameState = gameState;
         this.gameLogic = gameLogic;
@@ -36,19 +39,17 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if (i > 9) {
                         gameLogic.board.BoardNoX[i][j].y += 2;
                     }
-
-
-
                 }
             }
 
 
     }
     public void paintComponent(Graphics g) {
-        g.drawImage(boardOne.getScaledInstance(451, 375, Image.SCALE_DEFAULT), 5, 40, null);
-        g.drawImage(boardTwo.getScaledInstance(451, 375, Image.SCALE_DEFAULT), 436, 40, null);
-        g.drawImage(boardThree.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 5, 405, null);
-        g.drawImage(boardFour.getScaledInstance(451, 371, Image.SCALE_DEFAULT), 436, 405, null);
+        super.repaint();
+        g.drawImage(boardOne, 5, 40, 451, 385, null);
+        g.drawImage(boardTwo, 436, 40, 451, 375, null);
+        g.drawImage(boardThree, 5, 405, 451, 375, null);
+        g.drawImage(boardFour, 436, 405, 451, 375, null);
 
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
@@ -82,6 +83,14 @@ public class BoardPanel extends JPanel implements MouseListener {
 //            }
 //
 //        }
+        darken = thirtyToTwenty(avilable.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < 20; j++) {
+                if (!darken[i][j]) {
+                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                }
+            }
+        }
 
     }
     public boolean[][] thirtyToTwenty(boolean[][] b){
@@ -100,6 +109,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     @Override
 
     public void mouseClicked(MouseEvent e) {
+
         if (e.getY() > 800) {
             return;
         } // for testing, will change in the future!
@@ -121,15 +131,13 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        AvailableHousePlacement avilable = new AvailableHousePlacement();
         boolean[][] hold = thirtyToTwenty(avilable.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
         if (hold[i][j]) {
             gameLogic.board.BoardNoX[i][j].hasHouse = true;
             gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
             gameState.currentPlayer.remainingHouses -= 1;
-            repaint();
-        }
-
+    }
+        repaint();
     }
     @Override
     public void mousePressed(MouseEvent e) {

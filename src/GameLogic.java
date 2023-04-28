@@ -124,4 +124,7 @@ public class GameLogic {
     public void setCardThree(String cardThree) {
         this.cardThree = cardThree;
     }
+
+
+
 }

@@ -6,7 +6,6 @@ public class Player {
     public int remainingHouses;
     public String color;
     public int score;
-    public String card;
     public String terrain;
 
 
