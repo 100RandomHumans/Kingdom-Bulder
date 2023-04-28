@@ -10,12 +10,19 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     GameLogic gameLogic = new GameLogic();
     GameState gameState = new GameState(gameLogic);
-    InformationPanel informationPanel = new InformationPanel();
-    Image houseRed, houseBlue, houseGreen, houseYellow;
+    ScoringPanel scoringPanel;
+    Image houseRed = ImageLoader.get("/Pictures/Houses/HouseRed.png");
+    Image houseBlue =  ImageLoader.get("/Pictures/Houses/HouseBlue.png");
+    Image houseGreen =ImageLoader.get("/Pictures/Houses/HouseGreen.png");
+    Image houseYellow = ImageLoader.get("/Pictures/Houses/HouseYellow.png");
     Image background;
     Font redressed;
+    boolean secondTimeRound = false;
+    boolean thirdTimeRound = false;
     Image emptyHex = ImageLoader.get("/Pictures/PlayerTiles/TileEmpty.png").getScaledInstance(80, 92, Image.SCALE_DEFAULT);
-    public KingdomPanel() {
+    public KingdomPanel(int houses) {
+
+
         try {
             redressed = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\chris\\JavaProjects\\ProjectsFolder\\Kingdom-Bulder\\src\\Redressed-Regular.ttf")).deriveFont(30f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -28,21 +35,16 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBackground(Color.blue);
         setLayout(null);
         BoardPanel board = new BoardPanel(gameLogic, gameState, this);
-
-        informationPanel.setVisible(false);
-        add(informationPanel);
+        scoringPanel = new ScoringPanel(gameLogic, gameState, gameLogic.board);
+        scoringPanel.setVisible(false);
+        add(scoringPanel);
         add(board);
 
         addMouseListener(this);
-        try {
-            houseRed = ImageLoader.get("/Pictures/Houses/HouseRed.png");
-            houseBlue = ImageLoader.get("/Pictures/Houses/HouseBlue.png");
-            houseGreen = ImageLoader.get("/Pictures/Houses/HouseGreen.png");
-            houseYellow = ImageLoader.get("/Pictures/Houses/HouseYellow.png");
-
-        } catch (Exception e) {
-            System.out.println("failed to get houses");
-        }
+        gameLogic.playerRed.remainingHouses = houses;
+        gameLogic.playerBlue.remainingHouses = houses;
+        gameLogic.playerGreen.remainingHouses = houses;
+        gameLogic.playerYellow.remainingHouses = houses;
 
     }
 
@@ -154,7 +156,9 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
 
         g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
-        g.drawString(String.valueOf(gameState.turnNum), 25, 860);
+        // g.drawString(String.valueOf(gameState.turnNum), 25, 860);
+
+
     } // end of paintComponent
 
 
@@ -165,8 +169,15 @@ public class KingdomPanel extends JPanel implements MouseListener {
             gameState.nextTurn();
             repaint();
 
-        }
 
+        }
+        if ((gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0 && secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) || (gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0 && thirdTimeRound)) {
+
+            scoringPanel.setVisible(true);
+            thirdTimeRound = true;
+        } else if(gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0) {
+            secondTimeRound = true;
+        }
 
 
 

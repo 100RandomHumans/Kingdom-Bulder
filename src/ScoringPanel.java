@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class InformationPanel extends JPanel implements MouseListener {
-    public InformationPanel() {
+public class ScoringPanel extends JPanel implements MouseListener {
+    public ScoringPanel(GameLogic gameLogic, GameState gameState, Board board) {
 
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);

@@ -28,7 +28,7 @@ public class GameState {
         currentPlayer = firstPlayer;
         gameState = 0;
         setScene(gameState);
-        setTurnNum(1);
+        setTurnNum(gameLogic.players.indexOf(firstPlayer));
         nextTurn();
     }
 
