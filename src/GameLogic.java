@@ -15,6 +15,7 @@ public class GameLogic {
     public final ArrayList<String> scoreCards;
     public final ArrayList<String> terrainDeck;
     public Board board;
+    public int housePlaced;
     public GameLogic() {
         players = new ArrayList<>();
         players.add(playerRed);

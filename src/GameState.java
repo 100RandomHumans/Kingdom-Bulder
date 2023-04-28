@@ -41,6 +41,7 @@ public class GameState {
         }
         currentPlayer = gameLogic.players.get(turnNum - 1);
         currentPlayer.terrain = gameLogic.terrainDeck.remove(0);
+        gameLogic.housePlaced = 0;
     }
 
     public void endGame() {

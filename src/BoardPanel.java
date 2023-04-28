@@ -46,10 +46,10 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
     public void paintComponent(Graphics g) {
         super.repaint();
-        g.drawImage(boardOne, 5, 40, 451, 385, null);
+        g.drawImage(boardOne, 5, 40, 451, 375, null);
         g.drawImage(boardTwo, 436, 40, 451, 375, null);
-        g.drawImage(boardThree, 5, 405, 451, 375, null);
-        g.drawImage(boardFour, 436, 405, 451, 375, null);
+        g.drawImage(boardThree, 5, 405, 451, 371, null);
+        g.drawImage(boardFour, 436, 405, 451, 371, null);
 
         for (int i = 0; i < 20; i++) { // handles the painting
             for (int j = 0; j < 20; j++) {
@@ -106,7 +106,6 @@ public class BoardPanel extends JPanel implements MouseListener {
         }
         return temp;
     }
-    @Override
 
     public void mouseClicked(MouseEvent e) {
 
@@ -140,9 +139,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         repaint();
     }
     @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
+    public void mousePressed(MouseEvent e) {}
     @Override
     public void mouseReleased(MouseEvent e) {
 
