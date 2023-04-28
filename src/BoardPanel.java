@@ -13,12 +13,14 @@ public class BoardPanel extends JPanel implements MouseListener {
     Image houseGreen = ImageLoader.get("/Pictures/PlayerTiles/TileGreen.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
     Image houseYellow = ImageLoader.get("/Pictures/PlayerTiles/TileYellow.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
     Image grayTile = ImageLoader.get("/Pictures/PlayerTiles/TileGray.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
+    KingdomPanel kingdomPanel;
     boolean[][] darken;
 
-    AvailableHousePlacement avilable = new AvailableHousePlacement();
-    public BoardPanel(GameLogic gameLogic, GameState gameState) {
+    AvailableHousePlacement available = new AvailableHousePlacement();
+    public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
         this.gameState = gameState;
         this.gameLogic = gameLogic;
+        this.kingdomPanel = kingdomPanel;
         setOpaque(false);
         setBounds(0, 0, 900, 800);
         setLayout(null);
@@ -69,7 +71,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-//        AvailableHousePlacement availableHousePlacement = new AvailableHousePlacement();
+//        AvailableHousePlacement availableHouses = new AvailableHousePlacement();
 //        gameState.currentPlayer.terrain = "Forest";
 //        gameState.currentPlayer.remainingHouses = 40;
 //        boolean[][] available = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board);
@@ -83,23 +85,23 @@ public class BoardPanel extends JPanel implements MouseListener {
 //            }
 //
 //        }
-        darken = thirtyToTwenty(avilable.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
-        for (int i = 0; i < 20; i++) {
-            for (int j = 0; j < 20; j++) {
-                if (!darken[i][j]) {
-                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+        if (gameLogic.housePlaced < 3) {
+            darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
+            for (int i = 0; i < 20; i++) {
+                for (int j = 0; j < 20; j++) {
+                    if (!darken[i][j]) {
+                        g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                    }
                 }
             }
         }
-
+        kingdomPanel.repaint();
     }
     public boolean[][] thirtyToTwenty(boolean[][] b){
         boolean[][] temp = new boolean[20][20];
         int tracker = 0;
         for(int i = 0; i < 20; i++){
-            for(int j = 0; j < 20; j++){
-                temp[i][j] = b[i][j+tracker];
-            }
+            System.arraycopy(b[i], tracker, temp[i], 0, 20);
             if(i%2 == 0){
                 tracker++;
             }
@@ -130,11 +132,12 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        boolean[][] hold = thirtyToTwenty(avilable.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
-        if (hold[i][j]) {
+        boolean[][] hold = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
+        if (hold[i][j] && gameLogic.housePlaced < 3) {
             gameLogic.board.BoardNoX[i][j].hasHouse = true;
             gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
             gameState.currentPlayer.remainingHouses -= 1;
+            gameLogic.housePlaced++;
     }
         repaint();
     }
