@@ -16,42 +16,56 @@ public class SpecialAction {
                 temp[i][j] = board[i-1][j-1];
             }
         }
+        for(int i = 0; i < highlight.length; i++){
+            for(int j = 0; j < highlight[0].length; j++){
+                if(board[i][j].hasHouse){
+                    highlight[i][j] = false;
+                }
+            }
+        }
 
 
         if (SpecialAction.equals("Oracle")) {
-            for (int i = 1; i < temp.length-1; i++) {
-                for (int j = 1; j < temp[0].length-1; j++) {
-                    if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
+            for (int i = 1; i <= 20; i++) {
+                for (int j = 1; j <= 30; j++) {
+                    if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
-                        if(temp[i][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
-                            highlight[i-1][j-2] = true;
+                        if (temp[i][j - 1].getTerrain().equals(terrainCard) && !temp[i][j - 1].hasHouse) {
+                            highlight[i - 1][j - 2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j-1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
-                            highlight[i-2][j-2] = true;
+                        if (temp[i - 1][j - 1].getTerrain().equals(terrainCard) && !temp[i - 1][j - 1].hasHouse) {
+                            highlight[i - 2][j - 2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
-                            highlight[i-2][j-1] = true;
+                        if (temp[i - 1][j].getTerrain().equals(terrainCard) && !temp[i - 1][j].hasHouse) {
+                            highlight[i - 2][j - 1] = true;
                             counter++;
                         }
-                        if(temp[i+1][j].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
-                            highlight[i][j-1] = true;
+                        if (temp[i + 1][j].getTerrain().equals(terrainCard) && !temp[i + 1][j].hasHouse) {
+                            highlight[i][j - 1] = true;
                             counter++;
                         }
-                        if(temp[i][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
-                            highlight[i-1][j] = true;
+                        if (temp[i][j + 1].getTerrain().equals(terrainCard) && !temp[i][j + 1].hasHouse) {
+                            highlight[i - 1][j] = true;
                             counter++;
                         }
-                        if(temp[i+1][j+1].getTerrain().equals(terrainCard) && !temp[i][j-1].getHasHouse()){
+                        if (temp[i + 1][j + 1].getTerrain().equals(terrainCard) && !temp[i + 1][j + 1].hasHouse) {
                             highlight[i][j] = true;
                             counter++;
                         }
                     }
                 }
             }
+            for (int i = 0; i < highlight.length; i++) {
+                for (int j = 0; j < highlight[0].length; j++) {
+                    if (board[i][j].hasHouse) {
+                        highlight[i][j] = false;
+                    }
+                }
+            }
             //if the no tile around any house is of the terrain of the player
-            if(counter == 0){
+            if (counter == 0) {
                 for (int i = 0; i <= 19; i++) {
                     for (int j = 0; j <= 29; j++) {
                         if (board[i][j].getTerrain().equals(terrainCard)) {
@@ -68,39 +82,46 @@ public class SpecialAction {
 
 
         else if(SpecialAction.equals("Farm")){
-            for (int i = 1; i < temp.length-1; i++) {
-                for (int j = 1; j < temp[0].length-1; j++) {
-                    if (temp[i][j].getHouse() != null && temp[i][j].hasHouse && temp[i][j].getHouse().getColor().equals(player.getColor())) { // find all player houses on board
+            for (int i = 1; i <= 20; i++) {
+                for (int j = 1; j <= 30; j++) {
+                    if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
-                        if(temp[i][j-1].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
-                            highlight[i-1][j-2] = true;
+                        if (temp[i][j - 1].getTerrain().equals("Grass") && !temp[i][j - 1].hasHouse) {
+                            highlight[i - 1][j - 2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j-1].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
-                            highlight[i-2][j-2] = true;
+                        if (temp[i - 1][j - 1].getTerrain().equals("Grass") && !temp[i - 1][j - 1].hasHouse) {
+                            highlight[i - 2][j - 2] = true;
                             counter++;
                         }
-                        if(temp[i-1][j].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
-                            highlight[i-2][j-1] = true;
+                        if (temp[i - 1][j].getTerrain().equals("Grass") && !temp[i - 1][j].hasHouse) {
+                            highlight[i - 2][j - 1] = true;
                             counter++;
                         }
-                        if(temp[i+1][j].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
-                            highlight[i][j-1] = true;
+                        if (temp[i + 1][j].getTerrain().equals("Grass") && !temp[i + 1][j].hasHouse) {
+                            highlight[i][j - 1] = true;
                             counter++;
                         }
-                        if(temp[i][j+1].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
-                            highlight[i-1][j] = true;
+                        if (temp[i][j + 1].getTerrain().equals("Grass") && !temp[i][j + 1].hasHouse) {
+                            highlight[i - 1][j] = true;
                             counter++;
                         }
-                        if(temp[i+1][j+1].getTerrain().equals("Grass") && !temp[i][j-1].getHasHouse()){
+                        if (temp[i + 1][j + 1].getTerrain().equals("Grass") && !temp[i + 1][j + 1].hasHouse) {
                             highlight[i][j] = true;
                             counter++;
                         }
                     }
                 }
             }
+            for (int i = 0; i < highlight.length; i++) {
+                for (int j = 0; j < highlight[0].length; j++) {
+                    if (board[i][j].hasHouse) {
+                        highlight[i][j] = false;
+                    }
+                }
+            }
             //if the no tile around any house is of the terrain of the player
-            if(counter == 0){
+            if (counter == 0) {
                 for (int i = 0; i <= 19; i++) {
                     for (int j = 0; j <= 29; j++) {
                         if (board[i][j].getTerrain().equals("Grass")) {

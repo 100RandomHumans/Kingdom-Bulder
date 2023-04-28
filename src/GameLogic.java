@@ -27,14 +27,8 @@ public class GameLogic {
         terrainDeck = new ArrayList<>();
         scoreCards = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
-            terrainDeck.add("Grass"); // Grass
-            terrainDeck.add("Flower"); // Flower
-            terrainDeck.add("Forest"); // Forest
-            terrainDeck.add("Canyon"); // Canyon
-            terrainDeck.add("Desert"); // Desert
-        }
-        Collections.shuffle(terrainDeck);
+        shuffleTerrainDeck();
+        terrainDeck.add("Blank"); // This is because I write really shit code (Christopher)
         scoreCards.add("Fishermen");
         scoreCards.add("Merchant");
         scoreCards.add("Discoverer");
@@ -52,7 +46,16 @@ public class GameLogic {
 
     }
 
-
+    public void shuffleTerrainDeck() {
+        for (int i = 0; i < 5; i++) {
+            terrainDeck.add("Grass"); // Grass
+            terrainDeck.add("Flower"); // Flower
+            terrainDeck.add("Forest"); // Forest
+            terrainDeck.add("Canyon"); // Canyon
+            terrainDeck.add("Desert"); // Desert
+        }
+        Collections.shuffle(terrainDeck);
+    }
     public Player findFirstPlayer() {
         switch ((int) (Math.random() * 4) + 1) {
             case 1 -> {

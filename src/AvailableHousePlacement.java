@@ -101,7 +101,15 @@ public class AvailableHousePlacement {
                         }
                     }
                 }
+                for(int i = 0; i < highlight.length; i++){
+                    for(int j = 0; j < highlight[0].length; j++){
+                        if(board[i][j].hasHouse){
+                            highlight[i][j] = false;
+                        }
+                    }
+                }
                 return highlight;
+
             }
             else {
                 return highlight;

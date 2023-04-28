@@ -41,6 +41,9 @@ public class GameState {
         }
         currentPlayer = gameLogic.players.get(turnNum - 1);
         currentPlayer.terrain = gameLogic.terrainDeck.remove(0);
+        if (gameLogic.terrainDeck.size() == 0) {
+            gameLogic.shuffleTerrainDeck();
+        }
         gameLogic.housePlaced = 0;
     }
 
