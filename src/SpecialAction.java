@@ -142,6 +142,8 @@ public class SpecialAction {
                 for (int j = 0; j <= 29; j++) {
                     if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) { // find all player houses on board
                         // if the 6 tiles around it is of the correct terrain, set that tile to true on highlight
+                        //use a while loop richard said
+                        /*
                         //all possible columns of 3
                         if (i <= 17 && board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
 
@@ -154,6 +156,7 @@ public class SpecialAction {
                         if (i <= 17 && j <= 27 && board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
 
                         }
+                                                 */
                     }
                 }
             }
