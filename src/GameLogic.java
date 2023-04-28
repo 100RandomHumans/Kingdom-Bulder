@@ -13,7 +13,7 @@ public class GameLogic {
     public Player playerYellow = new Player("Yellow");
     public ArrayList<String> discardPile;
     public final ArrayList<String> scoreCards;
-    public final ArrayList<String> terrainDeck;
+    public ArrayList<String> terrainDeck;
     public Board board;
     public int housePlaced;
     public GameLogic() {
@@ -28,7 +28,7 @@ public class GameLogic {
         scoreCards = new ArrayList<>();
 
         shuffleTerrainDeck();
-        terrainDeck.add("Blank"); // This is because I write really shit code (Christopher)
+        terrainDeck.add(0, null); // This is because I write really shit code (Christopher)
         scoreCards.add("Fishermen");
         scoreCards.add("Merchant");
         scoreCards.add("Discoverer");
@@ -47,6 +47,7 @@ public class GameLogic {
     }
 
     public void shuffleTerrainDeck() {
+        terrainDeck = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             terrainDeck.add("Grass"); // Grass
             terrainDeck.add("Flower"); // Flower
