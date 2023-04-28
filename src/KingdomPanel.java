@@ -27,7 +27,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
-        BoardPanel board = new BoardPanel(gameLogic, gameState);
+        BoardPanel board = new BoardPanel(gameLogic, gameState, this);
 
         informationPanel.setVisible(false);
         add(informationPanel);
