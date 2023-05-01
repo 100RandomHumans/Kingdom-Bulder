@@ -471,15 +471,6 @@ public class Board {
             System.out.println();
         }
 
-        Tile[][] bbb = b.TilethirtyToTwenty(bb);
-
-        for(int i = 0; i < bbb.length; i++){
-            for(int j = 0; j < bbb[0].length; j++){
-                System.out.print(map.get(bbb[i][j].toString()));
-            }
-            System.out.println();
-        }
-
 
         String[] boardsThatWereUsed = b.getUsedBoards();
         for(String s: boardsThatWereUsed){
