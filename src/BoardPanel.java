@@ -154,7 +154,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             else if(i==15 || i== 16){jBoard=j+8;}
             else if(i==17 || i== 18){jBoard=j+9;}
             else if(i==19){jBoard=j+10;}
-            System.out.println(checkTwice(i,jBoard-1, gameState.currentPlayer.color));
+            System.out.println( " " + checkTwice(i,jBoard-1, gameState.currentPlayer.color) + " ");
             //left tile
             if(jBoard != 0 && !gameLogic.board.Board[i][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i][jBoard-1].numTokensLeft > 0 && !checkTwice(i,jBoard-1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard-1].getLocation());
@@ -202,14 +202,15 @@ public class BoardPanel extends JPanel implements MouseListener {
         repaint();
     }
     public boolean checkTwice(int a, int b, String color){
-        boolean temp = true;
+        boolean temp = false;
         for(int i = 0; i < gameLogic.board.Board[a][b].usedPlayers.size(); i++){
             if(gameLogic.board.Board[a][b].usedPlayers.get(i).equals(color)){
                 temp = true;
+                return temp;
             }
         }
         if(gameLogic.board.Board[a][b].usedPlayers.size() == 0){
-            return false;
+            temp = false;
         }
         return temp;
     }
