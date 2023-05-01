@@ -9,7 +9,7 @@ City
 Oracle
 Harbor
 Farm
-Tavern
+Oasis
 ------------------------------------
 Forest
 Mountain

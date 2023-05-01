@@ -4,7 +4,8 @@ public class Tile {
     public Boolean hasHouse, toHighlight;
     public House house;
     public String houseColor;
-    public int x, y;
+    public int x, y, numTokensLeft;
+
 
 
     public Tile(String terrain, String location) {
@@ -13,6 +14,7 @@ public class Tile {
         hasHouse = false;
         house = null;
         toHighlight = false;
+        numTokensLeft = 2;
     }
 
     public void setHighlight(Boolean h){
