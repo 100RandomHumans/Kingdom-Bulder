@@ -16,6 +16,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     Image houseGreen =ImageLoader.get("/Pictures/Houses/HouseGreen.png");
     Image houseYellow = ImageLoader.get("/Pictures/Houses/HouseYellow.png");
     Image background;
+    Image start = ImageLoader.get("/Pictures/Start.png").getScaledInstance(50, 50, Image.SCALE_SMOOTH);
     Font redressed;
     boolean secondTimeRound = false;
     boolean thirdTimeRound = false;
@@ -155,6 +156,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
             }
         }
+        g.drawImage(start, 1100, 10, null);
 
         g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
         // g.drawString(String.valueOf(gameState.turnNum), 25, 860);
