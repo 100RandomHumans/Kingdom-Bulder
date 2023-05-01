@@ -217,11 +217,13 @@ public class BoardPanel extends JPanel implements MouseListener {
 
             //edge case, moving away from special tile removes special tile from player and game
             // go to every special location, check the tiles around it, if all colors stored in that location tiles's color arraylist is still there, do nothing, if not, find color, remove that token from color
+            /*
             for(int a = 0; a <= 19; a++){
                 for(int b = 0; b <= 29; b++){
 
                 }
             }
+             */
             gameLogic.housePlaced++;
         }
         repaint();
