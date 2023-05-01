@@ -161,25 +161,25 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     } // end of paintComponent
 
-
+    Player firstOut = new Player(null);
     @Override
     public void mouseClicked(MouseEvent e) {
 //        System.out.println("X - " + e.getX() + " : Y - " + e.getY() );
-        if (e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
-            gameState.nextTurn();
-            repaint();
 
-
-        }
-        if ((gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0 && secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) || (gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0 && thirdTimeRound)) {
-
+        if (gameState.currentPlayer.remainingHouses <= 0 && !secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) { // end game logic
+            firstOut = gameState.currentPlayer;
+            secondTimeRound = true;
+        } else if (firstOut.equals(gameLogic.players.get(gameState.turnNum % 4)) && secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
             scoringPanel.setVisible(true);
             thirdTimeRound = true;
-        } else if(gameState.firstPlayer.equals(gameState.currentPlayer) && gameState.firstPlayer.remainingHouses <= 0) {
-            secondTimeRound = true;
+        } else if (thirdTimeRound) {
+            scoringPanel.setVisible(true);
         }
 
-
+        if (e.getX() > 225 && e.getX() < 675 && e.getY() > 800 && !thirdTimeRound && (gameLogic.housePlaced == 3 || gameState.currentPlayer.remainingHouses == 0)) {
+            gameState.nextTurn();
+            repaint();
+        }
 
     }
 

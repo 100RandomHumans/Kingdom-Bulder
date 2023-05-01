@@ -50,7 +50,6 @@ public class AvailableHousePlacement {
 
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
-        if(housesLeft > 0) {
             for (int i = 1; i <= 20; i++) {
                 //System.out.println(3);
                 for (int j = 1; j <= 30; j++) {
@@ -116,13 +115,6 @@ public class AvailableHousePlacement {
             }
         }
 
-
-        else{
-            return null;
-        }
-
-
-    }
 
     public void main(String[] args){
 

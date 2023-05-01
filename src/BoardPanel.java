@@ -85,7 +85,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 //            }
 //
 //        }
-        if (gameLogic.housePlaced < 3) {
+        if (gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
             darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
             for (int i = 0; i < 20; i++) {
                 for (int j = 0; j < 20; j++) {
@@ -98,6 +98,7 @@ public class BoardPanel extends JPanel implements MouseListener {
         kingdomPanel.repaint();
     }
     public boolean[][] thirtyToTwenty(boolean[][] b){
+
         boolean[][] temp = new boolean[20][20];
         int tracker = 0;
         for(int i = 0; i < 20; i++){
@@ -110,7 +111,10 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
 
     public void mouseClicked(MouseEvent e) {
-
+        if (kingdomPanel.thirdTimeRound) {
+            kingdomPanel.scoringPanel.setVisible(true);
+            return;
+        }
         if (e.getY() > 800) {
             return;
         } // for testing, will change in the future!
@@ -133,7 +137,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             }
         }
         boolean[][] hold = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
-        if (hold[i][j] && gameLogic.housePlaced < 3) {
+        if (hold[i][j] && gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses != 0) {
             gameLogic.board.BoardNoX[i][j].hasHouse = true;
             gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
             gameState.currentPlayer.remainingHouses -= 1;
