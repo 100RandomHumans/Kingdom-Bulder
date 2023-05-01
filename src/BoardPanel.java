@@ -169,6 +169,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             case "tavernBoard" -> "BoardTavern.png";
             case "farmBoard" -> "BoardFarm.png";
             case "harborBoard" -> "BoardHarbor.png";
+            case "oasisBoard" -> "BoardOasis.png";
             default -> "something messed up switchCase";
         };
 
