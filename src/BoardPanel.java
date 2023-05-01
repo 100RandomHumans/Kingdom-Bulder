@@ -154,7 +154,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             else if(i==15 || i== 16){jBoard=j+8;}
             else if(i==17 || i== 18){jBoard=j+9;}
             else if(i==19){jBoard=j+10;}
-            System.out.println( " " + checkTwice(i,jBoard-1, gameState.currentPlayer.color) + " ");
+
             //left tile
             if(jBoard != 0 && !gameLogic.board.Board[i][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i][jBoard-1].numTokensLeft > 0 && !checkTwice(i,jBoard-1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard-1].getLocation());
@@ -192,10 +192,26 @@ public class BoardPanel extends JPanel implements MouseListener {
                 gameLogic.board.Board[i+1][jBoard+1].usedPlayers.add(gameState.currentPlayer.color);
             }
 
-            System.out.println();
-            for(int l = 0; l < gameState.currentPlayer.specialTokens.size(); l++){
-                System.out.print(gameState.currentPlayer.specialTokens.get(l) + " ");
+            System.out.print("Player Blue: ");
+            for(int l = 0; l < 8; l++){
+                System.out.print(gameLogic.playerBlue.specialTokens.get(l) + " ");
             }
+            System.out.println();
+            System.out.print("Player Green: ");
+            for(int l = 0; l < 8; l++){
+                System.out.print(gameLogic.playerGreen.specialTokens.get(l) + " ");
+            }
+            System.out.println();
+            System.out.print("Player Yellow: ");
+            for(int l = 0; l < 8; l++){
+                System.out.print(gameLogic.playerYellow.specialTokens.get(l) + " ");
+            }
+            System.out.println();
+            System.out.print("Player Red: ");
+            for(int l = 0; l < 8; l++){
+                System.out.print(gameLogic.playerRed.specialTokens.get(l) + " ");
+            }
+            System.out.println();
 
             gameLogic.housePlaced++;
         }
