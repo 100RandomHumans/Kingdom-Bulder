@@ -154,44 +154,64 @@ public class BoardPanel extends JPanel implements MouseListener {
             else if(i==15 || i== 16){jBoard=j+8;}
             else if(i==17 || i== 18){jBoard=j+9;}
             else if(i==19){jBoard=j+10;}
-
+            System.out.println(checkTwice(i,jBoard-1, gameState.currentPlayer.color));
             //left tile
-            if(jBoard != 0 && !gameLogic.board.Board[i][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i][jBoard-1].numTokensLeft > 0 ){
+            if(jBoard != 0 && !gameLogic.board.Board[i][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i][jBoard-1].numTokensLeft > 0 && !checkTwice(i,jBoard-1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard-1].getLocation());
                 gameLogic.board.Board[i][jBoard-1].numTokensLeft--;
+                gameLogic.board.Board[i][jBoard-1].usedPlayers.add(gameState.currentPlayer.color);
             }
             //right tile
-            if(jBoard != 29 && !gameLogic.board.Board[i][jBoard+1].getLocation().equals("") && gameLogic.board.Board[i][jBoard+1].numTokensLeft > 0){
+            if(jBoard != 29 && !gameLogic.board.Board[i][jBoard+1].getLocation().equals("") && gameLogic.board.Board[i][jBoard+1].numTokensLeft > 0 && !checkTwice(i,jBoard+1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard+1].getLocation());
                 gameLogic.board.Board[i][jBoard+1].numTokensLeft--;
+                gameLogic.board.Board[i][jBoard+1].usedPlayers.add(gameState.currentPlayer.color);
             }
             //tile above
-            if(i != 0  && !gameLogic.board.Board[i-1][jBoard].getLocation().equals("") && gameLogic.board.Board[i-1][jBoard].numTokensLeft > 0){
+            if(i != 0  && !gameLogic.board.Board[i-1][jBoard].getLocation().equals("") && gameLogic.board.Board[i-1][jBoard].numTokensLeft > 0 && !checkTwice(i-1,jBoard, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i-1][jBoard].getLocation());
                 gameLogic.board.Board[i-1][jBoard].numTokensLeft--;
+                gameLogic.board.Board[i-1][jBoard].usedPlayers.add(gameState.currentPlayer.color);
             }
             //tile below
-            if(i != 19 && !gameLogic.board.Board[i+1][jBoard].getLocation().equals("") && gameLogic.board.Board[i+1][jBoard].numTokensLeft > 0){
+            if(i != 19 && !gameLogic.board.Board[i+1][jBoard].getLocation().equals("") && gameLogic.board.Board[i+1][jBoard].numTokensLeft > 0 && !checkTwice(i+1,jBoard, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i+1][jBoard].getLocation());
                 gameLogic.board.Board[i+1][jBoard].numTokensLeft--;
+                gameLogic.board.Board[i+1][jBoard].usedPlayers.add(gameState.currentPlayer.color);
             }
             //tile upper left
-            if(i != 0 && jBoard != 0 && !gameLogic.board.Board[i-1][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i-1][jBoard-1].numTokensLeft > 0){
+            if(i != 0 && jBoard != 0 && !gameLogic.board.Board[i-1][jBoard-1].getLocation().equals("") && gameLogic.board.Board[i-1][jBoard-1].numTokensLeft > 0 && !checkTwice(i-1,jBoard-1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i-1][jBoard-1].getLocation());
                 gameLogic.board.Board[i-1][jBoard-1].numTokensLeft--;
+                gameLogic.board.Board[i-1][jBoard-1].usedPlayers.add(gameState.currentPlayer.color);
             }
             //tile lower right
-            if(i != 19 && jBoard != 29 && !gameLogic.board.Board[i+1][jBoard+1].getLocation().equals("")){
+            if(i != 19 && jBoard != 29 && !gameLogic.board.Board[i+1][jBoard+1].getLocation().equals("") && gameLogic.board.Board[i+1][jBoard+1].numTokensLeft > 0 && !checkTwice(i+1,jBoard+1, gameState.currentPlayer.color)){
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i+1][jBoard+1].getLocation());
                 gameLogic.board.Board[i+1][jBoard+1].numTokensLeft--;
+                gameLogic.board.Board[i+1][jBoard+1].usedPlayers.add(gameState.currentPlayer.color);
             }
 
+            System.out.println();
             for(int l = 0; l < gameState.currentPlayer.specialTokens.size(); l++){
-                System.out.println(gameState.currentPlayer.specialTokens.get(l));
+                System.out.print(gameState.currentPlayer.specialTokens.get(l) + " ");
             }
+
             gameLogic.housePlaced++;
         }
         repaint();
+    }
+    public boolean checkTwice(int a, int b, String color){
+        boolean temp = true;
+        for(int i = 0; i < gameLogic.board.Board[a][b].usedPlayers.size(); i++){
+            if(gameLogic.board.Board[a][b].usedPlayers.get(i).equals(color)){
+                temp = true;
+            }
+        }
+        if(gameLogic.board.Board[a][b].usedPlayers.size() == 0){
+            return false;
+        }
+        return temp;
     }
     @Override
     public void mousePressed(MouseEvent e) {}

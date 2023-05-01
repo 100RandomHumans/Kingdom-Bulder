@@ -1,3 +1,4 @@
+import java.util.*;
 public class Tile {
     //private Tile northEast, east, southEast, southWest, west, northWest;
     public String terrain, location;
@@ -5,6 +6,7 @@ public class Tile {
     public House house;
     public String houseColor;
     public int x, y, numTokensLeft;
+    public ArrayList<String> usedPlayers;
 
 
 
@@ -15,6 +17,7 @@ public class Tile {
         house = null;
         toHighlight = false;
         numTokensLeft = 2;
+        usedPlayers = new ArrayList<String>();
     }
 
     public void setHighlight(Boolean h){
