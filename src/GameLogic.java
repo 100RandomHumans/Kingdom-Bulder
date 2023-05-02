@@ -28,15 +28,15 @@ public class GameLogic {
         scoreCards = new ArrayList<>();
 
         shuffleTerrainDeck();
-        scoreCards.add("Fishermen");
+        //scoreCards.add("Fishermen");
         // scoreCards.add("Merchant");
         scoreCards.add("Discoverer");
         // scoreCards.add("Hermit");
         // scoreCards.add("Citizen");
         scoreCards.add("Miner");
-        scoreCards.add("Worker");
+        //scoreCards.add("Worker");
         // scoreCards.add("Knight");
-        // scoreCards.add("Lord");
+         scoreCards.add("Lord");
         // scoreCards.add("Farmer");
         // Collections.shuffle(scoreCards);
         cardOne = scoreCards.get(0);

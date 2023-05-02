@@ -16,8 +16,13 @@ public class Tile {
         hasHouse = false;
         house = null;
         toHighlight = false;
-        numTokensLeft = 2;
         usedPlayers = new ArrayList<String>();
+
+        if (location != null) {
+            numTokensLeft = 2;
+        }
+
+
     }
 
     public void setHighlight(Boolean h){

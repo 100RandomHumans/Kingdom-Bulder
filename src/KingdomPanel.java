@@ -54,8 +54,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
         background = ImageLoader.get("Pictures/Background.jpg");
         g.drawImage(background, 0, 0, null);
 
-        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png"), 900, 40, 175, 290, null);
-        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png"), 900, 315, 175, 270, null);
+        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardOne + ".png"), 900, 30, 175, 270, null);
+        g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardTwo + ".png"), 900, 310, 175, 270, null);
         g.drawImage(ImageLoader.get("/Pictures/ObjectiveCards/Objective" + gameLogic.cardThree + ".png"), 900, 590, 175, 270, null);
         if (gameLogic.housePlaced == 3 || gameState.currentPlayer.remainingHouses == 0) {
             g.drawImage(ImageLoader.get("/Pictures/ContinueButton.png"), 225, 800, 450, 90, null);
