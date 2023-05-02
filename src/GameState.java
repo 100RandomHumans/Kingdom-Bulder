@@ -6,13 +6,14 @@ public class GameState {
     public String scene;
     public Player firstPlayer;
     public Player currentPlayer;
+
     public GameState(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
         startGame();
     }
 
     public void setScene(int sceneState) {
-        if(sceneState == 0) {
+        if (sceneState == 0) {
             scene = "playScreen";
         } else if (sceneState == 1) {
             scene = "endScreen";
@@ -34,7 +35,7 @@ public class GameState {
 
 
     public void nextTurn() {
-        if(turnNum == 4) {
+        if (turnNum == 4) {
             turnNum = 1;
         } else {
             turnNum++;
