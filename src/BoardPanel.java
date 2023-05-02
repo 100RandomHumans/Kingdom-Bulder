@@ -15,6 +15,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     Image grayTile = ImageLoader.get("/Pictures/PlayerTiles/TileGray.png").getScaledInstance(44, 50, Image.SCALE_SMOOTH);
     KingdomPanel kingdomPanel;
     boolean[][] darken;
+    int currentHighlightState = 1;
 
     AvailableHousePlacement available = new AvailableHousePlacement();
     public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
@@ -71,30 +72,29 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-//        AvailableHousePlacement availableHouses = new AvailableHousePlacement();
-//        gameState.currentPlayer.terrain = "Forest";
-//        gameState.currentPlayer.remainingHouses = 40;
-//        boolean[][] available = availableHousePlacement.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board);
-//        boolean[][] temp = thirtyToTwenty(available);
-//        for (int i = 0; i < 20; i++) { // handles the painting
-//            for (int j = 0; j < 20; j++) {
-//                if (temp[i][j]) {
-//                   g.drawImage(houseBlue, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
-//
-//                }
-//            }
-//
-//        }
-        if (gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
-            darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
-            for (int i = 0; i < 20; i++) {
-                for (int j = 0; j < 20; j++) {
-                    if (!darken[i][j]) {
-                        g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+
+        switch(currentHighlightState) {
+            case 1: // if nothing is selected
+            if (gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
+                darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
+                for (int i = 0; i < 20; i++) {
+                    for (int j = 0; j < 20; j++) {
+                        if (!darken[i][j]) {
+                            g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                        }
                     }
                 }
             }
+            break;
+
+
+            default:
+                return;
         }
+
+
+
+
         kingdomPanel.repaint();
     }
     public boolean[][] thirtyToTwenty(boolean[][] b){
