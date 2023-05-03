@@ -23,14 +23,6 @@ public class AvailableHousePlacement {
             }
         }
 
-        for(int i = 0; i < highlight.length; i++){
-            for(int j = 0; j < highlight[0].length; j++){
-                if(board[i][j].hasHouse){
-                    highlight[i][j] = false;
-                }
-            }
-        }
-
 
         // if the player has placed houses, look for all houses, scan the tiles around for terrain equal to terrainCard
         for (int i = 1; i <= 20; i++) {
