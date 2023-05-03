@@ -230,7 +230,7 @@ public class SpecialAction {
                 }
             }
 
-            i = 29;
+            i = 19;
             for(int j = 10; j <= 29; j++){
                 //left tile
                 if(j != 0 && !board[i][j-1].hasHouse && !board[i][j].getTerrain().equals("Mountain") && !board[i][j].getTerrain().equals("Water")){
@@ -290,6 +290,52 @@ public class SpecialAction {
                     b++;
                 }
             }
+
+            b = 29;
+            for(int a = 0; a <= 19; a++){
+                //left tile
+                if(b != 0 && board[a][b-1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                //right tile
+                if(b != 29 && !board[a][b+1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                //tile above
+                if(a != 0  && !board[a-1][b].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                //tile below
+                if(a != 19 && !board[a+1][b].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                //tile upper left
+                if(a != 0 && b != 0 && !board[a-1][b-1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                //tile lower right
+                if(a != 19 && b != 29 && !board[a+1][b+1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                    highlight[a][b] = true;
+                    cnt++;
+                }
+                if(a%2 == 0){
+                    b++;
+                }
+            }
+
+            for(int n = 0; n < highlight.length; n++){
+                for(int m = 0; m < highlight[0].length; m++){
+                    if(board[n][m].hasHouse){
+                        highlight[n][m] = false;
+                    }
+                }
+            }
+            return highlight;
         }
 
 
