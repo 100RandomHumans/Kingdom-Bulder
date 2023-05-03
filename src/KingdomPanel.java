@@ -201,7 +201,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             return;
         }
 
-        if (gameState.currentPlayer.equals(gameLogic.playerRed)) { // red
+        if (gameState.currentPlayer.equals(gameLogic.playerRed) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // red
             ArrayList<String> tokens = gameLogic.playerRed.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 30 && e.getY() < 110) {
                 System.out.println("clicked in red one");
@@ -232,7 +232,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             }
         }
 
-        if (gameState.currentPlayer.equals(gameLogic.playerBlue)) { // blue
+        if (gameState.currentPlayer.equals(gameLogic.playerBlue) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // blue
             ArrayList<String> tokens = gameLogic.playerBlue.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 240 && e.getY() < 330) {
                 System.out.println("clicked in red one");
@@ -263,7 +263,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             }
         }
 
-        if (gameState.currentPlayer.equals(gameLogic.playerGreen)) { // green
+        if (gameState.currentPlayer.equals(gameLogic.playerGreen) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // green
             ArrayList<String> tokens = gameLogic.playerGreen.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 470 && e.getY() < 555) {
                 System.out.println("clicked in red one");
@@ -294,7 +294,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             }
         }
 
-        if (gameState.currentPlayer.equals(gameLogic.playerYellow)) { // yellow
+        if (gameState.currentPlayer.equals(gameLogic.playerYellow) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // yellow
             ArrayList<String> tokens = gameLogic.playerYellow.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 690 && e.getY() < 780) {
                 System.out.println("clicked in red one");
@@ -305,7 +305,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 690 && e.getY() < 780) {
                 System.out.println("clicked in red three");
                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(2));
-            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 690 && e.getY() < 780) {
+        } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 690 && e.getY() < 780) {
                 System.out.println("clicked in red four");
                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(3));
             } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 780 && e.getY() < 875) {

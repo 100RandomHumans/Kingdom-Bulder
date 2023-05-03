@@ -96,24 +96,59 @@ public class BoardPanel extends JPanel implements MouseListener {
                     System.out.println("case 2 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
+                        for (int i = 0; i < 20; i++) {
+                            for (int j = 0; j < 20; j++) {
+                                if (!darken[i][j]) {
+                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                                }
+                            }
+                        }
+
+
+
+
                     }
                     break;
                 case 3:
                     System.out.println("case 3 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
+                        for (int i = 0; i < 20; i++) {
+
+                            for (int j = 0; j < 20; j++) {
+                                if (!darken[i][j]) {
+                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                                }
+                            }
+                        }
                     }
                     break;
                 case 4:
                     System.out.println("case 4 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
+                        for (int i = 0; i < 20; i++) {
+
+                            for (int j = 0; j < 20; j++) {
+                                if (!darken[i][j]) {
+                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                                }
+                            }
+                        }
                     }
                     break;
                 case 5:
                     System.out.println("case 5 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
+                        for (int i = 0; i < 20; i++) {
+
+                            for (int j = 0; j < 20; j++) {
+                                if (!darken[i][j]) {
+                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                                }
+                            }
+                        }
                     }
                     break;
                 default:
@@ -184,6 +219,58 @@ public class BoardPanel extends JPanel implements MouseListener {
                     checkForSpecialActions(i, j);
                 }
                 break;
+            case 2:
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
+                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
+                    System.out.println("no houses");
+                    return;
+                }
+                if (hold[i][j]) {
+                    gameLogic.board.BoardNoX[i][j].hasHouse = true;
+                    gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
+                    gameState.currentPlayer.remainingHouses -= 1;
+                    checkForSpecialActions(i, j);
+                    gameState.gameState = 1;
+                }
+                break;
+            case 3:
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
+                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
+                    System.out.println("no houses");
+                    return;
+                }
+                if (hold[i][j]) {
+                    gameLogic.board.BoardNoX[i][j].hasHouse = true;
+                    gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
+                    gameState.currentPlayer.remainingHouses -= 1;
+                    checkForSpecialActions(i, j);
+                    gameState.gameState = 1;
+                    break;
+                }
+            case 4:
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
+                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
+                    System.out.println(" houses being placed ");
+                    return;
+                }
+                if (hold[i][j]) {
+                    System.out.println("Not done writing :(");
+                    gameState.gameState = 1;
+                }
+                break;
+            case 5:
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
+                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
+                    System.out.println(" houses being placed ");
+                    return;
+                }
+                if (hold[i][j]) {
+                    System.out.println("Not done writing :(");
+                    gameState.gameState = 1;
+                }
+                break;
+            default:
+                System.out.println("Something messed up BoardPanel 273");
         }
 
 
