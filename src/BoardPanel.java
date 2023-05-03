@@ -16,6 +16,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     KingdomPanel kingdomPanel;
     boolean[][] darken;
     int currentHighlightState = 1;
+    SpecialAction specialAction = new SpecialAction();
 
     AvailableHousePlacement available = new AvailableHousePlacement();
     public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
@@ -86,6 +87,19 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
             break;
+            case 2:
+                if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
+                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
+                    for (int i = 0; i < 20; i++) {
+                        for (int j = 0; j < 20; j++) {
+                            if (!darken[i][j]) {
+                                g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                            }
+                        }
+                    }
+                }
+
+
 
 
             default:
@@ -267,6 +281,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             case "harborBoard" -> "BoardHarbor.png";
             case "oasisBoard" -> "BoardOasis.png";
             case "towerBoard" -> "BoardTower.png";
+            case "paddockBoard" -> "BoardPaddock.png";
             default -> "something messed up switchCase";
         };
 

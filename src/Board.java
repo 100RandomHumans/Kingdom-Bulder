@@ -26,7 +26,7 @@ public class Board {
             //temp += allBoards[boardsToUse.get(i)-1].substring(j, j+10);
             //temp += allBoards[boardsToUse.get(l)-1].substring(j, j+10);
             temp += allBoards[2].substring(j, j+10);
-            temp += allBoards[7].substring(j, j+10);
+            temp += allBoards[6].substring(j, j+10);
         }
         i = 2;
         l = 3;
@@ -45,7 +45,7 @@ public class Board {
         }
         */
         boardsUsed[0] = "oracleBoard";
-        boardsUsed[1] = "tavernBoard";
+        boardsUsed[1] = "paddockBoard";
         boardsUsed[2] = "harborBoard";
         boardsUsed[3] = "towerBoard";
 
