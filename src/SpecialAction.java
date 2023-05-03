@@ -210,7 +210,7 @@ public class SpecialAction {
                     cnt++;
                 }
                 //right tile
-                if(b != 29 && !board[a][b+1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
+                if(!(b >= 29) && !board[a][b+1].hasHouse && !board[a][b].getTerrain().equals("Mountain") && !board[a][b].getTerrain().equals("Water")){
                     highlight[a][b] = true;
                     cnt++;
                 }
@@ -256,7 +256,6 @@ public class SpecialAction {
     public boolean[][] harbor(Player player, Board gameBoard) {
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
-        int housesLeft = player.getHouseCount();
         Tile[][] temp = new Tile[22][32];
         int counter = 0;
         for (int i = 1; i <= 20; i++) {
