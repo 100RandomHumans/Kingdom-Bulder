@@ -1,20 +1,29 @@
 public class Scoring {
-    GameLogic gameLogic;
-    GameState gameState;
-    Board board;
-    String ObjectiveOne; // fishermen
-    String ObjectiveTwo; // discoverer
-    String ObjectiveThree; // mountaineers
 
-    public Scoring(GameLogic gameLogic, GameState gameState, Board board) {
-        this.gameLogic = gameLogic;
-        this.gameState = gameState;
-        this.board = board;
+
+    public int getScore(String objective, Player play, Board gameBoard){
+        Tile[][] board = gameBoard.getBoard();
+        int score = 0;
+
+        if(objective.equals("City")){
+
+        }
+
+
+        else if(objective.equals("Farmer")){
+
+        }
+
+
+        else if(objective.equals("Discoverer")){
+
+        }
+
+
+        else if(objective.equals("Worker")){
+
+        }
+
+        return score;
     }
-    int house;
-
-
-
-
-
 }

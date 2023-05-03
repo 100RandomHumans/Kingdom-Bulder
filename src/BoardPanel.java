@@ -266,10 +266,12 @@ public class BoardPanel extends JPanel implements MouseListener {
             /*
             for(int a = 0; a <= 19; a++){
                 for(int b = 0; b <= 29; b++){
+                    if(gameLogic.board.Board[a][b].getLocation().length() > 0){
 
+                    }
                 }
             }
-             */
+            */
             gameLogic.housePlaced++;
         }
         repaint();
