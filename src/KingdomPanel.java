@@ -325,17 +325,14 @@ public class KingdomPanel extends JPanel implements MouseListener {
         switch (enter) {
             case "Tower":
                 return 2;
-            case "Tavern":
-                return 3;
             case "Oracle":
-                return 4;
+                return 3;
             case "Harbor":
+                return 4;
+            case "Paddock":
                 return 5;
-
-
             default:
                 System.out.println("KingdomPanel line 230 return default");
-
                 return 1;
 
         }
