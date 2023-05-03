@@ -7,6 +7,7 @@ public class GameState {
     public Player firstPlayer;
     public Player currentPlayer;
 
+
     public GameState(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
         startGame();
@@ -27,7 +28,7 @@ public class GameState {
     public void startGame() {
         firstPlayer = gameLogic.findFirstPlayer();
         currentPlayer = firstPlayer;
-        gameState = 0;
+        gameState = 1;
         setScene(gameState);
         setTurnNum(gameLogic.players.indexOf(firstPlayer));
         nextTurn();
@@ -47,6 +48,7 @@ public class GameState {
             gameLogic.shuffleTerrainDeck();
         }
         gameLogic.housePlaced = 0;
+        gameState = 1;
     }
 
     public void endGame() {

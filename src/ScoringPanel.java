@@ -7,13 +7,16 @@ public class ScoringPanel extends JPanel implements MouseListener {
     public ScoringPanel(GameLogic gameLogic, GameState gameState, Board board) {
 
         setBounds(0, 0, 1600, 900);
-        setBackground(Color.blue);
         setLayout(null);
+        setOpaque(false);
+        setBackground( new Color(255, 0, 0, 20) );
+
         addMouseListener(this);
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawLine(0, 0, 900, 900);
+        g.drawImage(ImageLoader.get("/Pictures/GreyBackground.png"), 0, 0, 1600, 900, null);
+
     }
 
     @Override
