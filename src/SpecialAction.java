@@ -345,41 +345,30 @@ public class SpecialAction {
     public boolean[][] paddock(Player player, Board gameBoard, int p, int v){
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
-        Tile[][] temp2 = new Tile[24][34];
-        for(int i = 0; i < temp2.length; i++){
-            for(int j = 0; j < temp2[i].length; j++){
-                temp2[i][j]  = new Tile("", "");
-            }
-        }
-        for(int i = 2; i <= 21; i++){
-            for(int j = 2; j <= 31; j++){
-                temp2[i][j] = board[i-2][j-2];
-            }
-        }
         //left 2 tile
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
+        if(p >= 2 && !board[p-2][v].hasHouse && !board[p-2][v].getTerrain().equals("Mountain") && !board[p-2][v].getTerrain().equals("Water") && !(board[p-2][v].getLocation().length()>0)){
+            highlight[p-2][v] = true;
         }
         //right 2 tile
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
+        if(p <= 27 && !board[p+2][v].hasHouse && !board[p+2][v].getTerrain().equals("Mountain") && !board[p+2][v].getTerrain().equals("Water") && !(board[p+2][v].getLocation().length()>0)){
+            highlight[p+2][v] = true;
         }
         //up right 2 tile
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
+        if(v >= 2 && !board[p][v-2].hasHouse && !board[p][v-2].getTerrain().equals("Mountain") && !board[p][v-2].getTerrain().equals("Water") && !(board[p][v-2].getLocation().length()>0)){
+            highlight[p][v-2] = true;
+        }
+        //down left 2 tile
+        if(v <= 17 && !board[p][v+2].hasHouse && !board[p][v+2].getTerrain().equals("Mountain") && !board[p][v+2].getTerrain().equals("Water") && !(board[p][v+2].getLocation().length()>0)){
+            highlight[p][v+2] = true;
         }
         //up left 2 tile
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
+        if(p >= 2 && v >= 2 && !board[p-2][v-2].hasHouse && !board[p-2][v-2].getTerrain().equals("Mountain") && !board[p-2][v-2].getTerrain().equals("Water") && !(board[p-2][v-2].getLocation().length()>0)){
+            highlight[p-2][v-2] = true;
         }
         //down right 2 tile
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
+        if(p <= 27 && v <= 17 && !board[p+2][p+2].hasHouse && !board[p+2][p+2].getTerrain().equals("Mountain") && !board[p+2][p+2].getTerrain().equals("Water") && !(board[p+2][p+2].getLocation().length()>0)){
+            highlight[p+2][p+2] = true;
         }
-        if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
-
-        }
-
 
         for(int i = 0; i < highlight.length; i++){
             for(int j = 0; j < highlight[0].length; j++){

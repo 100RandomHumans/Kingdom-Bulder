@@ -472,6 +472,7 @@ public class Board {
         }
 
 
+
         String[] boardsThatWereUsed = b.getUsedBoards();
         for(String s: boardsThatWereUsed){
             System.out.println(s);
