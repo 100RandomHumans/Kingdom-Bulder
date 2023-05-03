@@ -1,5 +1,5 @@
 public class SpecialAction {
-    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction, int p, int v) {
+    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction) {
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
         int housesLeft = player.getHouseCount();
@@ -93,6 +93,15 @@ public class SpecialAction {
 
 
         else if(SpecialAction.equals("Paddock")){
+            for(int i = 0; i < highlight.length; i++) {
+                for (int j = 0; j < highlight[0].length; j++) {
+                    if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+                        highlight[i][j] = true;
+                    }
+                }
+            }
+            return highlight;
+            /*
             Tile[][] temp2 = new Tile[24][34];
             for(int i = 0; i < temp2.length; i++){
                 for(int j = 0; j < temp2[i].length; j++){
@@ -112,13 +121,15 @@ public class SpecialAction {
             if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
 
             }
-
+            //up right 2 tile
             if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
 
             }
+            //up left 2 tile
             if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
 
             }
+            //down right 2 tile
             if(temp2[p][v].hasHouse && !board[p][v].getTerrain().equals("Mountain") && !board[p][v].getTerrain().equals("Water") && !(board[p][v].getLocation().length()>0)){
 
             }
@@ -135,10 +146,20 @@ public class SpecialAction {
                 }
             }
             return highlight;
+            */
         }
 
 
         else if(SpecialAction.equals("Harbor")){
+            for(int i = 0; i < highlight.length; i++){
+                for(int j = 0; j < highlight[0].length; j++){
+                    if(board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())){
+                        highlight[i][j] = true;
+                    }
+                }
+            }
+            return highlight;
+            /*
             for (int i = 1; i <= 20; i++) {
                 //System.out.println(3);
                 for (int j = 1; j <= 30; j++) {
@@ -202,6 +223,7 @@ public class SpecialAction {
             else {
                 return highlight;
             }
+            */
         }
 
         else if(SpecialAction.equals("Tower")){
