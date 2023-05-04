@@ -135,22 +135,22 @@ public class Scoring {
             for(int i = 0; i <= 19; i++){
                 for(int j = 0; j <= 29; j++){
                     if(board[i][j].getLocation().equals("City")){
-                        if(board[i][j-1].hasHouse && board[i][j-1].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i][j-1].hasHouse && board[i][j-1].houseColor.equals(player.getColor())){
                             score += 1;
                         }
-                        if(board[i-1][j-1].hasHouse && board[i-1][j-1].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i-1][j-1].hasHouse && board[i-1][j-1].houseColor.equals(player.getColor())){
                             score += 1;
                         }
-                        if(board[i-1][j].hasHouse && board[i-1][j].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i-1][j].hasHouse && board[i-1][j].houseColor.equals(player.getColor())){
                             score += 1;
                         }
-                        if(board[i+1][j].hasHouse && board[i+1][j].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i+1][j].hasHouse && board[i+1][j].houseColor.equals(player.getColor())){
                             score += 1;
                         }
-                        if(board[i][j+1].hasHouse && board[i][j+1].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i][j+1].hasHouse && board[i][j+1].houseColor.equals(player.getColor())){
                             score += 1;
                         }
-                        if(board[i+1][j+1].hasHouse && board[i+1][j+1].houseColor.equals(player.getColor()) && trk1==trk2){
+                        if(board[i+1][j+1].hasHouse && board[i+1][j+1].houseColor.equals(player.getColor())){
                             score += 1;
                         }
                     }

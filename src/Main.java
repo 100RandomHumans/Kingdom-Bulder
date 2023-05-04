@@ -18,6 +18,11 @@ Flower
 Water
 Desert
 Canyon
+------------------------------
+Red
+Blue
+Green
+Yellow
 */
 
 }
