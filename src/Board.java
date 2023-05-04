@@ -444,6 +444,7 @@ public class Board {
         map.put("Tower"," __Tower_ ");map.put("Oasis"," _Oasis__ ");map.put("Paddock"," Paddock_ ");
         map.put("Tavern"," _Tavern_ ");map.put("x"," ________ ");
 
+        Tile[][] bbb = b.TilethirtyToTwenty(bb);
         /*
         for(int i = 0; i<bb.length; i++){
             System.out.print("[");
@@ -467,6 +468,13 @@ public class Board {
         for(int i = 0; i < bb.length; i++){
             for(int j = 0; j < bb[0].length; j++){
                 System.out.print(map.get(bb[i][j].toString()));
+            }
+            System.out.println();
+        }
+
+        for(int i = 0; i < bbb.length; i++){
+            for(int j = 0; j < bbb[0].length; j++){
+                System.out.print(map.get(bbb[i][j].toString()));
             }
             System.out.println();
         }
