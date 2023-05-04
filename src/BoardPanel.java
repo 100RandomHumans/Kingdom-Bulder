@@ -133,7 +133,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
                         for (int i = 0; i < 20; i++) {
-
                             for (int j = 0; j < 20; j++) {
                                 if (!darken[i][j]) {
                                     g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
