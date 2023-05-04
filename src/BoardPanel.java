@@ -145,8 +145,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     System.out.println("something fkedUp");
             }
         }
-
-
         kingdomPanel.repaint();
     }
 
@@ -168,12 +166,6 @@ public class BoardPanel extends JPanel implements MouseListener {
             kingdomPanel.scoringPanel.setVisible(true);
             return;
         }
-
-
-
-
-
-
 
 
         if (e.getY() > 800) {
@@ -200,6 +192,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         switch (gameState.gameState) {
             case 1:
+                System.out.println("called");
                 boolean[][] hold = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
                 if (hold[i][j] && gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses != 0) {
                     gameLogic.board.BoardNoX[i][j].hasHouse = true;
@@ -213,6 +206,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
                 if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
                     System.out.println("no houses");
+                    gameState.gameState = 1;
                     return;
                 }
                 if (hold[i][j]) {
@@ -262,13 +256,6 @@ public class BoardPanel extends JPanel implements MouseListener {
             default:
                 System.out.println("Something messed up BoardPanel 273");
         }
-
-
-
-
-
-
-
 
 
         repaint();
@@ -325,24 +312,25 @@ public class BoardPanel extends JPanel implements MouseListener {
         };
 
     }
-/*
-    public boolean[][] removeX(boolean[][] boards) {
-        Tile[][] temp = new Tile[20][20];
 
-        for (int i = 0; i < 20; i++) {
-            int count = 0;
-            for (boolean t : boards[i]) {
-                if (!t.getLocation().equals("x")) {
-                    temp[i][count] = t;
-                    count++;
+    /*
+        public boolean[][] removeX(boolean[][] boards) {
+            Tile[][] temp = new Tile[20][20];
+
+            for (int i = 0; i < 20; i++) {
+                int count = 0;
+                for (boolean t : boards[i]) {
+                    if (!t.getLocation().equals("x")) {
+                        temp[i][count] = t;
+                        count++;
+                    }
                 }
             }
+
+            return temp;
+
         }
-
-        return temp;
-
-    }
-*/
+    */
     public void checkForSpecialActions(int i, int j) {
         int jBoard = 0;
         if (i == 0) {

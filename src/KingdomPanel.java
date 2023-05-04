@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -18,7 +17,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     Image houseGreen = ImageLoader.get("/Pictures/Houses/HouseGreen.png");
     Image houseYellow = ImageLoader.get("/Pictures/Houses/HouseYellow.png");
     Image background;
-    Image start = ImageLoader.get("/Pictures/Start.png").getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+    Image start = ImageLoader.get("/Pictures/Start.png").getScaledInstance(45, 45, Image.SCALE_SMOOTH);
     Font redressed;
     boolean secondTimeRound = false;
     boolean thirdTimeRound = false;
@@ -26,13 +25,9 @@ public class KingdomPanel extends JPanel implements MouseListener {
     Player firstOut = new Player(null);
 
     public KingdomPanel(int houses) {
-
-
         try {
-            redressed = Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\chris\\JavaProjects\\ProjectsFolder\\Kingdom-Bulder\\src\\Redressed-Regular.ttf")).deriveFont(30f);
-            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-            ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("C:\\Users\\chris\\JavaProjects\\ProjectsFolder\\Kingdom-Bulder\\src\\Redressed-Regular.ttf")));
-
+            Font uniFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("Redressed-Regular.ttf"));
+            redressed = uniFont.deriveFont(24f);
         } catch (IOException | FontFormatException e) {
             System.out.println("cant find it");
         }
@@ -115,62 +110,69 @@ public class KingdomPanel extends JPanel implements MouseListener {
                 g.drawImage(emptyHex, 1195 + (95 * i), 17, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 17, 80, 92, null); //red
-                if (gameState.currentPlayer.equals(gameLogic.playerRed) && !gameState.avilableTiles.get(i).equals("Empty")) {
-                    g.drawImage(grayTile, 1195 + (95 * i), 17, null);
+                if (gameState.currentPlayer.equals(gameLogic.playerRed) && gameState.avilableTiles.get(i).equals("Empty") && !gameLogic.playerRed.specialTokens.get(i).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 17, 80, 92, null);
                 }
             }
             if (Objects.equals(gameLogic.playerBlue.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 242, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 242, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i) + ".png"), 1195 + (95 * i), 242, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerBlue) && gameState.avilableTiles.get(i).equals("Empty") && !gameLogic.playerBlue.specialTokens.get(i).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 242, 80, 92, null);
+                }
             }
             if (Objects.equals(gameLogic.playerGreen.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 467, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 467, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i) + ".png"), 1195 + (95 * i), 467, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerGreen) && gameState.avilableTiles.get(i).equals("Empty") && !gameLogic.playerGreen.specialTokens.get(i).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 467, 80, 92, null);
+                }
             }
             if (Objects.equals(gameLogic.playerYellow.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 692, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 692, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i) + ".png"), 1195 + (95 * i), 692, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerYellow) && gameState.avilableTiles.get(i).equals("Empty") && !gameLogic.playerYellow.specialTokens.get(i).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 692, 80, 92, null);
+                }
             }
             //bottom
             if (Objects.equals(gameLogic.playerRed.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 110, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 110, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 110, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerRed) && gameState.avilableTiles.get(i + 4).equals("Empty") && !gameLogic.playerRed.specialTokens.get(i + 4).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 110, 80, 92, null);
+                }
             }
             if (Objects.equals(gameLogic.playerBlue.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 335, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 335, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerBlue.specialTokens.get(i) + ".png"), 1195 + (95 * i), 335, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerBlue) && gameState.avilableTiles.get(i + 4).equals("Empty") && !gameLogic.playerBlue.specialTokens.get(i + 4).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 335, 80, 92, null);
+                }
             }
             if (Objects.equals(gameLogic.playerGreen.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 560, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 560, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerGreen.specialTokens.get(i) + ".png"), 1195 + (95 * i), 560, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerGreen) && gameState.avilableTiles.get(i + 4).equals("Empty") && !gameLogic.playerGreen.specialTokens.get(i + 4).equals("Empty")) {
+                    g.drawImage(grayTile, 1195 + (95 * i), 560, 80, 92, null);
+                }
             }
             if (Objects.equals(gameLogic.playerYellow.specialTokens.get(i + 4), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 785, null);
-                g.drawImage(grayTile, 1195 + (95 * i), 785, null);
             } else {
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerYellow.specialTokens.get(i) + ".png"), 1195 + (95 * i), 785, 80, 92, null); //red
-
+                if (gameState.currentPlayer.equals(gameLogic.playerGreen) && gameState.avilableTiles.get(i + 4).equals("Empty") && !gameLogic.playerGreen.specialTokens.get(i + 4).equals("Empty")) {
+                    g.drawImage(grayTile, 785 + (95 * i), 560, 80, 92, null);
+                }
             }
         }
-        g.drawImage(start, 1100, 10 + (217 * gameLogic.players.indexOf(gameState.firstPlayer)), null);
+        g.drawImage(start, 1105, 12 + (225 * gameLogic.players.indexOf(gameState.firstPlayer)), null);
 
         g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
         // g.drawString(String.valueOf(gameState.turnNum), 25, 860);
@@ -183,7 +185,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             System.out.println("between placing 3 houses, no buano");
             return;
         }
-        System.out.println("X - " + e.getX() + " : Y - " + e.getY() );
+        System.out.println("X - " + e.getX() + " : Y - " + e.getY());
 
         if (gameState.currentPlayer.remainingHouses <= 0 && !secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) { // end game logic
             firstOut = gameState.currentPlayer;
@@ -206,28 +208,28 @@ public class KingdomPanel extends JPanel implements MouseListener {
             ArrayList<String> tokens = gameLogic.playerRed.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 30 && e.getY() < 110 && !gameState.avilableTiles.get(0).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(0));
-                 gameState.avilableTiles.set(0, "Empty");
-            } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 30 && e.getY() < 110 && ! gameState.avilableTiles.get(1).equals("Empty")) {
+                gameState.avilableTiles.set(0, "Empty");
+            } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 30 && e.getY() < 110 && !gameState.avilableTiles.get(1).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(1));
-                 gameState.avilableTiles.set(1, "Empty");
-            } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 30 && e.getY() < 110 && ! gameState.avilableTiles.get(2).equals("Empty")) {
+                gameState.avilableTiles.set(1, "Empty");
+            } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 30 && e.getY() < 110 && !gameState.avilableTiles.get(2).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(2));
-                 gameState.avilableTiles.set(2, "Empty");
-            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 30 && e.getY() < 110 && ! gameState.avilableTiles.get(3).equals("Empty")) {
+                gameState.avilableTiles.set(2, "Empty");
+            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 30 && e.getY() < 110 && !gameState.avilableTiles.get(3).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(3));
-                 gameState.avilableTiles.set(3, "Empty");
-            } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 110 && e.getY() < 200 && ! gameState.avilableTiles.get(4).equals("Empty")) {
+                gameState.avilableTiles.set(3, "Empty");
+            } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 110 && e.getY() < 200 && !gameState.avilableTiles.get(4).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(4));
-                 gameState.avilableTiles.set(4, "Empty");
-            } else if (!tokens.get(5).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 110 && e.getY() < 200 && ! gameState.avilableTiles.get(5).equals("Empty")) {
+                gameState.avilableTiles.set(4, "Empty");
+            } else if (!tokens.get(5).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 110 && e.getY() < 200 && !gameState.avilableTiles.get(5).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(5));
-                 gameState.avilableTiles.set(5, "Empty");
-            } else if (!tokens.get(6).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 110 && e.getY() < 200 && ! gameState.avilableTiles.get(6).equals("Empty")) {
+                gameState.avilableTiles.set(5, "Empty");
+            } else if (!tokens.get(6).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 110 && e.getY() < 200 && !gameState.avilableTiles.get(6).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(6));
-                 gameState.avilableTiles.set(6, "Empty");
-            } else if (!tokens.get(7).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 110 && e.getY() < 200 && ! gameState.avilableTiles.get(7).equals("Empty")) {
+                gameState.avilableTiles.set(6, "Empty");
+            } else if (!tokens.get(7).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 110 && e.getY() < 200 && !gameState.avilableTiles.get(7).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(7));
-                 gameState.avilableTiles.set(7, "Empty");
+                gameState.avilableTiles.set(7, "Empty");
             } else {
                 return;
             }
@@ -267,10 +269,10 @@ public class KingdomPanel extends JPanel implements MouseListener {
         if (gameState.currentPlayer.equals(gameLogic.playerGreen) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // green
             ArrayList<String> tokens = gameLogic.playerGreen.specialTokens;
             if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 470 && e.getY() < 555 && !gameState.avilableTiles.get(0).equals("Empty")) {
-                 gameState.gameState = currentState(gameLogic.playerGreen.specialTokens.get(0));
+                gameState.gameState = currentState(gameLogic.playerGreen.specialTokens.get(0));
                 gameState.avilableTiles.set(0, "Empty");
             } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 470 && e.getY() < 555 && !gameState.avilableTiles.get(1).equals("Empty")) {
-                 gameState.gameState = currentState(gameLogic.playerGreen.specialTokens.get(1));
+                gameState.gameState = currentState(gameLogic.playerGreen.specialTokens.get(1));
                 gameState.avilableTiles.set(1, "Empty");
             } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 470 && e.getY() < 555 && !gameState.avilableTiles.get(2).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerGreen.specialTokens.get(2));
@@ -301,12 +303,12 @@ public class KingdomPanel extends JPanel implements MouseListener {
                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(0));
                 gameState.avilableTiles.set(0, "Empty");
             } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 690 && e.getY() < 780 && !gameState.avilableTiles.get(1).equals("Empty")) {
-                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(1));
+                gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(1));
                 gameState.avilableTiles.set(1, "Empty");
             } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 690 && e.getY() < 780 && !gameState.avilableTiles.get(2).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(2));
                 gameState.avilableTiles.set(2, "Empty");
-        } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 690 && e.getY() < 780 && !gameState.avilableTiles.get(3).equals("Empty")) {
+            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 690 && e.getY() < 780 && !gameState.avilableTiles.get(3).equals("Empty")) {
                 gameState.gameState = currentState(gameLogic.playerYellow.specialTokens.get(3));
                 gameState.avilableTiles.set(3, "Empty");
             } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 780 && e.getY() < 875 && !gameState.avilableTiles.get(4).equals("Empty")) {
