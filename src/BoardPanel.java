@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class BoardPanel extends JPanel implements MouseListener {
@@ -430,14 +431,48 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         //edge case, moving away from special tile removes special tile from player and game
         // go to every special location, check the tiles around it, if all colors stored in that location tiles's color arraylist is still there, do nothing, if not, find color, remove that token from color
-            /*
-            for(int a = 0; a <= 19; a++){
-                for(int b = 0; b <= 29; b++){
-                    if(gameLogic.board.Board[a][b].getLocation().length() > 0){
 
+        for(int a = 0; a <= 19; a++){
+            for(int b = 0; b <= 29; b++){
+                if(gameLogic.board.Board[a][b].getLocation().length() > 0){
+                    ArrayList<String> tempLocs = gameLogic.board.Board[a][b].usedPlayers;
+                    if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a][b-1].houseColor);
                     }
+                    if(gameLogic.board.Board[a-1][b-1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a-1][b-1].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a-1][b-1].houseColor);
+                    }
+                    if(gameLogic.board.Board[a-1][b].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a-1][b].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a-1][b].houseColor);
+                    }
+                    if(gameLogic.board.Board[a+1][b].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a+1][b].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a+1][b].houseColor);
+                    }
+                    if(gameLogic.board.Board[a][b+1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a][b+1].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a][b+1].houseColor);
+                    }
+                    if(gameLogic.board.Board[a+1][b+1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a+1][b+1].houseColor)){
+                        tempLocs.remove(gameLogic.board.Board[a+1][b+1].houseColor);
+                    }
+
+                    if(!(tempLocs.size() != 0)){
+                        String s = tempLocs.get(0);
+                        if(s.equals("Red")){
+                            gameLogic.playerRed.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                        }
+                        else if(s.equals("Green")){
+                            gameLogic.playerGreen.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                        }
+                        else if(s.equals("Yellow")){
+                            gameLogic.playerYellow.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                        }
+                        else if(s.equals("Blue")){
+                            gameLogic.playerBlue.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                        }
+                    }
+
                 }
             }
-             */
+        }
     }
 }
