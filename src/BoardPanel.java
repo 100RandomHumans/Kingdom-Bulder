@@ -79,7 +79,6 @@ public class BoardPanel extends JPanel implements MouseListener {
         if (!kingdomPanel.thirdTimeRound) {
             switch (gameState.gameState) {
                 case 1: // if nothing is selected
-                    System.out.println("case 1 called");
                     if (gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
                         for (int i = 0; i < 20; i++) {
@@ -93,7 +92,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 2:
-                    System.out.println("case 2 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
                         for (int i = 0; i < 20; i++) {
@@ -103,14 +101,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                                 }
                             }
                         }
-
-
-
-
                     }
                     break;
                 case 3:
-                    System.out.println("case 3 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
                         for (int i = 0; i < 20; i++) {
@@ -124,7 +117,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 4:
-                    System.out.println("case 4 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
                         for (int i = 0; i < 20; i++) {
@@ -138,7 +130,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 5:
-                    System.out.println("case 5 called");
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
                         for (int i = 0; i < 20; i++) {

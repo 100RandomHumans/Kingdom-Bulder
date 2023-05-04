@@ -52,7 +52,9 @@ public class GameState {
         }
         gameLogic.housePlaced = 0;
         gameState = 1;
-        avilableTiles.addAll(currentPlayer.specialTokens);
+        for (int i = 0; i < 8; i++){
+            avilableTiles.add(currentPlayer.specialTokens.get(i));
+        }
     }
 
     public void endGame() {
