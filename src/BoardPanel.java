@@ -431,10 +431,10 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         //edge case, moving away from special tile removes special tile from player and game
         // go to every special location, check the tiles around it, if all colors stored in that location tiles's color arraylist is still there, do nothing, if not, find color, remove that token from color
-        /*
+/*
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 29; b++){
-                if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("x")){
+                if(gameLogic.board.Board[a][b].getLocation().length() >= 4){
                     ArrayList<String> tempLocs = gameLogic.board.Board[a][b].usedPlayers;
                     if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
                         tempLocs.remove(gameLogic.board.Board[a][b-1].houseColor);
@@ -478,7 +478,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             }
         }
-        */
+
+
+ */
 
     }
 }
