@@ -108,6 +108,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
         g.drawString(String.valueOf(gameLogic.playerYellow.remainingHouses), 1125, 754);
 
+
         for (int i = 0; i < 4; i++) { // top // currently takes way too long to load, need to load at begining or make it faster
 
             if (Objects.equals(gameLogic.playerRed.specialTokens.get(i), "Empty")) {
@@ -115,6 +116,10 @@ public class KingdomPanel extends JPanel implements MouseListener {
                 g.drawImage(grayTile, 1195 + (95 * i), 17, null);
 
             } else {
+                if (gameState.currentPlayer.equals(gameLogic.playerRed) && !gameState.avilableTiles.get(i).equals("Empty")) {
+                    g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/HexBorder.png"), 1190 + (95 * i), 14, 86, 97, null);
+                    System.out.println("dfjafiohfoa " + i);
+                }
                 g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/Tile" + gameLogic.playerRed.specialTokens.get(i) + ".png"), 1195 + (95 * i), 17, 80, 92, null); //red
 
             }
@@ -203,30 +208,39 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
         if (gameState.currentPlayer.equals(gameLogic.playerRed) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // red
             ArrayList<String> tokens = gameLogic.playerRed.specialTokens;
-            if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 30 && e.getY() < 110) {
+            ArrayList<String> roundPlay = gameState.avilableTiles;
+            if (!tokens.get(0).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 30 && e.getY() < 110 && !roundPlay.get(0).equals("Empty")) {
                 System.out.println("clicked in red one");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(0));
-            } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 30 && e.getY() < 110) {
+                roundPlay.set(0, "Empty");
+            } else if (!tokens.get(1).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 30 && e.getY() < 110 && !roundPlay.get(1).equals("Empty")) {
                 System.out.println("clicked in red two");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(1));
-            } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 30 && e.getY() < 110) {
+                roundPlay.set(1, "Empty");
+            } else if (!tokens.get(2).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 30 && e.getY() < 110 && !roundPlay.get(2).equals("Empty")) {
                 System.out.println("clicked in red three");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(2));
-            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 30 && e.getY() < 110) {
+                roundPlay.set(2, "Empty");
+            } else if (!tokens.get(3).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 30 && e.getY() < 110 && !roundPlay.get(3).equals("Empty")) {
                 System.out.println("clicked in red four");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(3));
-            } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 110 && e.getY() < 200) {
+                roundPlay.set(3, "Empty");
+            } else if (!tokens.get(4).equals("Empty") && e.getX() > 1195 && e.getX() < 1275 && e.getY() > 110 && e.getY() < 200 && !roundPlay.get(4).equals("Empty")) {
                 System.out.println("clicked in red five");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(4));
-            } else if (!tokens.get(5).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 110 && e.getY() < 200) {
+                roundPlay.set(4, "Empty");
+            } else if (!tokens.get(5).equals("Empty") && e.getX() > 1290 && e.getX() < 1370 && e.getY() > 110 && e.getY() < 200 && !roundPlay.get(5).equals("Empty")) {
                 System.out.println("clicked in red six");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(5));
-            } else if (!tokens.get(6).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 110 && e.getY() < 200) {
+                roundPlay.set(5, "Empty");
+            } else if (!tokens.get(6).equals("Empty") && e.getX() > 1385 && e.getX() < 1465 && e.getY() > 110 && e.getY() < 200 && !roundPlay.get(6).equals("Empty")) {
                 System.out.println("clicked in red seven");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(6));
-            } else if (!tokens.get(7).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 110 && e.getY() < 200) {
+                roundPlay.set(6, "Empty");
+            } else if (!tokens.get(7).equals("Empty") && e.getX() > 1480 && e.getX() < 1560 && e.getY() > 110 && e.getY() < 200 && !roundPlay.get(7).equals("Empty")) {
                 System.out.println("clicked in red eight");
                 gameState.gameState = currentState(gameLogic.playerRed.specialTokens.get(7));
+                roundPlay.set(7, "Empty");
             } else {
                 return;
             }

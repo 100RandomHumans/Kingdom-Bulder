@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class GameState {
     public int gameState;
     public GameLogic gameLogic;
@@ -6,7 +8,7 @@ public class GameState {
     public String scene;
     public Player firstPlayer;
     public Player currentPlayer;
-
+    public ArrayList<String> avilableTiles;
 
     public GameState(GameLogic gameLogic) {
         this.gameLogic = gameLogic;
@@ -36,6 +38,7 @@ public class GameState {
 
 
     public void nextTurn() {
+        avilableTiles = new ArrayList<>();
         if (turnNum == 4) {
             turnNum = 1;
         } else {
@@ -49,6 +52,7 @@ public class GameState {
         }
         gameLogic.housePlaced = 0;
         gameState = 1;
+        avilableTiles.addAll(currentPlayer.specialTokens);
     }
 
     public void endGame() {
