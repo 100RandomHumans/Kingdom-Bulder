@@ -174,8 +174,24 @@ public class KingdomPanel extends JPanel implements MouseListener {
         }
         g.drawImage(start, 1105, 12 + (225 * gameLogic.players.indexOf(gameState.firstPlayer)), null);
 
-        g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
-        // g.drawString(String.valueOf(gameState.turnNum), 25, 860);
+        switch (gameState.gameState) {
+            case 1:
+                g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
+                g.drawString(String.valueOf(3 - gameLogic.housePlaced), 25, 860);
+                break;
+            case 2:
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileTower.png"), 10, 800, 70, 80,  null);
+                break;
+            case 3:
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileOracle.png"), 10, 800, 70, 80,null);
+                break;
+            case 4, 6:
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileHarbor.png"), 10, 800, 70, 80,null);
+                break;
+            case 5, 7:
+                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TilePaddock.png"), 10, 800, 70, 80,null);
+                break;
+        }
 
     } // end of paintComponent
 
