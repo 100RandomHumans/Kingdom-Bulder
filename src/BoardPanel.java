@@ -154,7 +154,32 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 7:
-                    darken = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, holdY));
+                    int jBoard = 0;
+                    if (holdX == 0) {
+                        jBoard = holdY;
+                    } else if (holdX == 1 || holdX == 2) {
+                        jBoard = holdY + 1;
+                    } else if (holdX == 3 || holdX == 4) {
+                        jBoard = holdY + 2;
+                    } else if (holdX == 5 || holdX == 6) {
+                        jBoard = holdY + 3;
+                    } else if (holdX == 7 || holdX == 8) {
+                        jBoard = holdY + 4;
+                    } else if (holdX == 9 || holdX == 10) {
+                        jBoard = holdY + 5;
+                    } else if (holdX == 11 || holdX == 12) {
+                        jBoard = holdY + 6;
+                    } else if (holdX == 13 || holdX == 14) {
+                        jBoard = holdY + 7;
+                    } else if (holdX == 15 || holdX == 16) {
+                        jBoard = holdY + 8;
+                    } else if (holdX == 17 || holdX == 18) {
+                        jBoard = holdY + 9;
+                    } else if (holdX == 19) {
+                        jBoard = holdY + 10;
+                    }
+
+                    darken = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, jBoard));
                     for (int i = 0; i < 20; i++) {
                         for (int j = 0; j < 20; j++) {
                             if (!darken[i][j]) {
@@ -289,7 +314,34 @@ public class BoardPanel extends JPanel implements MouseListener {
                     break;
                 }
             case 7:
-                hold = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, holdY));
+                int jBoard = 0;
+                if (holdX == 0) {
+                    jBoard = holdY;
+                } else if (holdX == 1 || holdX == 2) {
+                    jBoard = holdY + 1;
+                } else if (holdX == 3 || holdX == 4) {
+                    jBoard = holdY + 2;
+                } else if (holdX == 5 || holdX == 6) {
+                    jBoard = holdY + 3;
+                } else if (holdX == 7 || holdX == 8) {
+                    jBoard = holdY + 4;
+                } else if (holdX == 9 || holdX == 10) {
+                    jBoard = holdY + 5;
+                } else if (holdX == 11 || holdX == 12) {
+                    jBoard = holdY + 6;
+                } else if (holdX == 13 || holdX == 14) {
+                    jBoard = holdY + 7;
+                } else if (holdX == 15 || holdX == 16) {
+                    jBoard = holdY + 8;
+                } else if (holdX == 17 || holdX == 18) {
+                    jBoard = holdY + 9;
+                } else if (holdX == 19) {
+                    jBoard = holdY + 10;
+                }
+
+
+
+                hold = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, jBoard));
                 if (hold[i][j]) {
                     gameLogic.board.BoardNoX[i][j].hasHouse = true;
                     gameLogic.board.BoardNoX[holdX][holdY].hasHouse = false;
@@ -381,7 +433,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     public void checkMoveAway(){
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 29; b++){
-                if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City") && !gameLogic.board.Board[a][b].getLocation().equals("x")){
+                if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City")){
                     ArrayList<String> tempLocs = gameLogic.board.Board[a][b].usedPlayers;
                     if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].usedPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
                         tempLocs.remove(gameLogic.board.Board[a][b-1].houseColor);
