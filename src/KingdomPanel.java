@@ -196,6 +196,10 @@ public class KingdomPanel extends JPanel implements MouseListener {
         } else if (thirdTimeRound) {
             scoringPanel.setVisible(true);
         }
+        if (gameState.gameState == 6 || gameState.gameState == 7) {
+            return;
+        }
+
 
         if (e.getX() > 225 && e.getX() < 675 && e.getY() > 800 && !thirdTimeRound && (gameLogic.housePlaced == 3 || gameState.currentPlayer.remainingHouses == 0)) {
             gameState.nextTurn();
