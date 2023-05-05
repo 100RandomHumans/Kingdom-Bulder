@@ -399,33 +399,27 @@ public class SpecialAction {
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
         //upper right 2
-        if(p >= 2 /*&& !board[p-2][v].hasHouse && !board[p-2][v].getTerrain().equals("Mountain") && !board[p-2][v].getTerrain().equals("Water") && !board[p-2][v].getLocation().equals("City")*/){
-            //System.out.println("north-east " + (p-2) + " " + v);
+        if(p >= 2){
             highlight[p-2][v] = true;
         }
         //lower left 2
-        if(p <= 17 /*&& !board[p+2][v].hasHouse && !board[p+2][v].getTerrain().equals("Mountain") && !board[p+2][v].getTerrain().equals("Water") && !board[p+2][v].getLocation().equals("City")*/){
-            //System.out.println("south-west " + (p+2) + " " + v);
+        if(p <= 17){
             highlight[p+2][v] = true;
         }
         //left 2 tile
-        if(v >= 2 /*&& !board[p][v-2].hasHouse /*&& !board[p][v-2].getTerrain().equals("Mountain") && !board[p][v-2].getTerrain().equals("Water") && !board[p][v-2].getLocation().equals("City")*/){
-            //System.out.println("wesst " + p + " " + (v-2));
+        if(v >= 2){
             highlight[p][v-2] = true;
         }
         //right 2 tile
-        if(v <= 27 /*&& !board[p][v+2].hasHouse /*&& !board[p][v+2].getTerrain().equals("Mountain") && !board[p][v+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
-            //System.out.println("east " + p + " " + (v+2));
+        if(v <= 27){
             highlight[p][v+2] = true;
         }
         //up left 2 tile
-        if(p >= 2 && v >= 2 /*&& !board[p-2][v-2].hasHouse /*&& !board[p-2][v-2].getTerrain().equals("Mountain") && !board[p-2][v-2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
-            //System.out.println("north-west " + (p-2) + " " + (v-2));
+        if(p >= 2 && v >= 2){
             highlight[p-2][v-2] = true;
         }
         //down right 2 tile
-        if(p <= 17 && v <= 27 /*&& !board[p+2][p+2].hasHouse /*&& !board[p+2][p+2].getTerrain().equals("Mountain") && !board[p+2][p+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
-            //System.out.println("south-east " + (p+2) + " " + (v+2));
+        if(p <= 17 && v <= 27){
             highlight[p+2][v+2] = true;
         }
 
