@@ -7,10 +7,11 @@ public class Player {
     public String color;
     public int score;
     public String terrain;
-
+    int count;
 
     public Player(String color) {
         score = 0;
+        count = 0;
         this.color = color;
         remainingHouses = 40;
         specialTokens = new ArrayList<>();
@@ -34,13 +35,17 @@ public class Player {
     }
     public void addSpecialToken(String token) {
         specialTokens.remove(specialTokens.size() - 1);
-        specialTokens.add(0, token); // token must be in the form of Barn, Farm, Harbor...
+        specialTokens.add(count, token); // token must be in the form of Barn, Farm, Harbor...
+        count++;
     }
     public void fillSpecialToken() {
         for (int i = 0; i < 8; i++) {
             specialTokens.add("Empty");
         }
-
     }
 
+    public void removeSpecialToken(String token) {
+        specialTokens.remove(token);
+        count--;
+    }
 }
