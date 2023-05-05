@@ -21,6 +21,7 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     AvailableHousePlacement available = new AvailableHousePlacement();
 
+    int holdX, holdY;
     public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
         this.gameState = gameState;
         this.gameLogic = gameLogic;
@@ -142,6 +143,26 @@ public class BoardPanel extends JPanel implements MouseListener {
                         }
                     }
                     break;
+                case 6:
+                    darken = thirtyToTwenty(specialAction.harbor(gameState.currentPlayer, gameLogic.board));
+                    for (int i = 0; i < 20; i++) {
+                        for (int j = 0; j < 20; j++) {
+                            if (!darken[i][j]) {
+                                g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                            }
+                        }
+                    }
+                    break;
+                case 7:
+                    darken = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, holdY));
+                    for (int i = 0; i < 20; i++) {
+                        for (int j = 0; j < 20; j++) {
+                            if (!darken[i][j]) {
+                                g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+                            }
+                        }
+                    }
+                    break;
                 default:
                     System.out.println("something fkedUp");
             }
@@ -239,8 +260,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                     return;
                 }
                 if (hold[i][j]) {
-                    System.out.println("Not done writing :(");
-                    gameState.gameState = 1;
+                    holdX = i;
+                    holdY = j;
+                    gameState.gameState = 6;
                 }
                 break;
             case 5:
@@ -250,11 +272,34 @@ public class BoardPanel extends JPanel implements MouseListener {
                     return;
                 }
                 if (hold[i][j]) {
-                    System.out.println("Not done writing :(");
-                    gameState.gameState = 1;
+                     holdX = i;
+                     holdY = j;
+                    gameState.gameState = 7;
                 }
                 break;
-            default:
+            case 6:
+                hold = thirtyToTwenty(specialAction.harbor(gameState.currentPlayer, gameLogic.board));
+                if (hold[i][j]) {
+                    gameLogic.board.BoardNoX[i][j].hasHouse = true;
+                    gameLogic.board.BoardNoX[holdX][holdY].hasHouse = false;
+                    gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
+                    gameLogic.board.BoardNoX[holdX][holdY].houseColor = null;
+                    checkForSpecialActions(i, j);
+                    gameState.gameState = 1;
+                    break;
+                }
+            case 7:
+                hold = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, holdY));
+                if (hold[i][j]) {
+                    gameLogic.board.BoardNoX[i][j].hasHouse = true;
+                    gameLogic.board.BoardNoX[holdX][holdY].hasHouse = false;
+                    gameLogic.board.BoardNoX[i][j].houseColor = gameState.currentPlayer.color;
+                    gameLogic.board.BoardNoX[holdX][holdY].houseColor = null;
+                    checkForSpecialActions(i, j);
+                    gameState.gameState = 1;
+                    break;
+                }
+                default:
                 System.out.println("Something messed up BoardPanel 273");
         }
 
