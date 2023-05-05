@@ -3,9 +3,15 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ScoringPanel extends JPanel implements MouseListener {
+public class ScoringPanel extends JPanel implements MouseListener { // discover worker farmer
+    Scoring scoring = new Scoring();
+    GameLogic gameLogic;
+    GameState gameState;
+    Board board;
     public ScoringPanel(GameLogic gameLogic, GameState gameState, Board board) {
-
+        this.gameLogic = gameLogic;
+        this.gameState = gameState;
+        this.board = board;
         setBounds(0, 0, 1600, 900);
         setLayout(null);
         setOpaque(false);
@@ -15,6 +21,8 @@ public class ScoringPanel extends JPanel implements MouseListener {
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+
         g.drawImage(ImageLoader.get("/Pictures/GreyBackground.png"), 0, 0, 1600, 900, null);
 
     }

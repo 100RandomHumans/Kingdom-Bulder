@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class GameLogic {
     String cardOne, cardTwo, cardThree;
-    public boolean inGame, hoverInfo, endScreen;
+    public boolean inGame, hoverInfo, endScreen, shuffled;
     public final ArrayList<Player> players;
     public Player playerRed = new Player("Red");
     public Player playerBlue = new Player("Blue");
@@ -55,6 +55,7 @@ public class GameLogic {
             terrainDeck.add("Desert"); // Desert
         }
         Collections.shuffle(terrainDeck);
+        shuffled = true;
     }
     public Player findFirstPlayer() {
         switch ((int) (Math.random() * 4) + 1) {

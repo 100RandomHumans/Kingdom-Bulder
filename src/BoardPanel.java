@@ -239,7 +239,6 @@ public class BoardPanel extends JPanel implements MouseListener {
 
         switch (gameState.gameState) {
             case 1:
-                System.out.println("called");
                 boolean[][] hold = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
                 if (hold[i][j] && gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses != 0) {
                     gameLogic.board.BoardNoX[i][j].hasHouse = true;

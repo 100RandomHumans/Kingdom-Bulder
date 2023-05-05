@@ -47,6 +47,7 @@ public class GameState {
         currentPlayer = gameLogic.players.get(turnNum - 1);
 
         currentPlayer.terrain = gameLogic.terrainDeck.remove(0);
+        System.out.println(gameLogic.terrainDeck.size());
         if (gameLogic.terrainDeck.size() == 0) {
             gameLogic.shuffleTerrainDeck();
         }
@@ -55,6 +56,7 @@ public class GameState {
         for (int i = 0; i < 8; i++){
             avilableTiles.add(currentPlayer.specialTokens.get(i));
         }
+
     }
 
     public void endGame() {
