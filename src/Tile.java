@@ -25,6 +25,9 @@ public class Tile {
 
     }
 
+    public ArrayList<String> getAllPlayers(){
+        return allPlayers;
+    }
 
     public void setHighlight(Boolean h){
         toHighlight = h;

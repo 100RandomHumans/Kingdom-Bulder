@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class BoardPanel extends JPanel implements MouseListener {
@@ -432,13 +433,16 @@ public class BoardPanel extends JPanel implements MouseListener {
     */
 
     public void checkMoveAway(){
+        ArrayList<String> tempLocs = new ArrayList<>();
+        ArrayList<String> banger = new ArrayList<>();
+        String s = "";
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 29; b++){
-                ArrayList<String> tempLocs = new ArrayList<>();
-                ArrayList<String> banger = new ArrayList<>();
-                String s = "";
+                tempLocs.clear();
+                banger.clear();
+                s = "";
                 if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City") && !gameLogic.board.Board[a][b].getLocation().equals("x")){
-                    tempLocs = gameLogic.board.Board[a][b].allPlayers;
+                    for (String holder : gameLogic.board.Board[a][b].allPlayers) {tempLocs.add(new String(holder));}
                     System.out.println("-----------------------");
                     System.out.println(1 + " " + gameLogic.board.Board[a][b].getLocation()+ ": " + tempLocs);
                     if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
@@ -479,7 +483,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                             }
                         }
                         gameLogic.board.Board[a][b].allPlayers.remove(gameState.currentPlayer.color);
-                        gameLogic.board.Board[a][b].usedPlayers.remove(gameState.currentPlayer.color);
                         System.out.println(gameState.currentPlayer.getColor() + " " + gameLogic.board.Board[a][b].getLocation());
                     }
                 }
