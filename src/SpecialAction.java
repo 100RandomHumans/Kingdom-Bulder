@@ -398,35 +398,40 @@ public class SpecialAction {
     public boolean[][] paddock(Player player, Board gameBoard, int p, int v){
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
-        System.out.println(p + " " + v);
-        //left 2 tile
-        if(p >= 2 && !board[p-2][v].hasHouse && !board[p-2][v].getTerrain().equals("Mountain") && !board[p-2][v].getTerrain().equals("Water") && !board[p-2][v].getLocation().equals("") && !board[p-2][v].getLocation().equals("City")){
+        //upper right 2
+        if(p >= 2 /*&& !board[p-2][v].hasHouse && !board[p-2][v].getTerrain().equals("Mountain") && !board[p-2][v].getTerrain().equals("Water") && !board[p-2][v].getLocation().equals("City")*/){
+            //System.out.println("north-east " + (p-2) + " " + v);
             highlight[p-2][v] = true;
         }
-        //right 2 tile
-        if(p <= 27 && !board[p+2][v].hasHouse && !board[p+2][v].getTerrain().equals("Mountain") && !board[p+2][v].getTerrain().equals("Water") && !board[p+2][v].getLocation().equals("") && !board[p+2][v].getLocation().equals("City")){
+        //lower left 2
+        if(p <= 17 /*&& !board[p+2][v].hasHouse && !board[p+2][v].getTerrain().equals("Mountain") && !board[p+2][v].getTerrain().equals("Water") && !board[p+2][v].getLocation().equals("City")*/){
+            //System.out.println("south-west " + (p+2) + " " + v);
             highlight[p+2][v] = true;
         }
-        //up right 2 tile
-        if(v >= 2 && !board[p][v-2].hasHouse && !board[p][v-2].getTerrain().equals("Mountain") && !board[p][v-2].getTerrain().equals("Water") && !board[p][v-2].getLocation().equals("") && !board[p][v-2].getLocation().equals("City")){
+        //left 2 tile
+        if(v >= 2 /*&& !board[p][v-2].hasHouse /*&& !board[p][v-2].getTerrain().equals("Mountain") && !board[p][v-2].getTerrain().equals("Water") && !board[p][v-2].getLocation().equals("City")*/){
+            //System.out.println("wesst " + p + " " + (v-2));
             highlight[p][v-2] = true;
         }
-        //down left 2 tile
-        if(v <= 17 && !board[p][v+2].hasHouse && !board[p][v+2].getTerrain().equals("Mountain") && !board[p][v+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("") && !board[p][v+2].getLocation().equals("City")){
+        //right 2 tile
+        if(v <= 27 /*&& !board[p][v+2].hasHouse /*&& !board[p][v+2].getTerrain().equals("Mountain") && !board[p][v+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
+            //System.out.println("east " + p + " " + (v+2));
             highlight[p][v+2] = true;
         }
         //up left 2 tile
-        if(p >= 2 && v >= 2 && !board[p-2][v-2].hasHouse && !board[p-2][v-2].getTerrain().equals("Mountain") && !board[p-2][v-2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("") && !board[p][v+2].getLocation().equals("City")){
+        if(p >= 2 && v >= 2 /*&& !board[p-2][v-2].hasHouse /*&& !board[p-2][v-2].getTerrain().equals("Mountain") && !board[p-2][v-2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
+            //System.out.println("north-west " + (p-2) + " " + (v-2));
             highlight[p-2][v-2] = true;
         }
         //down right 2 tile
-        if(p <= 27 && v <= 17 && !board[p+2][p+2].hasHouse && !board[p+2][p+2].getTerrain().equals("Mountain") && !board[p+2][p+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("") && !board[p][v+2].getLocation().equals("City")){
-            highlight[p+2][p+2] = true;
+        if(p <= 17 && v <= 27 /*&& !board[p+2][p+2].hasHouse /*&& !board[p+2][p+2].getTerrain().equals("Mountain") && !board[p+2][p+2].getTerrain().equals("Water") && !board[p][v+2].getLocation().equals("City")*/){
+            //System.out.println("south-east " + (p+2) + " " + (v+2));
+            highlight[p+2][v+2] = true;
         }
 
         for(int i = 0; i < highlight.length; i++){
             for(int j = 0; j < highlight[0].length; j++){
-                if(board[i][j].hasHouse){
+                if(board[i][j].hasHouse || board[i][j].getTerrain().equals("Water") || board[i][j].getTerrain().equals("Mountain") || board[i][j].getLocation().equals("City") || board[i][j].getLocation().equals("Oracle") || board[i][j].getLocation().equals("Harbor") || board[i][j].getLocation().equals("Paddock") || board[i][j].getLocation().equals("Tower")){
                     highlight[i][j] = false;
                 }
             }

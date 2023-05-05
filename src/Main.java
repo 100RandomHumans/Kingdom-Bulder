@@ -8,7 +8,7 @@ public class Main {
 City
 Oracle
 Harbor
-Farm
+Paddock
 Oasis
 ------------------------------------
 Forest
