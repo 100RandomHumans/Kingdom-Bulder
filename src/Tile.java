@@ -6,7 +6,7 @@ public class Tile {
     public House house;
     public String houseColor;
     public int x, y, numTokensLeft;
-    public ArrayList<String> usedPlayers;
+    public ArrayList<String> usedPlayers, allPlayers;
 
 
 
@@ -17,13 +17,14 @@ public class Tile {
         house = null;
         toHighlight = false;
         usedPlayers = new ArrayList<String>();
-
+        allPlayers = new ArrayList<String>();
         if (location != null) {
             numTokensLeft = 2;
         }
 
 
     }
+
 
     public void setHighlight(Boolean h){
         toHighlight = h;
