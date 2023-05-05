@@ -87,7 +87,7 @@ public class GameLogic {
             for (int i = 0; i < 5; i++) { //Fills terrainDeck then shuffles it
                 terrainDeck.add("P");
                 terrainDeck.add("F");
-                terrainDeck.add("T");
+                terrainDeck.add("T"); // test
                 terrainDeck.add("C");
                 terrainDeck.add("D");
             }
