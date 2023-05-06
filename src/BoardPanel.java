@@ -435,30 +435,23 @@ public class BoardPanel extends JPanel implements MouseListener {
     public void checkMoveAway(){
         ArrayList<String> tempLocs = new ArrayList<>();
         ArrayList<String> banger = new ArrayList<>();
-        String s = "";
         for(int a = 0; a <= 19; a++){
             for(int b = 0; b <= 29; b++){
                 tempLocs.clear();
                 banger.clear();
-                s = "";
                 if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City") && !gameLogic.board.Board[a][b].getLocation().equals("x")){
                     for (String holder : gameLogic.board.Board[a][b].allPlayers) {tempLocs.add(new String(holder));}
-                    System.out.println("-----------------------");
-                    System.out.println(1 + " " + gameLogic.board.Board[a][b].getLocation()+ ": " + tempLocs);
                     if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
                         banger.add(gameLogic.board.Board[a][b-1].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a][b-1].houseColor);
-                        System.out.println("1: " + tempLocs);
                     }
                     if(gameLogic.board.Board[a-1][b-1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a-1][b-1].houseColor)){
                         banger.add(gameLogic.board.Board[a-1][b-1].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a-1][b-1].houseColor);
-                        System.out.println("2: " + tempLocs);
                     }
                     if(gameLogic.board.Board[a-1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a-1][b].houseColor)){
                         banger.add(gameLogic.board.Board[a-1][b].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a-1][b].houseColor);
-                        System.out.println("3: " + tempLocs);
                     }
                     if(gameLogic.board.Board[a+1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a+1][b].houseColor)){
                         banger.add(gameLogic.board.Board[a+1][b].houseColor);
@@ -468,12 +461,10 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if(gameLogic.board.Board[a][b+1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b+1].houseColor)){
                         banger.add(gameLogic.board.Board[a][b+1].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a][b+1].houseColor);
-                        System.out.println("5: " + tempLocs);
                     }
                     if(gameLogic.board.Board[a+1][b+1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a+1][b+1].houseColor)){
                         banger.add(gameLogic.board.Board[a+1][b+1].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a+1][b+1].houseColor);
-                        System.out.println("6: " + tempLocs);
                     }
 
                     if(tempLocs.size() != 0 && !banger.contains(tempLocs.get(0))){
@@ -483,7 +474,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                             }
                         }
                         gameLogic.board.Board[a][b].allPlayers.remove(gameState.currentPlayer.color);
-                        System.out.println(gameState.currentPlayer.getColor() + " " + gameLogic.board.Board[a][b].getLocation());
                     }
                 }
             }
