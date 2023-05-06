@@ -456,7 +456,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if(gameLogic.board.Board[a+1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a+1][b].houseColor)){
                         banger.add(gameLogic.board.Board[a+1][b].houseColor);
                         tempLocs.remove(gameLogic.board.Board[a+1][b].houseColor);
-                        System.out.println("4: " + tempLocs);
                     }
                     if(gameLogic.board.Board[a][b+1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b+1].houseColor)){
                         banger.add(gameLogic.board.Board[a][b+1].houseColor);
@@ -470,7 +469,8 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if(tempLocs.size() != 0 && !banger.contains(tempLocs.get(0))){
                         for(int i = 0; i < gameState.currentPlayer.specialTokens.size(); i++){
                             if(gameState.currentPlayer.specialTokens.get(i).equals(gameLogic.board.Board[a][b].getLocation())){
-                                gameState.currentPlayer.specialTokens.set(i, "Empty");
+                                gameState.currentPlayer.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                                gameState.currentPlayer.specialTokens.add("Empty");
                             }
                         }
                         gameLogic.board.Board[a][b].allPlayers.remove(gameState.currentPlayer.color);
