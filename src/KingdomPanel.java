@@ -34,7 +34,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBounds(0, 0, 1600, 900);
         setBackground(Color.blue);
         setLayout(null);
-        boardPanel = new BoardPanel(gameLogic, gameState, this);
+        boardPanel = new BoardPanel(gameLogic, gameState, this, redressed);
         scoringPanel = new ScoringPanel(gameLogic, gameState, gameLogic.board, redressed);
         scoringPanel.setVisible(false);
         add(scoringPanel);
@@ -343,6 +343,8 @@ public class KingdomPanel extends JPanel implements MouseListener {
                 return;
             }
         }
+
+
 
         boardPanel.repaint();
         repaint();

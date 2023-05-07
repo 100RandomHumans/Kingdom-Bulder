@@ -20,10 +20,11 @@ public class BoardPanel extends JPanel implements MouseListener {
     SpecialAction specialAction = new SpecialAction();
 
     AvailableHousePlacement available = new AvailableHousePlacement();
-
+    Font font;
     int holdX, holdY;
 
-    public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
+    public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel, Font font) {
+        this.font = font;
         this.gameState = gameState;
         this.gameLogic = gameLogic;
         this.kingdomPanel = kingdomPanel;
@@ -56,6 +57,8 @@ public class BoardPanel extends JPanel implements MouseListener {
 
     public void paintComponent(Graphics g) {
         super.repaint();
+        g.setFont(font);
+        g.setColor(Color.white);
         g.drawImage(boardOne, 5, 40, 451, 375, null);
         g.drawImage(boardTwo, 436, 40, 451, 375, null);
         g.drawImage(boardThree, 5, 405, 451, 371, null);
@@ -188,6 +191,15 @@ public class BoardPanel extends JPanel implements MouseListener {
                 default:
                     System.out.println("something fkedUp");
             }
+            for (int a = 0; a < 20; a++) {
+                for (int b = 0; b < 20; b++) {
+                    if (gameLogic.board.BoardNoX[a][b].numTokensLeft > 0) {
+                        g.drawString(String.valueOf(gameLogic.board.BoardNoX[a][b].numTokensLeft), gameLogic.board.BoardNoX[a][b].x - 5, gameLogic.board.BoardNoX[a][b].y  + 10);
+                    }
+                }
+            }
+
+
             kingdomPanel.repaint();
         }
 
@@ -345,8 +357,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                 System.out.println("Something messed up BoardPanel 273");
         }
 
-
-        repaint();
     } // ---------------------------------------- end of mouseClick -----------------------------------------------------------------
 
 
