@@ -117,7 +117,7 @@ public class Scoring {
             case "Worker" -> {
                 for (int i = 0; i <= 19; i++) {
                     for (int j = 0; j <= 29; j++) {
-                        if (board[i][j].getLocation().equals("City")) {
+                        if (board[i][j].getLocation().equals("City") || board[i][j].getLocation().equals("Paddock") || board[i][j].getLocation().equals("Harbor") || board[i][j].getLocation().equals("Oracle") || board[i][j].getLocation().equals("Tower")) {
                             if (board[i][j - 1].hasHouse && board[i][j - 1].houseColor.equals(player.getColor())) {
                                 score += 1;
                             }
