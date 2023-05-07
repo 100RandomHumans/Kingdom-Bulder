@@ -26,7 +26,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     public KingdomPanel(int houses) {
         try {
-            Font uniFont = Font.createFont(Font.TRUETYPE_FONT, this.getClass().getResourceAsStream("Redressed-Regular.ttf"));
+            Font uniFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("Redressed-Regular.ttf")));
             redressed = uniFont.deriveFont(24f);
         } catch (IOException | FontFormatException e) {
             System.out.println("cant find it");
@@ -35,7 +35,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         setBackground(Color.blue);
         setLayout(null);
         boardPanel = new BoardPanel(gameLogic, gameState, this);
-        scoringPanel = new ScoringPanel(gameLogic, gameState, gameLogic.board);
+        scoringPanel = new ScoringPanel(gameLogic, gameState, gameLogic.board, redressed);
         scoringPanel.setVisible(false);
         add(scoringPanel);
         add(boardPanel);
@@ -104,7 +104,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         g.drawString(String.valueOf(gameLogic.playerYellow.remainingHouses), 1125, 754);
 
 
-        for (int i = 0; i < 4; i++) { // top // currently takes way too long to load, need to load at begining or make it faster
+        for (int i = 0; i < 4; i++) { // top // currently takes way too long to load, need to load at start or make it faster
 
             if (Objects.equals(gameLogic.playerRed.specialTokens.get(i), "Empty")) {
                 g.drawImage(emptyHex, 1195 + (95 * i), 17, null);
@@ -175,22 +175,14 @@ public class KingdomPanel extends JPanel implements MouseListener {
         g.drawImage(start, 1105, 12 + (225 * gameLogic.players.indexOf(gameState.firstPlayer)), null);
 
         switch (gameState.gameState) {
-            case 1:
+            case 1 -> {
                 g.drawImage(ImageLoader.get("/Pictures/Houses/House" + gameLogic.players.get(gameState.turnNum - 1).getColor() + ".png"), 10, 800, null);
                 g.drawString(String.valueOf(3 - gameLogic.housePlaced), 25, 860);
-                break;
-            case 2:
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileTower.png"), 10, 800, 70, 80,  null);
-                break;
-            case 3:
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileOracle.png"), 10, 800, 70, 80,null);
-                break;
-            case 4, 6:
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileHarbor.png"), 10, 800, 70, 80,null);
-                break;
-            case 5, 7:
-                g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TilePaddock.png"), 10, 800, 70, 80,null);
-                break;
+            }
+            case 2 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileTower.png"), 10, 800, 70, 80, null);
+            case 3 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileOracle.png"), 10, 800, 70, 80, null);
+            case 4, 6 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileHarbor.png"), 10, 800, 70, 80, null);
+            case 5, 7 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TilePaddock.png"), 10, 800, 70, 80, null);
         }
         if (gameLogic.terrainDeck.size() == 0) {
             g.drawString("shuffling", 1118,150 + (225 * ((gameLogic.players.indexOf(gameState.currentPlayer) + 1) % 4) )  );
@@ -201,7 +193,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (gameState.currentPlayer.remainingHouses != 0 && gameLogic.housePlaced != 0 && gameLogic.housePlaced != 3) {
-            System.out.println("between placing 3 houses, no buano");
+            System.out.println("between placing 3 houses, nope");
             return;
         }
         System.out.println("X - " + e.getX() + " : Y - " + e.getY());
@@ -210,6 +202,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             firstOut = gameState.currentPlayer;
             secondTimeRound = true;
         } else if (firstOut.equals(gameLogic.players.get(gameState.turnNum % 4)) && secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
+            scoringPanel.calculateScores();
             scoringPanel.setVisible(true);
             thirdTimeRound = true;
         } else if (thirdTimeRound) {
@@ -357,18 +350,22 @@ public class KingdomPanel extends JPanel implements MouseListener {
 
     public int currentState(String enter) {
         switch (enter) {
-            case "Tower":
+            case "Tower" -> {
                 return 2;
-            case "Oracle":
+            }
+            case "Oracle" -> {
                 return 3;
-            case "Harbor":
+            }
+            case "Harbor" -> {
                 return 4;
-            case "Paddock":
+            }
+            case "Paddock" -> {
                 return 5;
-            default:
+            }
+            default -> {
                 System.out.println("KingdomPanel line 230 return default");
                 return 1;
-
+            }
         }
 
     }

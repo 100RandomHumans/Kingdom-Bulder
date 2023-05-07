@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 public class BoardPanel extends JPanel implements MouseListener {
@@ -23,6 +22,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     AvailableHousePlacement available = new AvailableHousePlacement();
 
     int holdX, holdY;
+
     public BoardPanel(GameLogic gameLogic, GameState gameState, KingdomPanel kingdomPanel) {
         this.gameState = gameState;
         this.gameLogic = gameLogic;
@@ -85,7 +85,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if (gameLogic.housePlaced < 3 && gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
                         darken = thirtyToTwenty(available.tilesToHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board));
                         for (int i = 0; i < 20; i++) {
-
                             for (int j = 0; j < 20; j++) {
                                 if (!darken[i][j]) {
                                     g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
@@ -120,26 +119,23 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 4:
-                    if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
-                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
-                        for (int i = 0; i < 20; i++) {
+                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
+                    for (int i = 0; i < 20; i++) {
 
-                            for (int j = 0; j < 20; j++) {
-                                if (!darken[i][j]) {
-                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
-                                }
+                        for (int j = 0; j < 20; j++) {
+                            if (!darken[i][j]) {
+                                g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
+
                             }
                         }
                     }
                     break;
                 case 5:
-                    if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
-                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
-                        for (int i = 0; i < 20; i++) {
-                            for (int j = 0; j < 20; j++) {
-                                if (!darken[i][j]) {
-                                    g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
-                                }
+                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
+                    for (int i = 0; i < 20; i++) {
+                        for (int j = 0; j < 20; j++) {
+                            if (!darken[i][j]) {
+                                g.drawImage(grayTile, gameLogic.board.BoardNoX[i][j].x - 22, gameLogic.board.BoardNoX[i][j].y - 25, null);
                             }
                         }
                     }
@@ -192,8 +188,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                 default:
                     System.out.println("something fkedUp");
             }
+            kingdomPanel.repaint();
         }
-        kingdomPanel.repaint();
+
     }
 
     public boolean[][] thirtyToTwenty(boolean[][] b) {
@@ -280,10 +277,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
             case 4:
                 hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
-                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
-                    System.out.println(" houses being placed ");
-                    return;
-                }
                 if (hold[i][j]) {
                     holdX = i;
                     holdY = j;
@@ -292,13 +285,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                 break;
             case 5:
                 hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
-                if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
-                    System.out.println(" houses being placed ");
-                    return;
-                }
                 if (hold[i][j]) {
-                     holdX = i;
-                     holdY = j;
+                    holdX = i;
+                    holdY = j;
                     gameState.gameState = 7;
                 }
                 break;
@@ -341,7 +330,6 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
 
 
-
                 hold = thirtyToTwenty(specialAction.paddock(gameState.currentPlayer, gameLogic.board, holdX, jBoard));
                 if (hold[i][j]) {
                     gameLogic.board.BoardNoX[i][j].hasHouse = true;
@@ -353,7 +341,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     gameState.gameState = 1;
                     break;
                 }
-                default:
+            default:
                 System.out.println("Something messed up BoardPanel 273");
         }
 
@@ -432,43 +420,45 @@ public class BoardPanel extends JPanel implements MouseListener {
         }
     */
 
-    public void checkMoveAway(){
+    public void checkMoveAway() {
         ArrayList<String> tempLocs = new ArrayList<>();
         ArrayList<String> banger = new ArrayList<>();
-        for(int a = 0; a <= 19; a++){
-            for(int b = 0; b <= 29; b++){
+        for (int a = 0; a <= 19; a++) {
+            for (int b = 0; b <= 29; b++) {
                 tempLocs.clear();
                 banger.clear();
-                if(!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City") && !gameLogic.board.Board[a][b].getLocation().equals("x")){
-                    for (String holder : gameLogic.board.Board[a][b].allPlayers) {tempLocs.add(new String(holder));}
-                    if(gameLogic.board.Board[a][b-1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b-1].houseColor)){
-                        banger.add(gameLogic.board.Board[a][b-1].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a][b-1].houseColor);
+                if (!gameLogic.board.Board[a][b].getLocation().equals("") && !gameLogic.board.Board[a][b].getLocation().equals("City") && !gameLogic.board.Board[a][b].getLocation().equals("x")) {
+                    for (String holder : gameLogic.board.Board[a][b].allPlayers) {
+                        tempLocs.add(holder);
                     }
-                    if(gameLogic.board.Board[a-1][b-1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a-1][b-1].houseColor)){
-                        banger.add(gameLogic.board.Board[a-1][b-1].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a-1][b-1].houseColor);
+                    if (gameLogic.board.Board[a][b - 1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b - 1].houseColor)) {
+                        banger.add(gameLogic.board.Board[a][b - 1].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a][b - 1].houseColor);
                     }
-                    if(gameLogic.board.Board[a-1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a-1][b].houseColor)){
-                        banger.add(gameLogic.board.Board[a-1][b].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a-1][b].houseColor);
+                    if (gameLogic.board.Board[a - 1][b - 1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a - 1][b - 1].houseColor)) {
+                        banger.add(gameLogic.board.Board[a - 1][b - 1].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a - 1][b - 1].houseColor);
                     }
-                    if(gameLogic.board.Board[a+1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a+1][b].houseColor)){
-                        banger.add(gameLogic.board.Board[a+1][b].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a+1][b].houseColor);
+                    if (gameLogic.board.Board[a - 1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a - 1][b].houseColor)) {
+                        banger.add(gameLogic.board.Board[a - 1][b].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a - 1][b].houseColor);
                     }
-                    if(gameLogic.board.Board[a][b+1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b+1].houseColor)){
-                        banger.add(gameLogic.board.Board[a][b+1].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a][b+1].houseColor);
+                    if (gameLogic.board.Board[a + 1][b].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a + 1][b].houseColor)) {
+                        banger.add(gameLogic.board.Board[a + 1][b].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a + 1][b].houseColor);
                     }
-                    if(gameLogic.board.Board[a+1][b+1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a+1][b+1].houseColor)){
-                        banger.add(gameLogic.board.Board[a+1][b+1].houseColor);
-                        tempLocs.remove(gameLogic.board.Board[a+1][b+1].houseColor);
+                    if (gameLogic.board.Board[a][b + 1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a][b + 1].houseColor)) {
+                        banger.add(gameLogic.board.Board[a][b + 1].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a][b + 1].houseColor);
+                    }
+                    if (gameLogic.board.Board[a + 1][b + 1].hasHouse && gameLogic.board.Board[a][b].allPlayers.contains(gameLogic.board.Board[a + 1][b + 1].houseColor)) {
+                        banger.add(gameLogic.board.Board[a + 1][b + 1].houseColor);
+                        tempLocs.remove(gameLogic.board.Board[a + 1][b + 1].houseColor);
                     }
 
-                    if(tempLocs.size() != 0 && !banger.contains(tempLocs.get(0))){
-                        for(int i = 0; i < gameState.currentPlayer.specialTokens.size(); i++){
-                            if(gameState.currentPlayer.specialTokens.get(i).equals(gameLogic.board.Board[a][b].getLocation())){
+                    if (tempLocs.size() != 0 && !banger.contains(tempLocs.get(0))) {
+                        for (int i = 0; i < gameState.currentPlayer.specialTokens.size(); i++) {
+                            if (gameState.currentPlayer.specialTokens.get(i).equals(gameLogic.board.Board[a][b].getLocation())) {
                                 gameState.currentPlayer.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
                                 gameState.currentPlayer.specialTokens.add("Empty");
                             }
@@ -479,6 +469,7 @@ public class BoardPanel extends JPanel implements MouseListener {
             }
         }
     }
+
     public void checkForSpecialActions(int i, int j) {
         int jBoard = 0;
         if (i == 0) {
@@ -508,62 +499,62 @@ public class BoardPanel extends JPanel implements MouseListener {
         //left tile
         if (jBoard != 0 && !gameLogic.board.Board[i][jBoard - 1].getLocation().equals("") && !gameLogic.board.Board[i][jBoard - 1].getLocation().equals("City") && !gameLogic.board.Board[i][jBoard - 1].getLocation().equals("x")) {
             gameLogic.board.Board[i][jBoard - 1].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i][jBoard - 1].numTokensLeft > 0 && !checkTwice(i, jBoard - 1, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i][jBoard - 1].numTokensLeft > 0 && !checkTwice(i, jBoard - 1, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard - 1].getLocation());
                 gameLogic.board.Board[i][jBoard - 1].numTokensLeft--;
                 gameLogic.board.Board[i][jBoard - 1].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i][jBoard - 1].allPlayers);
+            System.out.println(gameLogic.board.Board[i][jBoard - 1].allPlayers);
         }
         //right tile
         if (jBoard != 29 && !gameLogic.board.Board[i][jBoard + 1].getLocation().equals("") && !gameLogic.board.Board[i][jBoard + 1].getLocation().equals("City") && !gameLogic.board.Board[i][jBoard + 1].getLocation().equals("x")) {
             gameLogic.board.Board[i][jBoard + 1].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i][jBoard + 1].numTokensLeft > 0 && !checkTwice(i, jBoard + 1, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i][jBoard + 1].numTokensLeft > 0 && !checkTwice(i, jBoard + 1, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i][jBoard + 1].getLocation());
                 gameLogic.board.Board[i][jBoard + 1].numTokensLeft--;
                 gameLogic.board.Board[i][jBoard + 1].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i][jBoard + 1].allPlayers);
+            System.out.println(gameLogic.board.Board[i][jBoard + 1].allPlayers);
         }
         //tile above
         if (i != 0 && !gameLogic.board.Board[i - 1][jBoard].getLocation().equals("") && !gameLogic.board.Board[i - 1][jBoard].getLocation().equals("City") && !gameLogic.board.Board[i - 1][jBoard].getLocation().equals("x")) {
             gameLogic.board.Board[i - 1][jBoard].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i - 1][jBoard].numTokensLeft > 0 && !checkTwice(i - 1, jBoard, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i - 1][jBoard].numTokensLeft > 0 && !checkTwice(i - 1, jBoard, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i - 1][jBoard].getLocation());
                 gameLogic.board.Board[i - 1][jBoard].numTokensLeft--;
                 gameLogic.board.Board[i - 1][jBoard].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i - 1][jBoard].allPlayers);
+            System.out.println(gameLogic.board.Board[i - 1][jBoard].allPlayers);
         }
         //tile below
         if (i != 19 && !gameLogic.board.Board[i + 1][jBoard].getLocation().equals("") && !gameLogic.board.Board[i + 1][jBoard].getLocation().equals("City") && !gameLogic.board.Board[i + 1][jBoard].getLocation().equals("x")) {
             gameLogic.board.Board[i + 1][jBoard].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i + 1][jBoard].numTokensLeft > 0 && !checkTwice(i + 1, jBoard, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i + 1][jBoard].numTokensLeft > 0 && !checkTwice(i + 1, jBoard, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i + 1][jBoard].getLocation());
                 gameLogic.board.Board[i + 1][jBoard].numTokensLeft--;
                 gameLogic.board.Board[i + 1][jBoard].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i + 1][jBoard].allPlayers);
+            System.out.println(gameLogic.board.Board[i + 1][jBoard].allPlayers);
         }
         //tile upper left
         if (i != 0 && jBoard != 0 && !gameLogic.board.Board[i - 1][jBoard - 1].getLocation().equals("") && !gameLogic.board.Board[i - 1][jBoard - 1].getLocation().equals("City") && !gameLogic.board.Board[i - 1][jBoard - 1].getLocation().equals("x")) {
             gameLogic.board.Board[i - 1][jBoard - 1].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i - 1][jBoard - 1].numTokensLeft > 0 && !checkTwice(i - 1, jBoard - 1, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i - 1][jBoard - 1].numTokensLeft > 0 && !checkTwice(i - 1, jBoard - 1, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i - 1][jBoard - 1].getLocation());
                 gameLogic.board.Board[i - 1][jBoard - 1].numTokensLeft--;
                 gameLogic.board.Board[i - 1][jBoard - 1].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i - 1][jBoard - 1].allPlayers);
+            System.out.println(gameLogic.board.Board[i - 1][jBoard - 1].allPlayers);
         }
         //tile lower right
         if (i != 19 && jBoard != 29 && !gameLogic.board.Board[i + 1][jBoard + 1].getLocation().equals("") && !gameLogic.board.Board[i + 1][jBoard + 1].getLocation().equals("City") && !gameLogic.board.Board[i + 1][jBoard + 1].getLocation().equals("x")) {
             gameLogic.board.Board[i + 1][jBoard + 1].allPlayers.add(gameState.currentPlayer.color);
-            if(gameLogic.board.Board[i + 1][jBoard + 1].numTokensLeft > 0 && !checkTwice(i + 1, jBoard + 1, gameState.currentPlayer.color)) {
+            if (gameLogic.board.Board[i + 1][jBoard + 1].numTokensLeft > 0 && !checkTwice(i + 1, jBoard + 1, gameState.currentPlayer.color)) {
                 gameState.currentPlayer.addSpecialToken(gameLogic.board.Board[i + 1][jBoard + 1].getLocation());
                 gameLogic.board.Board[i + 1][jBoard + 1].numTokensLeft--;
                 gameLogic.board.Board[i + 1][jBoard + 1].usedPlayers.add(gameState.currentPlayer.color);
             }
-            System.out.println( gameLogic.board.Board[i + 1][jBoard + 1].allPlayers);
+            System.out.println(gameLogic.board.Board[i + 1][jBoard + 1].allPlayers);
         }
 
         //for testing the specialAction token of all players
@@ -591,12 +582,12 @@ public class BoardPanel extends JPanel implements MouseListener {
         */
         //edge case, moving away from special tile removes special tile from player and game
         // go to every special location, check the tiles around it, if all colors stored in that location tiles's color arraylist is still there, do nothing, if not, find color, remove that token from color
-/*
+        /*
 
 
 
 
- */
+         */
 
 
     }
