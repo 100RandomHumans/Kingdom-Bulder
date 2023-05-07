@@ -18,7 +18,7 @@ public class Tile {
         toHighlight = false;
         usedPlayers = new ArrayList<String>();
         allPlayers = new ArrayList<String>();
-        if (location != null) {
+        if (location != null && !location.equals("") && !location.equals("City") && !location.equals("x")) {
             numTokensLeft = 2;
         }
 
