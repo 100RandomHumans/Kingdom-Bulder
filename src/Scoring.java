@@ -56,7 +56,7 @@ public class Scoring {
                 int cnt = 0;
                 for (int i = 0; i <= 9; i++) {
                     for (int j = 0; j <= 9; j++) {
-                        if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+                        if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) {
                             cnt += 1;
                         }
                     }
@@ -65,7 +65,7 @@ public class Scoring {
                 cnt = 0;
                 for (int i = 0; i <= 9; i++) {
                     for (int j = 10; j <= 19; j++) {
-                        if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+                        if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) {
                             cnt += 1;
                         }
                     }
@@ -74,7 +74,7 @@ public class Scoring {
                 cnt = 0;
                 for (int i = 10; i <= 19; i++) {
                     for (int j = 0; j <= 9; j++) {
-                        if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+                        if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) {
                             cnt += 1;
                         }
                     }
@@ -83,7 +83,7 @@ public class Scoring {
                 cnt = 0;
                 for (int i = 10; i <= 19; i++) {
                     for (int j = 10; j <= 19; j++) {
-                        if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
+                        if (temp[i][j].hasHouse && temp[i][j].houseColor.equals(player.getColor())) {
                             cnt += 1;
                         }
                     }
