@@ -59,7 +59,7 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(font);
-        g.drawImage(grayBackground, 1175, 0, 425, 900, null);
+        g.drawImage(grayBackground, 1075, 0, 525, 900, null);
         g.drawImage(scoreCard, 575 + 525, 225, 450, 450, null);
         g.drawString("Scores:", 725 + 525, 300);
         g.drawImage(houseRed, 587 + 525, 405, 50, 50, null);
