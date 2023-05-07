@@ -59,7 +59,7 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(font);
-        g.drawImage(grayBackground, 0, 0, 1600, 900, null);
+        g.drawImage(grayBackground, 1175, 0, 425, 900, null);
         g.drawImage(scoreCard, 575 + 525, 225, 450, 450, null);
         g.drawString("Scores:", 725 + 525, 300);
         g.drawImage(houseRed, 587 + 525, 405, 50, 50, null);
@@ -92,6 +92,25 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
         g.drawString(String.valueOf(yellowOne + yellowThree + yellowFour + yellowTwo), 959 + 525, 652);
     }
 
+    public int[][] getAllScores(){
+        int[][] allScores = new int[4][4];
+        String temp = "";
+
+        for(int i = 0; i < 4; i++){
+            temp = "City";
+        }
+        for(int i = 0; i < 4; i++){
+            temp = "Farmer";
+        }
+        for(int i = 0; i < 4; i++){
+            temp = "Discoverer";
+        }
+        for(int i = 0; i < 4; i++){
+            temp = "Worker";
+        }
+
+        return allScores;
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getX() + " " + e.getY());
