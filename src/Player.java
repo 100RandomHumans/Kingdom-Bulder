@@ -8,7 +8,7 @@ public class Player {
     public int score;
     public String terrain;
     int count;
-
+    int placement;
     public Player(String color) {
         score = 0;
         count = 0;
@@ -47,5 +47,14 @@ public class Player {
     public void removeSpecialToken(String token) {
         specialTokens.remove(token);
         count--;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "color='" + color + '\'' +
+                ", score=" + score +
+                ", placement=" + placement +
+                '}';
     }
 }

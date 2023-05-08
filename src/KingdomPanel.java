@@ -46,6 +46,9 @@ public class KingdomPanel extends JPanel implements MouseListener {
         gameLogic.playerGreen.remainingHouses = houses;
         gameLogic.playerYellow.remainingHouses = houses;
 
+
+
+
     }
 
     public void paintComponent(Graphics g) {

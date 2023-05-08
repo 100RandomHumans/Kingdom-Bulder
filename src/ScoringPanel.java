@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ScoringPanel extends JPanel implements MouseListener { // discover worker farmer
     Scoring scoring = new Scoring();
@@ -30,9 +32,8 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
         setBounds(0, 0, 1600, 900);
         setLayout(null);
         setOpaque(false);
-        setBackground( new Color(255, 0, 0, 20) );
-
         addMouseListener(this);
+
     }
     public void calculateScores() {
         redOne = scoring.getScore("City", gameLogic.playerRed, board);
@@ -51,7 +52,37 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
         yellowTwo = scoring.getScore("Discoverer", gameLogic.playerYellow, board);
         yellowThree = scoring.getScore("Worker", gameLogic.playerYellow, board);
         yellowFour = scoring.getScore("Farmer", gameLogic.playerYellow, board);
+        gameLogic.playerRed.score = redOne + redTwo + redThree + redFour;
+        gameLogic.playerYellow.score = yellowOne + yellowTwo + yellowThree + yellowFour;
+        gameLogic.playerGreen.score = greenOne + greenTwo + greenThree + greenFour;
+        gameLogic.playerBlue.score = blueOne + blueTwo + blueThree + blueFour;
 
+        ArrayList<Integer> scores = new ArrayList<>();
+        scores.add(gameLogic.playerRed.score);
+        scores.add(gameLogic.playerBlue.score);
+        scores.add(gameLogic.playerGreen.score);
+        scores.add(gameLogic.playerYellow.score);
+        Collections.sort(scores);
+        ArrayList<Player> players = new ArrayList<>();
+        for (int i = 0; i < scores.size(); i++) {
+            for (Player p : gameLogic.players) {
+                if (scores.get(i).equals(p.score)) {
+                    players.add(i, p);
+                }
+            }
+
+        }
+
+        int place = 1;
+
+        for (int i = 0; i < players.size(); i++) {
+            if (i != 0 && players.get(i).score == players.get(i - 1).score) {
+                players.get(i).placement = players.get(i - 1).placement;
+            } else {
+                players.get(i).placement = place;
+            }
+            place++;
+        }
 
     }
 
@@ -90,6 +121,17 @@ public class ScoringPanel extends JPanel implements MouseListener { // discover 
         g.drawString(String.valueOf(blueOne + blueTwo + blueThree + blueFour), 959 + 525, 515);
         g.drawString(String.valueOf(greenOne + greenTwo + greenThree + greenFour), 959 + 525, 583);
         g.drawString(String.valueOf(yellowOne + yellowThree + yellowFour + yellowTwo), 959 + 525, 652);
+        for (int i = 0; i < 4; i++) {
+            if (gameLogic.players.get(i).placement == 4) {
+                g.drawImage(ImageLoader.get("/Pictures/Crowns/GoldCrown.png"), 1125, 385 + (i * 70), 40, 40, null);
+            } else if (gameLogic.players.get(i).placement == 3) {
+                g.drawImage(ImageLoader.get("/Pictures/Crowns/SilverCrown.png"), 1125, 385 + (i * 70), 40, 40, null);
+            } else if (gameLogic.players.get(i).placement == 2) {
+                g.drawImage(ImageLoader.get("/Pictures/Crowns/BronzeCrown.png"), 1125, 385 + (i * 70), 40, 40, null);
+            }
+        }
+
+
     }
 
     public int[][] getAllScores(){
