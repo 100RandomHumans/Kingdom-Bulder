@@ -199,16 +199,14 @@ public class KingdomPanel extends JPanel implements MouseListener {
             System.out.println("between placing 3 houses, nope");
             return;
         }
-        System.out.println("X - " + e.getX() + " : Y - " + e.getY());
-
-        if (gameState.currentPlayer.remainingHouses <= 0 && !secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) { // end game logic
-            firstOut = gameState.currentPlayer;
+        if (gameState.currentPlayer.remainingHouses <= 0) {
             secondTimeRound = true;
-        } else if (firstOut.equals(gameLogic.players.get(gameState.turnNum % 4)) && secondTimeRound && e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
-            scoringPanel.calculateScores();
+        }
+        if (thirdTimeRound) {
             scoringPanel.setVisible(true);
+        } else if (secondTimeRound && gameState.currentPlayer.equals(gameLogic.players.get((gameLogic.players.indexOf(gameState.firstPlayer) - 1 + 4) % 4))&& e.getX() > 225 && e.getX() < 675 && e.getY() > 800) {
             thirdTimeRound = true;
-        } else if (thirdTimeRound) {
+            scoringPanel.calculateScores();
             scoringPanel.setVisible(true);
         }
         if (gameState.gameState == 6 || gameState.gameState == 7) {
