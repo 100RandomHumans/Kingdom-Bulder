@@ -190,8 +190,12 @@ public class KingdomPanel extends JPanel implements MouseListener {
         if (gameLogic.terrainDeck.size() == 0) {
             g.drawString("shuffling", 1118,150 + (225 * ((gameLogic.players.indexOf(gameState.currentPlayer) + 1) % 4) )  );
         }
-        g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 800, 800, 70, 100, null);
-        g.drawString(String.valueOf(gameLogic.terrainDeck.size()), 820, 840);
+        g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 800, 785, 70, 100, null);
+        int deckNum = gameLogic.terrainDeck.size() - 3;
+        if(deckNum <= 0){
+            deckNum = 22;
+        }
+        g.drawString(String.valueOf(deckNum), 825, 825);
     } // end of paintComponent
 
     @Override
