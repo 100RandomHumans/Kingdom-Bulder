@@ -21,6 +21,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
     Font redressed;
     boolean secondTimeRound = false;
     boolean thirdTimeRound = false;
+    int numDeck = 1;
     Image emptyHex = ImageLoader.get("/Pictures/PlayerTiles/TileEmpty.png").getScaledInstance(80, 92, Image.SCALE_DEFAULT);
     Player firstOut = new Player(null);
 
@@ -191,10 +192,54 @@ public class KingdomPanel extends JPanel implements MouseListener {
             g.drawString("shuffling", 1118,150 + (225 * ((gameLogic.players.indexOf(gameState.currentPlayer) + 1) % 4) )  );
         }
         g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 800, 785, 70, 100, null);
-        int deckNum = gameLogic.terrainDeck.size() - 3;
-        if(deckNum <= 0){
-            deckNum = 22;
+
+        int deckNum = 0;
+        System.out.println(gameLogic.terrainDeck.size());
+        if(numDeck == 1){
+            deckNum = gameLogic.terrainDeck.size() - 3;
+            if(deckNum == 0) {
+                deckNum = 21;
+            }
+            if(deckNum == -1) {
+                deckNum = 20;
+            }
+            if(deckNum == -2) {
+                numDeck = 2;
+            }
         }
+        if(numDeck == 2){
+            deckNum = gameLogic.terrainDeck.size() - 7;
+            if(deckNum == -6){
+                deckNum = 19;
+            }
+            if(deckNum == 0){
+                deckNum = 21;
+            }
+            if(deckNum == -1){
+                deckNum = 20;
+            }
+            if(deckNum == -2){
+                deckNum = 19;
+            }if(deckNum == -3){
+                deckNum = 18;
+            }
+            if(deckNum == -4){
+                deckNum = 17;
+            }
+            if(deckNum == -5){
+                numDeck = 3;
+            }
+        }
+        if(numDeck == 3){
+            deckNum = gameLogic.terrainDeck.size() - 11;
+            if(deckNum == -9){
+                deckNum = 16;
+            }
+            if(deckNum == -10){
+                deckNum = 15;
+            }
+        }
+
         g.drawString(String.valueOf(deckNum), 825, 825);
     } // end of paintComponent
 
