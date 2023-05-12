@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 public class BoardPanel extends JPanel implements MouseListener {
@@ -483,9 +484,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                             }
                         }
                         gameLogic.board.Board[a][b].allPlayers.remove(gameState.currentPlayer.color);
-                        for(int i = 0; i < gameLogic.board.Board[a][b].usedPlayers.size(); i++){ //going back gets the token back
-                            gameLogic.board.Board[a][b].usedPlayers.remove(gameState.currentPlayer.color);
-                        }
+                        gameLogic.board.Board[a][b].usedPlayers.removeAll(Collections.singleton(gameState.currentPlayer.color));
                     }
                 }
             }
