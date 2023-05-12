@@ -63,7 +63,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
         if ((gameLogic.housePlaced == 3 || gameState.currentPlayer.remainingHouses == 0) && gameState.gameState == 1) {
             g.drawImage(ImageLoader.get("/Pictures/ContinueButton.png"), 225, 800, 400, 90, null);
         }
-        if (gameState.gameState != 1) {
+        if (gameState.gameState != 1 && gameState.gameState != 6 && gameState.gameState != 7) {
             g.drawImage(ImageLoader.get("/Pictures/Deselect.png"), 225, 800, 400, 90, null);
         }
 
@@ -200,7 +200,6 @@ public class KingdomPanel extends JPanel implements MouseListener {
         g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 800, 785, 70, 100, null);
 
         int deckNum = 0;
-        System.out.println(gameLogic.terrainDeck.size());
         if(numDeck == 1){
             deckNum = gameLogic.terrainDeck.size() - 3;
             if(deckNum == 0) {
@@ -280,7 +279,6 @@ public class KingdomPanel extends JPanel implements MouseListener {
         if (e.getX() > 225 && e.getX() < 675 && e.getY() > 800 && gameState.gameState != 1) {
          gameState.gameState = 1;
         }
-
 
         if (gameState.currentPlayer.equals(gameLogic.playerRed) && (gameLogic.housePlaced == 0 || gameLogic.housePlaced == 3)) { // red
             ArrayList<String> tokens = gameLogic.playerRed.specialTokens;

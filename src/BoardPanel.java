@@ -56,6 +56,7 @@ public class BoardPanel extends JPanel implements MouseListener {
     }
 
     public void paintComponent(Graphics g) {
+        System.out.println(gameState.gameState);
         super.repaint();
         g.setFont(font);
         g.setColor(Color.white);
