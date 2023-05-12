@@ -1,5 +1,5 @@
 public class SpecialAction {
-    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction, int p, int v) {
+    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction) {
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
         Tile[][] temp = new Tile[22][32];
