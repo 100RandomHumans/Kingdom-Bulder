@@ -97,6 +97,7 @@ public class SpecialAction {
 
             for(int i = 0; i < highlight.length; i++) {
                 for (int j = 0; j < highlight[0].length; j++) {
+                    tempUwu = false;
                     if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
                         tempP = paddock(player, gameBoard, i, j);
 
