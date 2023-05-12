@@ -1,8 +1,7 @@
 public class SpecialAction {
-    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction) {
+    public boolean[][] specialHighlight(Player player, String terrainCard, Board gameBoard, String SpecialAction, int p, int v) {
         boolean[][] highlight = new boolean[20][30];
         Tile[][] board = gameBoard.getBoard();
-        int housesLeft = player.getHouseCount();
         Tile[][] temp = new Tile[22][32];
         int counter = 0;
 
@@ -93,10 +92,28 @@ public class SpecialAction {
 
 
         else if(SpecialAction.equals("Paddock")){
+            boolean[][] tempP;
+            boolean tempUwu = false;
+
             for(int i = 0; i < highlight.length; i++) {
                 for (int j = 0; j < highlight[0].length; j++) {
                     if (board[i][j].hasHouse && board[i][j].houseColor.equals(player.getColor())) {
-                        highlight[i][j] = true;
+                        tempP = paddock(player, gameBoard, i, j);
+
+                        for(int l = 0; l < tempP.length; l++){
+                            for(int b = 0; b < tempP[l].length; b++){
+                                if(tempP[l][b]){
+                                    tempUwu = true;
+                                }
+                            }
+                        }
+
+                        if(tempUwu){
+                            highlight[i][j] = true;
+                        }
+                        else{
+                            highlight[i][j] = false;
+                        }
                     }
                 }
             }

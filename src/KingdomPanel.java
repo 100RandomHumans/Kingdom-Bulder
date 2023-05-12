@@ -194,7 +194,7 @@ public class KingdomPanel extends JPanel implements MouseListener {
             case 4, 6 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TileHarbor.png"), 10, 800, 70, 80, null);
             case 5, 7 -> g.drawImage(ImageLoader.get("/Pictures/PlayerTiles/TilePaddock.png"), 10, 800, 70, 80, null);
         }
-        if (gameLogic.terrainDeck.size() == 0) {
+        if (gameLogic.terrainDeck.size() == 1) {
             g.drawString("shuffling", 1118,150 + (225 * ((gameLogic.players.indexOf(gameState.currentPlayer) + 1) % 4) )  );
         }
         g.drawImage(ImageLoader.get("/Pictures/TerrainCards/Cardback.png"), 800, 785, 70, 100, null);

@@ -98,7 +98,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     break;
                 case 2:
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
-                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
+                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower", 0, 0));
                         for (int i = 0; i < 20; i++) {
                             for (int j = 0; j < 20; j++) {
                                 if (!darken[i][j]) {
@@ -110,7 +110,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     break;
                 case 3:
                     if (gameState.currentPlayer.remainingHouses > 0 && !kingdomPanel.thirdTimeRound) { // blackout
-                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
+                        darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle", 0, 0));
                         for (int i = 0; i < 20; i++) {
 
                             for (int j = 0; j < 20; j++) {
@@ -122,7 +122,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 4:
-                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
+                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor", 0, 0));
                     for (int i = 0; i < 20; i++) {
 
                         for (int j = 0; j < 20; j++) {
@@ -134,7 +134,31 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 5:
-                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
+                    int jBoard = 0;
+                    if (holdX == 0) {
+                        jBoard = holdY;
+                    } else if (holdX == 1 || holdX == 2) {
+                        jBoard = holdY + 1;
+                    } else if (holdX == 3 || holdX == 4) {
+                        jBoard = holdY + 2;
+                    } else if (holdX == 5 || holdX == 6) {
+                        jBoard = holdY + 3;
+                    } else if (holdX == 7 || holdX == 8) {
+                        jBoard = holdY + 4;
+                    } else if (holdX == 9 || holdX == 10) {
+                        jBoard = holdY + 5;
+                    } else if (holdX == 11 || holdX == 12) {
+                        jBoard = holdY + 6;
+                    } else if (holdX == 13 || holdX == 14) {
+                        jBoard = holdY + 7;
+                    } else if (holdX == 15 || holdX == 16) {
+                        jBoard = holdY + 8;
+                    } else if (holdX == 17 || holdX == 18) {
+                        jBoard = holdY + 9;
+                    } else if (holdX == 19) {
+                        jBoard = holdY + 10;
+                    }
+                    darken = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock", holdX, jBoard));
                     for (int i = 0; i < 20; i++) {
                         for (int j = 0; j < 20; j++) {
                             if (!darken[i][j]) {
@@ -154,7 +178,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     }
                     break;
                 case 7:
-                    int jBoard = 0;
+                    jBoard = 0;
                     if (holdX == 0) {
                         jBoard = holdY;
                     } else if (holdX == 1 || holdX == 2) {
@@ -259,7 +283,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
                 break;
             case 2:
-                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower"));
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Tower", 0, 0));
                 if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
                     System.out.println("no houses");
                     gameState.gameState = 1;
@@ -276,7 +300,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
                 break;
             case 3:
-                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle", 0, 0));
                 if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
                     System.out.println("no houses");
                     gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
@@ -292,7 +316,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     break;
                 }
             case 4:
-                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor"));
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Harbor", 0, 0));
                 if (hold[i][j]) {
                     holdX = i;
                     holdY = j;
@@ -300,7 +324,31 @@ public class BoardPanel extends JPanel implements MouseListener {
                 }
                 break;
             case 5:
-                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock"));
+                int jBoard = 0;
+                if (holdX == 0) {
+                    jBoard = holdY;
+                } else if (holdX == 1 || holdX == 2) {
+                    jBoard = holdY + 1;
+                } else if (holdX == 3 || holdX == 4) {
+                    jBoard = holdY + 2;
+                } else if (holdX == 5 || holdX == 6) {
+                    jBoard = holdY + 3;
+                } else if (holdX == 7 || holdX == 8) {
+                    jBoard = holdY + 4;
+                } else if (holdX == 9 || holdX == 10) {
+                    jBoard = holdY + 5;
+                } else if (holdX == 11 || holdX == 12) {
+                    jBoard = holdY + 6;
+                } else if (holdX == 13 || holdX == 14) {
+                    jBoard = holdY + 7;
+                } else if (holdX == 15 || holdX == 16) {
+                    jBoard = holdY + 8;
+                } else if (holdX == 17 || holdX == 18) {
+                    jBoard = holdY + 9;
+                } else if (holdX == 19) {
+                    jBoard = holdY + 10;
+                }
+                hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Paddock", holdX, jBoard));
                 if (hold[i][j]) {
                     holdX = i;
                     holdY = j;
@@ -321,7 +369,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     break;
                 }
             case 7:
-                int jBoard = 0;
+                jBoard = 0;
                 if (holdX == 0) {
                     jBoard = holdY;
                 } else if (holdX == 1 || holdX == 2) {
