@@ -263,6 +263,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                 if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
                     System.out.println("no houses");
                     gameState.gameState = 1;
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                     return;
                 }
                 if (hold[i][j]) {
@@ -271,12 +272,14 @@ public class BoardPanel extends JPanel implements MouseListener {
                     gameState.currentPlayer.remainingHouses -= 1;
                     checkForSpecialActions(i, j);
                     gameState.gameState = 1;
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                 }
                 break;
             case 3:
                 hold = thirtyToTwenty(specialAction.specialHighlight(gameState.currentPlayer, gameState.currentPlayer.terrain, gameLogic.board, "Oracle"));
                 if (gameState.currentPlayer.remainingHouses == 0) { // if there are no houses
                     System.out.println("no houses");
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                     return;
                 }
                 if (hold[i][j]) {
@@ -285,6 +288,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     gameState.currentPlayer.remainingHouses -= 1;
                     checkForSpecialActions(i, j);
                     gameState.gameState = 1;
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                     break;
                 }
             case 4:
@@ -313,6 +317,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     checkForSpecialActions(i, j);
                     checkMoveAway();
                     gameState.gameState = 1;
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                     break;
                 }
             case 7:
@@ -351,6 +356,7 @@ public class BoardPanel extends JPanel implements MouseListener {
                     checkForSpecialActions(i, j);
                     checkMoveAway();
                     gameState.gameState = 1;
+                    gameState.avilableTiles.set(kingdomPanel.tileSelected, "Empty");
                     break;
                 }
             default:
