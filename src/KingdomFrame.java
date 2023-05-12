@@ -13,6 +13,7 @@ public class KingdomFrame extends JFrame {
         add(new KingdomPanel(houses));
         setLocationRelativeTo(null);
         setVisible(true);
+        setIconImage(ImageLoader.get("/Pictures/icon.jpg"));
     }
 
 }
