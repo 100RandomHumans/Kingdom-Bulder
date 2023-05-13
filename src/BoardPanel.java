@@ -479,8 +479,9 @@ public class BoardPanel extends JPanel implements MouseListener {
                     if (tempLocs.size() != 0 && !banger.contains(tempLocs.get(0))) {
                         for (int i = 0; i < gameState.currentPlayer.specialTokens.size(); i++) {
                             if (gameState.currentPlayer.specialTokens.get(i).equals(gameLogic.board.Board[a][b].getLocation())) {
-                                gameState.currentPlayer.specialTokens.remove(gameLogic.board.Board[a][b].getLocation());
+                                gameState.currentPlayer.specialTokens.remove(i);
                                 gameState.currentPlayer.specialTokens.add("Empty");
+                                break;
                             }
                         }
                         gameLogic.board.Board[a][b].allPlayers.remove(gameState.currentPlayer.color);
