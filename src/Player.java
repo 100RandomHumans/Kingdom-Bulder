@@ -34,8 +34,12 @@ public class Player {
         return score;
     }
     public void addSpecialToken(String token) {
-        specialTokens.remove(specialTokens.size() - 1);
-        specialTokens.add(count, token); // token must be in the form of Barn, Farm, Harbor...
+        for (int i = 0; i < specialTokens.size(); i++) {
+            if (specialTokens.get(i).equals("Empty")) {
+                specialTokens.set(i, token);
+                break;
+            }
+        }
         count++;
     }
     public void fillSpecialToken() {
